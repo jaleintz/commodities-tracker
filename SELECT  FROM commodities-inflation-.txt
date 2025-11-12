@@ -15,4 +15,118 @@ CREATE TABLE "commodities-inflation-tb" (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+---------------------------------------------
 
+-- Main prices table (your existing table with a modification)
+CREATE TABLE "commodities-inflation-tb" (
+    id BIGSERIAL PRIMARY KEY,
+    egg_price NUMERIC(10, 2) NOT NULL,
+    hamburger_price NUMERIC(10, 2) NOT NULL,
+    bacon_price NUMERIC(10, 2) NOT NULL,
+    whole_milk_price NUMERIC(10, 2) NOT NULL,
+    butter_price NUMERIC(10, 2) NOT NULL,
+    bread_price NUMERIC(10, 2) NOT NULL,
+    source_id INTEGER REFERENCES "commodities-source-tb"(id),
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Source/description table (one record per source)
+CREATE TABLE "commodities-source-tb" (
+    id SERIAL PRIMARY KEY,
+    egg_desc TEXT,
+    egg_url TEXT,
+    hamburger_desc TEXT,
+    hamburger_url TEXT,
+    bacon_desc TEXT,
+    bacon_url TEXT,
+    whole_milk_desc TEXT,
+    whole_milk_url TEXT,
+    butter_desc TEXT,
+    butter_url TEXT,
+    bread_desc TEXT,
+    bread_url TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+Note: Create the commodities-source-tb table first, then drop and recreate commodities-inflation-tb with the source_id foreign key. This way, each daily price entry in the inflation table can reference which source was used via the source_id field.
+
+--------------------------------
+
+DROP TABLE IF EXISTS "commodities-inflation-tb";
+
+CREATE TABLE "commodities-source-tb" (
+    id SERIAL PRIMARY KEY,
+    egg_desc TEXT,
+    egg_url TEXT,
+    hamburger_desc TEXT,
+    hamburger_url TEXT,
+    bacon_desc TEXT,
+    bacon_url TEXT,
+    whole_milk_desc TEXT,
+    whole_milk_url TEXT,
+    butter_desc TEXT,
+    butter_url TEXT,
+    bread_desc TEXT,
+    bread_url TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE "commodities-inflation-tb" (
+    id BIGSERIAL PRIMARY KEY,
+    egg_price NUMERIC(10, 2) NOT NULL,
+    hamburger_price NUMERIC(10, 2) NOT NULL,
+    bacon_price NUMERIC(10, 2) NOT NULL,
+    whole_milk_price NUMERIC(10, 2) NOT NULL,
+    butter_price NUMERIC(10, 2) NOT NULL,
+    bread_price NUMERIC(10, 2) NOT NULL,
+    source_id INTEGER NOT NULL DEFAULT 1 REFERENCES "commodities-source-tb"(id),
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+----------------------------------------------------------------
+
+DROP TABLE IF EXISTS "commodities-inflation-tb";
+
+DROP TABLE IF EXISTS "commodities-source-tb";
+
+
+-- Products/Source table (one row per product)
+CREATE TABLE "commodities-source-tb" (
+    id SERIAL PRIMARY KEY,
+    product_name TEXT NOT NULL,
+    product_desc TEXT,
+    product_url TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Prices table (many prices per product over time)
+CREATE TABLE "commodities-inflation-tb" (
+    id BIGSERIAL PRIMARY KEY,
+    product_id INTEGER NOT NULL REFERENCES "commodities-source-tb"(id),
+    price NUMERIC(10, 2) NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+Insert your products:
+INSERT INTO "commodities-source-tb" (product_name, product_desc, product_url) VALUES
+('Eggs', 'Great Value Large White Eggs, 12 Count', 'https://www.walmart.com/ip/Great-Value-Large-White-Eggs-12-Count/145051970?classType=REGULAR&athbdg=L1600&from=/search'),
+('Hamburger', '0% Lean / 20% Fat Ground Beef Chuck, 1 lb Tray', 'https://www.walmart.com/ip/80-Lean-20-Fat-Ground-Beef-Chuck-1-lb-Tray-Fresh-All-Natural/479601462?classType=REGULAR&athbdg=L1200'),
+('Bacon', 'Great Value Naturally Hickory Smoked Sliced Bacon, 12 oz', 'https://www.walmart.com/ip/Great-Value-Hickory-Smoked-Bacon-12-oz/23816525?classType=REGULAR&athbdg=L1200&from=/search'),
+('Whole Milk', 'Great Value Whole Vitamin D Milk', 'https://www.walmart.com/ip/Great-Value-Whole-Vitamin-D-Milk-Gallon-Plastic-Jug-128-Fl-Oz/10450114?classType=REGULAR&athbdg=L1200'),
+('Butter', 'Great Value Sweet Cream Salted Butter, 16 oz Box, 4 Sticks', 'https://www.walmart.com/ip/Great-Value-Sweet-Cream-Salted-Butter-16-oz-Box-4-Sticks-Refrigerated/132893363?classType=REGULAR&athbdg=L1200&from=/search'),
+('Bread', 'Great Value White Sandwich Bread, 20 oz', 'https://www.walmart.com/ip/Great-Value-White-Sandwich-Bread-20-oz/10315752?classType=REGULAR&athbdg=L1600&from=/search');
+
+SELECT 
+    s.product_name,
+    s.product_desc,
+    s.product_url,
+    i.price,
+    i.created_at
+FROM "commodities-source-tb" s
+LEFT JOIN LATERAL (
+    SELECT price, created_at
+    FROM "commodities-inflation-tb"
+    WHERE product_id = s.id
+    ORDER BY created_at DESC
+    LIMIT 1
+) i ON true
+ORDER BY s.id;
