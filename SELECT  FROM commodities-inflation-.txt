@@ -1,0 +1,18 @@
+SELECT * FROM "commodities-inflation-tb"
+
+
+DROP TABLE IF EXISTS "commodities-inflation-tb";
+
+
+CREATE TABLE "commodities-inflation-tb" (
+    id BIGSERIAL PRIMARY KEY,
+    egg_price NUMERIC(10, 2),
+    hamburger_price NUMERIC(10, 2),
+    bacon_price NUMERIC(10, 2),
+    whole_milk_price NUMERIC(10, 2),
+    butter_price NUMERIC(10, 2),
+    bread_price NUMERIC(10, 2),
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+
