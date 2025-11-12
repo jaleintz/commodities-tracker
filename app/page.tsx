@@ -29,16 +29,42 @@ export default function Home() {
     setMessage('')
 
     try {
+      // Validate all fields are filled
+      if (!formData.egg_price || !formData.hamburger_price || !formData.bacon_price ||
+          !formData.whole_milk_price || !formData.butter_price || !formData.bread_price) {
+        throw new Error('All fields are required. Please fill in all prices.')
+      }
+
+      // Validate all fields are valid numbers
+      const prices = [
+        { name: 'Eggs', value: formData.egg_price },
+        { name: 'Hamburger', value: formData.hamburger_price },
+        { name: 'Bacon', value: formData.bacon_price },
+        { name: 'Whole Milk', value: formData.whole_milk_price },
+        { name: 'Butter', value: formData.butter_price },
+        { name: 'Bread', value: formData.bread_price }
+      ]
+
+      for (const price of prices) {
+        const numValue = parseFloat(price.value)
+        if (isNaN(numValue)) {
+          throw new Error(`${price.name} must be a valid number.`)
+        }
+        if (numValue < 0) {
+          throw new Error(`${price.name} cannot be negative.`)
+        }
+      }
+
       const { data, error } = await supabase
         .from('commodities-inflation-tb')
         .insert([
           {
-            egg_price: formData.egg_price ? parseFloat(formData.egg_price) : null,
-            hamburger_price: formData.hamburger_price ? parseFloat(formData.hamburger_price) : null,
-            bacon_price: formData.bacon_price ? parseFloat(formData.bacon_price) : null,
-            whole_milk_price: formData.whole_milk_price ? parseFloat(formData.whole_milk_price) : null,
-            butter_price: formData.butter_price ? parseFloat(formData.butter_price) : null,
-            bread_price: formData.bread_price ? parseFloat(formData.bread_price) : null,
+            egg_price: parseFloat(formData.egg_price),
+            hamburger_price: parseFloat(formData.hamburger_price),
+            bacon_price: parseFloat(formData.bacon_price),
+            whole_milk_price: parseFloat(formData.whole_milk_price),
+            butter_price: parseFloat(formData.butter_price),
+            bread_price: parseFloat(formData.bread_price),
           }
         ])
 
