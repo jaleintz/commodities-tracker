@@ -3,89 +3,6 @@ SELECT * FROM "commodities-inflation-tb"
 
 DROP TABLE IF EXISTS "commodities-inflation-tb";
 
-
-CREATE TABLE "commodities-inflation-tb" (
-    id BIGSERIAL PRIMARY KEY,
-    egg_price NUMERIC(10, 2),
-    hamburger_price NUMERIC(10, 2),
-    bacon_price NUMERIC(10, 2),
-    whole_milk_price NUMERIC(10, 2),
-    butter_price NUMERIC(10, 2),
-    bread_price NUMERIC(10, 2),
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
----------------------------------------------
-
--- Main prices table (your existing table with a modification)
-CREATE TABLE "commodities-inflation-tb" (
-    id BIGSERIAL PRIMARY KEY,
-    egg_price NUMERIC(10, 2) NOT NULL,
-    hamburger_price NUMERIC(10, 2) NOT NULL,
-    bacon_price NUMERIC(10, 2) NOT NULL,
-    whole_milk_price NUMERIC(10, 2) NOT NULL,
-    butter_price NUMERIC(10, 2) NOT NULL,
-    bread_price NUMERIC(10, 2) NOT NULL,
-    source_id INTEGER REFERENCES "commodities-source-tb"(id),
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Source/description table (one record per source)
-CREATE TABLE "commodities-source-tb" (
-    id SERIAL PRIMARY KEY,
-    egg_desc TEXT,
-    egg_url TEXT,
-    hamburger_desc TEXT,
-    hamburger_url TEXT,
-    bacon_desc TEXT,
-    bacon_url TEXT,
-    whole_milk_desc TEXT,
-    whole_milk_url TEXT,
-    butter_desc TEXT,
-    butter_url TEXT,
-    bread_desc TEXT,
-    bread_url TEXT,
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-Note: Create the commodities-source-tb table first, then drop and recreate commodities-inflation-tb with the source_id foreign key. This way, each daily price entry in the inflation table can reference which source was used via the source_id field.
-
---------------------------------
-
-DROP TABLE IF EXISTS "commodities-inflation-tb";
-
-CREATE TABLE "commodities-source-tb" (
-    id SERIAL PRIMARY KEY,
-    egg_desc TEXT,
-    egg_url TEXT,
-    hamburger_desc TEXT,
-    hamburger_url TEXT,
-    bacon_desc TEXT,
-    bacon_url TEXT,
-    whole_milk_desc TEXT,
-    whole_milk_url TEXT,
-    butter_desc TEXT,
-    butter_url TEXT,
-    bread_desc TEXT,
-    bread_url TEXT,
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE TABLE "commodities-inflation-tb" (
-    id BIGSERIAL PRIMARY KEY,
-    egg_price NUMERIC(10, 2) NOT NULL,
-    hamburger_price NUMERIC(10, 2) NOT NULL,
-    bacon_price NUMERIC(10, 2) NOT NULL,
-    whole_milk_price NUMERIC(10, 2) NOT NULL,
-    butter_price NUMERIC(10, 2) NOT NULL,
-    bread_price NUMERIC(10, 2) NOT NULL,
-    source_id INTEGER NOT NULL DEFAULT 1 REFERENCES "commodities-source-tb"(id),
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-----------------------------------------------------------------
-
-DROP TABLE IF EXISTS "commodities-inflation-tb";
-
 DROP TABLE IF EXISTS "commodities-source-tb";
 
 
@@ -130,3 +47,6 @@ LEFT JOIN LATERAL (
     LIMIT 1
 ) i ON true
 ORDER BY s.id;
+
+vercel link
+https://commodities-tracker.vercel.app/

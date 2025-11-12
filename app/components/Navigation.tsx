@@ -11,16 +11,6 @@ export default function Navigation() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex space-x-1">
           <Link
-            href="/"
-            className={`px-6 py-4 font-semibold transition-colors ${
-              pathname === '/'
-                ? 'text-cyan-400 border-b-2 border-cyan-400'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            Price Entry
-          </Link>
-          <Link
             href="/display"
             className={`px-6 py-4 font-semibold transition-colors ${
               pathname === '/display'
@@ -29,6 +19,16 @@ export default function Navigation() {
             }`}
           >
             Price Display
+          </Link>
+          <Link
+            href="/entry"
+            className={`px-6 py-4 font-semibold transition-colors ${
+              pathname === '/entry'
+                ? 'text-cyan-400 border-b-2 border-cyan-400'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            Price Entry
           </Link>
         </div>
       </div>
