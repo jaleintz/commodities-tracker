@@ -11,6 +11,7 @@ interface ProductWithPrice {
   product_url: string
   price: number | null
   price_date: string | null
+  previous_price: number | null
 }
 
 export default function DisplayPage() {
@@ -35,7 +36,7 @@ export default function DisplayPage() {
 
       if (productsError) throw productsError
 
-      // For each product, get the latest price
+      // For each product, get the latest and previous prices
       const productsWithPrices = await Promise.all(
         (products || []).map(async (product) => {
           const { data: priceData } = await supabase
@@ -43,13 +44,13 @@ export default function DisplayPage() {
             .select('price, created_at')
             .eq('product_id', product.id)
             .order('created_at', { ascending: false })
-            .limit(1)
-            .single()
+            .limit(2)
 
           return {
             ...product,
-            price: priceData?.price || null,
-            price_date: priceData?.created_at || null
+            price: priceData?.[0]?.price || null,
+            price_date: priceData?.[0]?.created_at || null,
+            previous_price: priceData?.[1]?.price || null
           }
         })
       )
@@ -77,11 +78,11 @@ export default function DisplayPage() {
       <Navigation />
       <div className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-12 md:p-16">
+          <div className="bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-3 md:p-4">
             <div className="text-center mb-8">
               <div className="flex items-center justify-center gap-3">
                 <h1 className="text-xl md:text-2xl font-bold text-cyan-400 mb-1">
-                  Staple Prices
+                  Staple Food Prices
                 </h1>
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
@@ -102,10 +103,42 @@ export default function DisplayPage() {
                   </svg>
                 </button>
               </div>
-              {!isLoading && !error && productsWithPrices.length > 0 && productsWithPrices.some(p => p.price_date) && (
-                <p className="text-slate-400 text-sm mt-2">
-                  Last updated: {formatDate(productsWithPrices.find(p => p.price_date)?.price_date || null)}
-                </p>
+              {!isLoading && !error && productsWithPrices.length > 0 && (
+                <div className="mt-2">
+                  <p className="text-xs">
+                    {productsWithPrices.map((p, index) => {
+                      const change = (p.price || 0) - (p.previous_price || 0)
+                      const hasChange = p.previous_price !== null && change !== 0
+
+                      let textColor = 'text-slate-400'
+                      let arrow = ''
+                      if (hasChange) {
+                        if (change < 0) {
+                          textColor = 'text-green-400'
+                          arrow = '↓'
+                        } else {
+                          textColor = 'text-red-400'
+                          arrow = '↑'
+                        }
+                      }
+
+                      return (
+                        <span key={p.id}>
+                          <span className={textColor}>
+                            {p.product_name}
+                            {arrow && <span className="ml-0.5">{arrow}</span>}
+                          </span>
+                          {index < productsWithPrices.length - 1 ? <span className="text-slate-400"> • </span> : ''}
+                        </span>
+                      )
+                    })}
+                  </p>
+                  {productsWithPrices.some(p => p.price_date) && (
+                    <p className="text-slate-400 text-sm mt-1">
+                      Last updated: {formatDate(productsWithPrices.find(p => p.price_date)?.price_date || null)}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
 
@@ -123,45 +156,106 @@ export default function DisplayPage() {
 
             {!isLoading && !error && productsWithPrices.length > 0 && (
               <div className="flex flex-col items-center space-y-4">
-                {isExpanded && productsWithPrices.map((product) => (
-                  <div key={product.id} className="w-full max-w-md bg-slate-700 rounded-lg p-4 border border-slate-600">
-                    <div className="flex justify-between items-center mb-2">
-                      <div>
-                        <span className="text-cyan-400 font-bold text-lg">{product.product_name}</span>
-                        {product.product_desc && (
-                          <p className="text-xs text-slate-400 mt-1">{product.product_desc}</p>
-                        )}
-                        {product.product_url && (
-                          <a
-                            href={product.product_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-blue-400 hover:text-blue-300 underline"
-                          >
-                            View Product
-                          </a>
-                        )}
-                      </div>
-                      <span className="text-white text-lg font-semibold">
-                        {formatPrice(product.price)}
-                      </span>
-                    </div>
-                    {product.price_date && (
-                      <p className="text-xs text-slate-500 text-right">
-                        Last updated: {formatDate(product.price_date)}
-                      </p>
-                    )}
-                  </div>
-                ))}
+                {isExpanded && productsWithPrices.map((product) => {
+                  const change = (product.price || 0) - (product.previous_price || 0)
+                  const hasChange = product.previous_price !== null && change !== 0
+                  const isUnchanged = product.previous_price !== null && change === 0
 
-                <div className="w-full max-w-md bg-cyan-600 rounded-lg p-4 border-2 border-cyan-400 mt-6">
+                  let borderColor = 'border-slate-600'
+                  let bgColor = 'bg-slate-700'
+
+                  if (hasChange) {
+                    if (change < 0) {
+                      borderColor = 'border-green-500'
+                      bgColor = 'bg-green-900/30'
+                    } else {
+                      borderColor = 'border-red-500'
+                      bgColor = 'bg-red-900/30'
+                    }
+                  }
+
+                  return (
+                    <div key={product.id} className={`w-full max-w-md ${bgColor} rounded-lg p-4 border-2 ${borderColor}`}>
+                      <div className="flex justify-between items-center mb-2">
+                        <div>
+                          <span className="text-cyan-400 font-bold text-lg">{product.product_name}</span>
+                          {product.product_desc && (
+                            <p className="text-xs text-slate-400 mt-1">{product.product_desc}</p>
+                          )}
+                          {product.product_url && (
+                            <a
+                              href={product.product_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs text-blue-400 hover:text-blue-300 underline"
+                            >
+                              View Product
+                            </a>
+                          )}
+                        </div>
+                        <div className="text-right">
+                          <span className="text-white text-lg font-semibold block">
+                            {formatPrice(product.price)}
+                          </span>
+                          {hasChange && (
+                            <span className={`text-sm font-semibold ${change < 0 ? 'text-green-400' : 'text-red-400'}`}>
+                              {change > 0 ? '+' : ''}{formatPrice(change)} {change > 0 ? '↑' : '↓'}
+                            </span>
+                          )}
+                          {isUnchanged && (
+                            <span className="text-sm font-semibold text-slate-400">
+                              unchanged
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      {product.price_date && (
+                        <p className="text-xs text-slate-500 text-right">
+                          Last updated: {formatDate(product.price_date)}
+                        </p>
+                      )}
+                    </div>
+                  )
+                })}
+
+                <div className={`w-full max-w-md rounded-lg p-4 border-2 mb-4 ${
+                  (() => {
+                    const currentTotal = productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
+                    const previousTotal = productsWithPrices.reduce((sum, product) => sum + (product.previous_price || 0), 0)
+                    const change = currentTotal - previousTotal
+
+                    if (previousTotal === 0 || change === 0) {
+                      return 'bg-cyan-600 border-cyan-400'
+                    } else if (change < 0) {
+                      return 'bg-green-600 border-green-400'
+                    } else {
+                      return 'bg-red-600 border-red-400'
+                    }
+                  })()
+                }`}>
                   <div className="flex justify-between items-center">
                     <span className="text-white font-bold text-xl">Total Cost</span>
-                    <span className="text-white text-2xl font-bold">
-                      {formatPrice(
-                        productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
-                      )}
-                    </span>
+                    <div className="text-right">
+                      <span className="text-white text-2xl font-bold block">
+                        {formatPrice(
+                          productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
+                        )}
+                      </span>
+                      {(() => {
+                        const currentTotal = productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
+                        const previousTotal = productsWithPrices.reduce((sum, product) => sum + (product.previous_price || 0), 0)
+                        const change = currentTotal - previousTotal
+
+                        if (previousTotal > 0 && change !== 0) {
+                          return (
+                            <span className="text-white text-sm font-semibold">
+                              {change > 0 ? '+' : ''}{formatPrice(change)} {change > 0 ? '↑' : '↓'} from previous
+                            </span>
+                          )
+                        }
+                        return null
+                      })()}
+                    </div>
                   </div>
                 </div>
               </div>
