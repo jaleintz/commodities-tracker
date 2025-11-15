@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import VisitTracker from "./components/VisitTracker";
 
 export const metadata: Metadata = {
   title: "Commodities Inflation Tracker",
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <VisitTracker />
+        {children}
+      </body>
     </html>
   );
 }
