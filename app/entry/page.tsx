@@ -32,10 +32,38 @@ export default function EntryPage() {
 
       if (error) throw error
       setProducts(data || [])
+
+      // Fetch last prices for each product
+      if (data && data.length > 0) {
+        await fetchLastPrices(data)
+      }
     } catch (error: any) {
       setMessage(`Error loading products: ${error.message}`)
     } finally {
       setProductsLoading(false)
+    }
+  }
+
+  const fetchLastPrices = async (products: Product[]) => {
+    try {
+      const lastPrices: { [key: number]: string } = {}
+
+      for (const product of products) {
+        const { data, error } = await supabase
+          .from('commodities-inflation-tb')
+          .select('price')
+          .eq('product_id', product.id)
+          .order('created_at', { ascending: false })
+          .limit(1)
+
+        if (!error && data && data.length > 0) {
+          lastPrices[product.id] = data[0].price.toString()
+        }
+      }
+
+      setPrices(lastPrices)
+    } catch (error: any) {
+      console.error('Error fetching last prices:', error)
     }
   }
 
@@ -88,7 +116,7 @@ export default function EntryPage() {
       }
 
       setMessage('Data saved successfully!')
-      setPrices({})
+      // Don't clear prices - they'll remain prefilled for next entry
     } catch (error: any) {
       setMessage(`Error: ${error.message}`)
     } finally {
