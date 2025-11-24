@@ -403,6 +403,7 @@ export default function DisplayPage() {
                 }`}>
                   <div className="text-left mb-2">
                     <p className="text-xs">
+                      <span className="text-white font-semibold mr-1">(D)</span>
                       {productsWithPrices.map((p, index) => {
                         const change = (p.price || 0) - (p.previous_price || 0)
                         const hasChange = p.previous_price !== null && change !== 0
@@ -458,14 +459,14 @@ export default function DisplayPage() {
 
                       return (
                         <span className="text-white text-xs font-semibold">
-                          <i className={`fas fa-circle ${dailyChangeValue < 0 ? 'text-green-400' : dailyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(D) {dailyChangeValue > 0 ? '+' : ''}{dailyPercentage}% <i className={`fas ${dailyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : dailyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
-                          {showMetrics && <span className="mx-2"></span>}
+                          Total Change <i className={`fas fa-circle ${dailyChangeValue < 0 ? 'text-green-400' : dailyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(D) {dailyChangeValue > 0 ? '+' : ''}{dailyPercentage}% <i className={`fas ${dailyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : dailyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
+                          {showMetrics && <span className="mx-1"></span>}
                           {showMetrics && (
                             <>
                               <i className={`fas fa-circle ${weeklyChangeValue < 0 ? 'text-green-400' : weeklyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(W) {weeklyChangeValue > 0 ? '+' : ''}{weeklyPercentage}% <i className={`fas ${weeklyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : weeklyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
                             </>
                           )}
-                          {showMetrics && <span className="mx-2"></span>}
+                          {showMetrics && <span className="mx-1"></span>}
                           {showMetrics && (
                             <>
                               <i className={`fas fa-circle ${monthlyChangeValue < 0 ? 'text-green-400' : monthlyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(M) {monthlyChangeValue > 0 ? '+' : ''}{monthlyPercentage}% <i className={`fas ${monthlyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : monthlyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
