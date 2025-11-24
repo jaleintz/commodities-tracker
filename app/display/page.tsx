@@ -13,18 +13,138 @@ interface ProductWithPrice {
   price_date: string | null
   previous_price: number | null
   first_price: number | null
+  week_ago_price: number | null
   month_ago_price: number | null
+}
+
+interface ChartDataPoint {
+  date: string
+  total: number
 }
 
 export default function DisplayPage() {
   const [productsWithPrices, setProductsWithPrices] = useState<ProductWithPrice[]>([])
+  const [chartData, setChartData] = useState<ChartDataPoint[]>([])
+  const [monthChartData, setMonthChartData] = useState<ChartDataPoint[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isChartExpanded, setIsChartExpanded] = useState(true)
+  const [isMonthChartExpanded, setIsMonthChartExpanded] = useState(true)
 
   useEffect(() => {
     fetchLatestPrices()
+    fetchChartData()
+    fetchMonthChartData()
   }, [])
+
+  const fetchChartData = async () => {
+    try {
+      // Get all products
+      const { data: products, error: productsError } = await supabase
+        .from('commodities-source-tb')
+        .select('id')
+        .order('id')
+
+      if (productsError) throw productsError
+
+      // Get data for last 7 days
+      const sevenDaysAgo = new Date()
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6) // 6 days ago + today = 7 days
+      sevenDaysAgo.setHours(0, 0, 0, 0)
+
+      const { data: priceData, error: priceError } = await supabase
+        .from('commodities-inflation-tb')
+        .select('price, created_at, product_id')
+        .gte('created_at', sevenDaysAgo.toISOString())
+        .order('created_at', { ascending: true })
+
+      if (priceError) throw priceError
+
+      // Group by date and calculate totals
+      const dataByDate: { [key: string]: { [productId: number]: number } } = {}
+
+      priceData?.forEach(record => {
+        const date = new Date(record.created_at)
+        const dateKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+
+        if (!dataByDate[dateKey]) {
+          dataByDate[dateKey] = {}
+        }
+        // Keep the latest price for each product on each date
+        dataByDate[dateKey][record.product_id] = record.price
+      })
+
+      // Create chart data points
+      const chartPoints: ChartDataPoint[] = []
+      const sortedDates = Object.keys(dataByDate).sort()
+
+      sortedDates.forEach(dateKey => {
+        const total = Object.values(dataByDate[dateKey]).reduce((sum, price) => sum + price, 0)
+        const [year, month, day] = dateKey.split('-')
+        const displayDate = `${month}/${day}`
+        chartPoints.push({ date: displayDate, total })
+      })
+
+      setChartData(chartPoints)
+    } catch (error: any) {
+      console.error('Error fetching chart data:', error)
+    }
+  }
+
+  const fetchMonthChartData = async () => {
+    try {
+      // Get all products
+      const { data: products, error: productsError } = await supabase
+        .from('commodities-source-tb')
+        .select('id')
+        .order('id')
+
+      if (productsError) throw productsError
+
+      // Get data for last 30 days
+      const thirtyDaysAgo = new Date()
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 29) // 29 days ago + today = 30 days
+      thirtyDaysAgo.setHours(0, 0, 0, 0)
+
+      const { data: priceData, error: priceError } = await supabase
+        .from('commodities-inflation-tb')
+        .select('price, created_at, product_id')
+        .gte('created_at', thirtyDaysAgo.toISOString())
+        .order('created_at', { ascending: true })
+
+      if (priceError) throw priceError
+
+      // Group by date and calculate totals
+      const dataByDate: { [key: string]: { [productId: number]: number } } = {}
+
+      priceData?.forEach(record => {
+        const date = new Date(record.created_at)
+        const dateKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+
+        if (!dataByDate[dateKey]) {
+          dataByDate[dateKey] = {}
+        }
+        // Keep the latest price for each product on each date
+        dataByDate[dateKey][record.product_id] = record.price
+      })
+
+      // Create chart data points
+      const chartPoints: ChartDataPoint[] = []
+      const sortedDates = Object.keys(dataByDate).sort()
+
+      sortedDates.forEach(dateKey => {
+        const total = Object.values(dataByDate[dateKey]).reduce((sum, price) => sum + price, 0)
+        const [year, month, day] = dateKey.split('-')
+        const displayDate = `${month}/${day}`
+        chartPoints.push({ date: displayDate, total })
+      })
+
+      setMonthChartData(chartPoints)
+    } catch (error: any) {
+      console.error('Error fetching month chart data:', error)
+    }
+  }
 
   const fetchLatestPrices = async () => {
     try {
@@ -41,13 +161,44 @@ export default function DisplayPage() {
       // For each product, get the latest, previous, first, and month ago prices
       const productsWithPrices = await Promise.all(
         (products || []).map(async (product) => {
-          // Get latest 2 prices
-          const { data: priceData } = await supabase
+          // Get today's date range (start and end of today)
+          const now = new Date()
+          const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+          const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999)
+
+          // Get yesterday's date range
+          const yesterdayStart = new Date(todayStart)
+          yesterdayStart.setDate(yesterdayStart.getDate() - 1)
+          const yesterdayEnd = new Date(todayStart)
+          yesterdayEnd.setMilliseconds(yesterdayEnd.getMilliseconds() - 1)
+
+          // Get latest price from today
+          const { data: todayPriceData } = await supabase
+            .from('commodities-inflation-tb')
+            .select('price, created_at')
+            .eq('product_id', product.id)
+            .gte('created_at', todayStart.toISOString())
+            .lte('created_at', todayEnd.toISOString())
+            .order('created_at', { ascending: false })
+            .limit(1)
+
+          // Get latest price from yesterday
+          const { data: yesterdayPriceData } = await supabase
+            .from('commodities-inflation-tb')
+            .select('price, created_at')
+            .eq('product_id', product.id)
+            .gte('created_at', yesterdayStart.toISOString())
+            .lte('created_at', yesterdayEnd.toISOString())
+            .order('created_at', { ascending: false })
+            .limit(1)
+
+          // Get overall latest price (for display if no today price)
+          const { data: latestPriceData } = await supabase
             .from('commodities-inflation-tb')
             .select('price, created_at')
             .eq('product_id', product.id)
             .order('created_at', { ascending: false })
-            .limit(2)
+            .limit(1)
 
           // Get first price
           const { data: firstPriceData } = await supabase
@@ -57,24 +208,43 @@ export default function DisplayPage() {
             .order('created_at', { ascending: true })
             .limit(1)
 
-          // Get price from approximately 30 days ago
+          // Get price from 7 days ago
+          const sevenDaysAgo = new Date()
+          sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
+          const sevenDaysAgoStart = new Date(sevenDaysAgo.getFullYear(), sevenDaysAgo.getMonth(), sevenDaysAgo.getDate())
+          const sevenDaysAgoEnd = new Date(sevenDaysAgo.getFullYear(), sevenDaysAgo.getMonth(), sevenDaysAgo.getDate(), 23, 59, 59, 999)
+
+          const { data: weekAgoPriceData } = await supabase
+            .from('commodities-inflation-tb')
+            .select('price, created_at')
+            .eq('product_id', product.id)
+            .gte('created_at', sevenDaysAgoStart.toISOString())
+            .lte('created_at', sevenDaysAgoEnd.toISOString())
+            .order('created_at', { ascending: false })
+            .limit(1)
+
+          // Get price from 30 days ago
           const thirtyDaysAgo = new Date()
           thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
+          const thirtyDaysAgoStart = new Date(thirtyDaysAgo.getFullYear(), thirtyDaysAgo.getMonth(), thirtyDaysAgo.getDate())
+          const thirtyDaysAgoEnd = new Date(thirtyDaysAgo.getFullYear(), thirtyDaysAgo.getMonth(), thirtyDaysAgo.getDate(), 23, 59, 59, 999)
 
           const { data: monthAgoPriceData } = await supabase
             .from('commodities-inflation-tb')
             .select('price, created_at')
             .eq('product_id', product.id)
-            .lte('created_at', thirtyDaysAgo.toISOString())
+            .gte('created_at', thirtyDaysAgoStart.toISOString())
+            .lte('created_at', thirtyDaysAgoEnd.toISOString())
             .order('created_at', { ascending: false })
             .limit(1)
 
           return {
             ...product,
-            price: priceData?.[0]?.price || null,
-            price_date: priceData?.[0]?.created_at || null,
-            previous_price: priceData?.[1]?.price || null,
+            price: todayPriceData?.[0]?.price || latestPriceData?.[0]?.price || null,
+            price_date: todayPriceData?.[0]?.created_at || latestPriceData?.[0]?.created_at || null,
+            previous_price: yesterdayPriceData?.[0]?.price || null,
             first_price: firstPriceData?.[0]?.price || null,
+            week_ago_price: weekAgoPriceData?.[0]?.price || null,
             month_ago_price: monthAgoPriceData?.[0]?.price || null
           }
         })
@@ -213,13 +383,18 @@ export default function DisplayPage() {
                   (() => {
                     const currentTotal = productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
                     const previousTotal = productsWithPrices.reduce((sum, product) => sum + (product.previous_price || 0), 0)
+                    const weekAgoTotal = productsWithPrices.reduce((sum, product) => sum + (product.week_ago_price || product.price || 0), 0)
+                    const monthAgoTotal = productsWithPrices.reduce((sum, product) => sum + (product.month_ago_price || product.price || 0), 0)
                     const firstTotal = productsWithPrices.reduce((sum, product) => sum + (product.first_price || 0), 0)
                     const dailyChange = currentTotal - previousTotal
-                    const overallChange = currentTotal - firstTotal
+                    const weeklyChange = currentTotal - weekAgoTotal
+                    const monthlyChange = currentTotal - monthAgoTotal
 
-                    if ((previousTotal === 0 || dailyChange === 0) && (firstTotal === 0 || overallChange === 0)) {
+                    if (previousTotal === 0 && weekAgoTotal === 0 && monthAgoTotal === 0 && firstTotal === 0) {
                       return 'border-cyan-400'
-                    } else if (dailyChange < 0 || overallChange < 0) {
+                    } else if (dailyChange === 0 && weeklyChange === 0 && monthlyChange === 0) {
+                      return 'border-cyan-400'
+                    } else if (dailyChange < 0 || weeklyChange < 0 || monthlyChange < 0) {
                       return 'border-green-400'
                     } else {
                       return 'border-red-400'
@@ -260,38 +435,188 @@ export default function DisplayPage() {
                     {(() => {
                       const currentTotal = productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
                       const previousTotal = productsWithPrices.reduce((sum, product) => sum + (product.previous_price || 0), 0)
+                      const weekAgoTotal = productsWithPrices.reduce((sum, product) => sum + (product.week_ago_price || product.price || 0), 0)
+                      const monthAgoTotal = productsWithPrices.reduce((sum, product) => sum + (product.month_ago_price || product.price || 0), 0)
                       const firstTotal = productsWithPrices.reduce((sum, product) => sum + (product.first_price || 0), 0)
                       const dailyChange = currentTotal - previousTotal
-                      const overallChange = currentTotal - firstTotal
+                      const weeklyChange = currentTotal - weekAgoTotal
+                      const monthlyChange = currentTotal - monthAgoTotal
 
-                      const showDaily = previousTotal > 0 && dailyChange !== 0
-                      const showOverall = firstTotal > 0 && overallChange !== 0
+                      const showMetrics = firstTotal > 0
 
-                      if (!showDaily && !showOverall) return null
+                      // Calculate daily percentage
+                      const dailyPercentage = previousTotal > 0 ? ((dailyChange / previousTotal) * 100).toFixed(2) : '0.00'
+                      const dailyChangeValue = previousTotal > 0 ? dailyChange : 0
+
+                      // Calculate weekly percentage (if no week ago price, assume same as current, so 0% change)
+                      const weeklyPercentage = weekAgoTotal > 0 ? ((weeklyChange / weekAgoTotal) * 100).toFixed(2) : '0.00'
+                      const weeklyChangeValue = weeklyChange
+
+                      // Calculate monthly percentage (if no month ago price, assume same as current, so 0% change)
+                      const monthlyPercentage = monthAgoTotal > 0 ? ((monthlyChange / monthAgoTotal) * 100).toFixed(2) : '0.00'
+                      const monthlyChangeValue = monthlyChange
 
                       return (
                         <span className="text-white text-xs font-semibold">
-                          {showDaily && (
+                          <i className={`fas fa-circle ${dailyChangeValue < 0 ? 'text-green-400' : dailyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(D) {dailyChangeValue > 0 ? '+' : ''}{dailyPercentage}% <i className={`fas ${dailyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : dailyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
+                          {showMetrics && <span className="mx-2"></span>}
+                          {showMetrics && (
                             <>
-                              <i className={`fas fa-circle ${dailyChange < 0 ? 'text-green-400' : 'text-red-400'} mr-0.5`}></i>(D) {dailyChange > 0 ? '+' : ''}{((dailyChange / previousTotal) * 100).toFixed(2)}% <i className={`fas ${dailyChange < 0 ? 'fa-arrow-trend-down text-green-400' : 'fa-arrow-trend-up text-red-400'} ml-0.5`}></i>
+                              <i className={`fas fa-circle ${weeklyChangeValue < 0 ? 'text-green-400' : weeklyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(W) {weeklyChangeValue > 0 ? '+' : ''}{weeklyPercentage}% <i className={`fas ${weeklyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : weeklyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
                             </>
                           )}
-                          {showDaily && showOverall && <span className="mx-2"></span>}
-                          {showOverall && (
+                          {showMetrics && <span className="mx-2"></span>}
+                          {showMetrics && (
                             <>
-                              <i className={`fas fa-circle ${overallChange < 0 ? 'text-green-400' : 'text-red-400'} mr-0.5`}></i>(W) {overallChange > 0 ? '+' : ''}{((overallChange / firstTotal) * 100).toFixed(2)}% <i className={`fas ${overallChange < 0 ? 'fa-arrow-trend-down text-green-400' : 'fa-arrow-trend-up text-red-400'} ml-0.5`}></i>
-                            </>
-                          )}
-                          {showOverall && <span className="mx-2"></span>}
-                          {showOverall && (
-                            <>
-                              <i className={`fas fa-circle ${overallChange < 0 ? 'text-green-400' : 'text-red-400'} mr-0.5`}></i>(M) {overallChange > 0 ? '+' : ''}{((overallChange / firstTotal) * 100).toFixed(2)}% <i className={`fas ${overallChange < 0 ? 'fa-arrow-trend-down text-green-400' : 'fa-arrow-trend-up text-red-400'} ml-0.5`}></i>
+                              <i className={`fas fa-circle ${monthlyChangeValue < 0 ? 'text-green-400' : monthlyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(M) {monthlyChangeValue > 0 ? '+' : ''}{monthlyPercentage}% <i className={`fas ${monthlyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : monthlyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
                             </>
                           )}
                         </span>
                       )
                     })()}
                   </div>
+
+                  {/* 7-Day Chart */}
+                  {chartData.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-slate-600">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs text-slate-400 font-semibold">7-Day Price Trend</span>
+                        <button
+                          onClick={() => setIsChartExpanded(!isChartExpanded)}
+                          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                          aria-label={isChartExpanded ? "Collapse chart" : "Expand chart"}
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            {isChartExpanded ? (
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                            ) : (
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            )}
+                          </svg>
+                        </button>
+                      </div>
+                      {isChartExpanded && (
+                        <div className="relative h-32">
+                          {(() => {
+                            const maxTotal = Math.max(...chartData.map(d => d.total))
+                            const minTotal = Math.min(...chartData.map(d => d.total))
+                            const range = maxTotal - minTotal || 1
+
+                            return (
+                              <svg viewBox="0 0 400 100" className="w-full h-full">
+                                {/* Grid lines */}
+                                <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                {/* Line chart */}
+                                <polyline
+                                  points={chartData.map((point, index) => {
+                                    const x = (index / (chartData.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.total - minTotal) / range) * 80
+                                    return `${x},${y}`
+                                  }).join(' ')}
+                                  fill="none"
+                                  stroke="#22d3ee"
+                                  strokeWidth="2"
+                                />
+
+                                {/* Data points */}
+                                {chartData.map((point, index) => {
+                                  const x = (index / (chartData.length - 1)) * 380 + 10
+                                  const y = 90 - ((point.total - minTotal) / range) * 80
+                                  return (
+                                    <g key={index}>
+                                      <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                      <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                        {point.date}
+                                      </text>
+                                    </g>
+                                  )
+                                })}
+                              </svg>
+                            )
+                          })()}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* 30-Day Chart */}
+                  {monthChartData.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-slate-600">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs text-slate-400 font-semibold">30-Day Price Trend</span>
+                        <button
+                          onClick={() => setIsMonthChartExpanded(!isMonthChartExpanded)}
+                          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                          aria-label={isMonthChartExpanded ? "Collapse chart" : "Expand chart"}
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            {isMonthChartExpanded ? (
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                            ) : (
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            )}
+                          </svg>
+                        </button>
+                      </div>
+                      {isMonthChartExpanded && (
+                        <div className="relative h-32">
+                          {(() => {
+                            const maxTotal = Math.max(...monthChartData.map(d => d.total))
+                            const minTotal = Math.min(...monthChartData.map(d => d.total))
+                            const range = maxTotal - minTotal || 1
+
+                            return (
+                              <svg viewBox="0 0 400 100" className="w-full h-full">
+                                {/* Grid lines */}
+                                <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                {/* Line chart */}
+                                <polyline
+                                  points={monthChartData.map((point, index) => {
+                                    const x = (index / (monthChartData.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.total - minTotal) / range) * 80
+                                    return `${x},${y}`
+                                  }).join(' ')}
+                                  fill="none"
+                                  stroke="#22d3ee"
+                                  strokeWidth="2"
+                                />
+
+                                {/* Data points */}
+                                {monthChartData.map((point, index) => {
+                                  const x = (index / (monthChartData.length - 1)) * 380 + 10
+                                  const y = 90 - ((point.total - minTotal) / range) * 80
+                                  return (
+                                    <g key={index}>
+                                      <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                      <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                        {point.date}
+                                      </text>
+                                    </g>
+                                  )
+                                })}
+                              </svg>
+                            )
+                          })()}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             )}

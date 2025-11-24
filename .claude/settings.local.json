@@ -4,7 +4,9 @@
       "Bash(taskkill:*)",
       "Bash(npm run dev:*)",
       "Bash(npm install:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(node export-data.js:*)",
+      "Bash(node import-data.js:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,362 @@
+[
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/12/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.59,
+    "created_at": "11/12/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/12/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.53,
+    "created_at": "11/12/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/12/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/12/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/13/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.48,
+    "created_at": "11/13/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.25,
+    "created_at": "11/13/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.53,
+    "created_at": "11/13/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/13/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/13/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/14/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.53,
+    "created_at": "11/14/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/14/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.52,
+    "created_at": "11/14/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/14/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/14/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/15/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.53,
+    "created_at": "11/15/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/15/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.53,
+    "created_at": "11/15/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/15/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/15/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/16/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.53,
+    "created_at": "11/16/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/16/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.53,
+    "created_at": "11/16/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/16/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/16/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/17/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.53,
+    "created_at": "11/17/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/17/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.53,
+    "created_at": "11/17/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/17/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/17/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/18/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 5.43,
+    "created_at": "11/18/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.68,
+    "created_at": "11/18/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/18/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/18/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 7.23,
+    "created_at": "11/18/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/19/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/19/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.42,
+    "created_at": "11/19/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/19/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.48,
+    "created_at": "11/19/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 7.23,
+    "created_at": "11/19/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/20/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.93,
+    "created_at": "11/20/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/20/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 3.42,
+    "created_at": "11/20/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/20/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/20/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/21/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.93,
+    "created_at": "11/21/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/21/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.53,
+    "created_at": "11/21/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/21/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/21/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.97,
+    "created_at": "11/22/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.93,
+    "created_at": "11/22/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/22/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.53,
+    "created_at": "11/22/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/22/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.42,
+    "created_at": "11/22/2025"
+  },
+  {
+    "product_id": 1,
+    "price": 1.47,
+    "created_at": "11/23/2025"
+  },
+  {
+    "product_id": 2,
+    "price": 6.93,
+    "created_at": "11/23/2025"
+  },
+  {
+    "product_id": 3,
+    "price": 4.24,
+    "created_at": "11/23/2025"
+  },
+  {
+    "product_id": 4,
+    "price": 2.57,
+    "created_at": "11/23/2025"
+  },
+  {
+    "product_id": 5,
+    "price": 3.67,
+    "created_at": "11/23/2025"
+  },
+  {
+    "product_id": 6,
+    "price": 1.41,
+    "created_at": "11/23/2025"
+  }
+]

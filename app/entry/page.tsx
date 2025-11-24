@@ -89,6 +89,16 @@ export default function EntryPage() {
 
       // Validate all fields are valid numbers
       const priceEntries = []
+
+      // Get current date at noon UTC (matching JSON file format)
+      const now = new Date()
+      const dateAtNoonUTC = new Date(Date.UTC(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        12, 0, 0, 0
+      ))
+
       for (const product of products) {
         const priceValue = prices[product.id]
         const numValue = parseFloat(priceValue)
@@ -102,7 +112,8 @@ export default function EntryPage() {
 
         priceEntries.push({
           product_id: product.id,
-          price: numValue
+          price: numValue,
+          created_at: dateAtNoonUTC.toISOString()
         })
       }
 
