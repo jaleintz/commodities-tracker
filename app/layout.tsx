@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import VisitTracker from "./components/VisitTracker";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
   title: "Commodities Inflation Tracker",
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <VisitTracker />
-        {children}
+        <AuthProvider>
+          <VisitTracker />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

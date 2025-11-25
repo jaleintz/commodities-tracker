@@ -29,8 +29,8 @@ export default function DisplayPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
-  const [isChartExpanded, setIsChartExpanded] = useState(true)
-  const [isMonthChartExpanded, setIsMonthChartExpanded] = useState(true)
+  const [isChartExpanded, setIsChartExpanded] = useState(false)
+  const [isMonthChartExpanded, setIsMonthChartExpanded] = useState(false)
 
   useEffect(() => {
     fetchLatestPrices()
@@ -277,41 +277,18 @@ export default function DisplayPage() {
   return (
     <div className="min-h-screen bg-gray-900">
       <Navigation />
-      <div className="text-center pt-4">
-        <div className="flex items-center justify-center gap-3">
-          <h2 className="text-2xl font-semibold text-white">Real Time Inflation Indicators</h2>
-          <button
-            onClick={toggleBothCharts}
-            className="text-white hover:text-cyan-300 transition-colors"
-            aria-label={isChartExpanded ? "Collapse charts" : "Expand charts"}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isChartExpanded ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              )}
-            </svg>
-          </button>
-        </div>
-      </div>
       <div className="py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-3 md:p-4">
-            <div className="text-center mb-8">
+            <div className="text-center mb-4">
               <div className="flex items-center justify-center gap-3">
-                <h1 className="text-xl md:text-2xl font-bold text-cyan-400 mb-1">
+                <h1 className="text-xl md:text-2xl font-bold text-white mb-1">
                   Staple Food Prices
                 </h1>
                 <button
-                  onClick={() => setIsExpanded(!isExpanded)}
+                  onClick={toggleBothCharts}
                   className="text-cyan-400 hover:text-cyan-300 transition-colors mb-1"
-                  aria-label={isExpanded ? "Collapse" : "Expand"}
+                  aria-label={isChartExpanded ? "Collapse charts" : "Expand charts"}
                 >
                   <svg
                     className="w-6 h-6"
@@ -319,7 +296,7 @@ export default function DisplayPage() {
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    {isExpanded ? (
+                    {isChartExpanded ? (
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                     ) : (
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -429,12 +406,12 @@ export default function DisplayPage() {
                 }`}>
                   <div className="text-left mb-2">
                     <p className="text-xs">
-                      <span className="text-white font-semibold mr-1">(D)</span>
+                      <span className="text-white font-semibold mr-1">(D) -</span>
                       {productsWithPrices.map((p, index) => {
                         const change = (p.price || 0) - (p.previous_price || 0)
                         const hasChange = p.previous_price !== null && change !== 0
 
-                        let textColor = 'text-slate-400'
+                        let textColor = 'text-white'
                         let arrow = ''
                         if (hasChange) {
                           if (change < 0) {
@@ -456,6 +433,7 @@ export default function DisplayPage() {
                           </span>
                         )
                       })}
+                      <span className="text-white"> - (Walmart)</span>
                     </p>
                   </div>
                   <div className="flex justify-start items-center">
