@@ -268,11 +268,37 @@ export default function DisplayPage() {
     return new Date(dateString).toLocaleString()
   }
 
+  const toggleBothCharts = () => {
+    const newState = !isChartExpanded
+    setIsChartExpanded(newState)
+    setIsMonthChartExpanded(newState)
+  }
+
   return (
     <div className="min-h-screen bg-gray-900">
       <Navigation />
       <div className="text-center pt-4">
-        <h2 className="text-2xl font-semibold text-white">Real Time Inflation Indicators</h2>
+        <div className="flex items-center justify-center gap-3">
+          <h2 className="text-2xl font-semibold text-white">Real Time Inflation Indicators</h2>
+          <button
+            onClick={toggleBothCharts}
+            className="text-white hover:text-cyan-300 transition-colors"
+            aria-label={isChartExpanded ? "Collapse charts" : "Expand charts"}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isChartExpanded ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
       <div className="py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
