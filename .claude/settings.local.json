@@ -6,7 +6,9 @@
       "Bash(npm install:*)",
       "Bash(mkdir:*)",
       "Bash(node export-data.js:*)",
-      "Bash(node import-data.js:*)"
+      "Bash(node import-data.js:*)",
+      "Bash(node fetch-ai-news.js:*)",
+      "Bash(node import-ai-news.js:*)"
     ],
     "deny": [],
     "ask": []

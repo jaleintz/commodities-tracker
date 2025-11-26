@@ -17,6 +17,13 @@ export default function Navigation() {
     router.push('/indicators')
   }
 
+  const handleRestrictedLink = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!isAuthenticated) {
+      e.preventDefault()
+      router.push('/pricing')
+    }
+  }
+
   return (
     <nav className="bg-slate-800 border-b border-slate-700">
       <div className="max-w-6xl mx-auto px-4">
@@ -50,18 +57,19 @@ export default function Navigation() {
             >
               AI News
             </Link>
-          {isAuthenticated && (
             <Link
               href="/alerts"
+              onClick={(e) => handleRestrictedLink(e, '/alerts')}
               className={`px-3 py-4 text-xs font-semibold transition-colors ${
-                pathname === '/alerts'
-                  ? 'text-cyan-400 border-b-2 border-cyan-400'
-                  : 'text-slate-400 hover:text-slate-200'
+                isAuthenticated
+                  ? pathname === '/alerts'
+                    ? 'text-cyan-400 border-b-2 border-cyan-400'
+                    : 'text-slate-400 hover:text-slate-200'
+                  : 'text-red-400 hover:text-red-300'
               }`}
             >
               Alerts
             </Link>
-          )}
           <Link
             href="/ai-stocks"
             className={`px-3 py-4 text-xs font-semibold transition-colors ${
@@ -92,18 +100,19 @@ export default function Navigation() {
           >
             Indicators
           </Link>
-          {isAuthenticated && (
             <Link
               href="/money-flows"
+              onClick={(e) => handleRestrictedLink(e, '/money-flows')}
               className={`px-3 py-4 text-xs font-semibold transition-colors ${
-                pathname === '/money-flows'
-                  ? 'text-cyan-400 border-b-2 border-cyan-400'
-                  : 'text-slate-400 hover:text-slate-200'
+                isAuthenticated
+                  ? pathname === '/money-flows'
+                    ? 'text-cyan-400 border-b-2 border-cyan-400'
+                    : 'text-slate-400 hover:text-slate-200'
+                  : 'text-red-400 hover:text-red-300'
               }`}
             >
               Money Flows
             </Link>
-          )}
             {isAdmin && (
               <Link
                 href="/entry"
@@ -133,19 +142,22 @@ export default function Navigation() {
                 >
                   AI News
                 </Link>
-                {isAuthenticated && (
-                  <Link
-                    href="/alerts"
-                    className={`px-6 py-4 font-semibold transition-colors ${
-                      pathname === '/alerts'
+                <Link
+                  href="/alerts"
+                  className={`px-6 py-4 font-semibold transition-colors ${
+                    isAuthenticated
+                      ? pathname === '/alerts'
                         ? 'text-cyan-400 bg-slate-700'
                         : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700'
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Alerts
-                  </Link>
-                )}
+                      : 'text-red-400 hover:text-red-300 hover:bg-slate-700'
+                  }`}
+                  onClick={(e) => {
+                    handleRestrictedLink(e, '/alerts')
+                    setIsMenuOpen(false)
+                  }}
+                >
+                  Alerts
+                </Link>
                 <Link
                   href="/ai-stocks"
                   className={`px-6 py-4 font-semibold transition-colors ${
@@ -179,19 +191,22 @@ export default function Navigation() {
                 >
                   Indicators
                 </Link>
-                {isAuthenticated && (
-                  <Link
-                    href="/money-flows"
-                    className={`px-6 py-4 font-semibold transition-colors ${
-                      pathname === '/money-flows'
+                <Link
+                  href="/money-flows"
+                  className={`px-6 py-4 font-semibold transition-colors ${
+                    isAuthenticated
+                      ? pathname === '/money-flows'
                         ? 'text-cyan-400 bg-slate-700'
                         : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700'
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Money Flows
-                  </Link>
-                )}
+                      : 'text-red-400 hover:text-red-300 hover:bg-slate-700'
+                  }`}
+                  onClick={(e) => {
+                    handleRestrictedLink(e, '/money-flows')
+                    setIsMenuOpen(false)
+                  }}
+                >
+                  Money Flows
+                </Link>
                 {isAdmin && (
                   <Link
                     href="/entry"
@@ -212,14 +227,14 @@ export default function Navigation() {
           {isAuthenticated ? (
             <button
               onClick={handleSignOut}
-              className="px-4 py-2 bg-white text-slate-900 font-semibold rounded hover:bg-slate-200 transition-colors"
+              className="px-4 py-2 bg-white text-slate-900 text-xs font-semibold rounded hover:bg-slate-200 transition-colors"
             >
               Sign Out
             </button>
           ) : (
             <Link
               href="/signin"
-              className="px-4 py-2 bg-white text-slate-900 font-semibold rounded hover:bg-slate-200 transition-colors"
+              className="px-4 py-2 bg-white text-slate-900 text-xs font-semibold rounded hover:bg-slate-200 transition-colors"
             >
               Sign In
             </Link>

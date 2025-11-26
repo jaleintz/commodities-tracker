@@ -26,7 +26,7 @@ CREATE TABLE "commodities-inflation-tb" (
 Insert your products:
 INSERT INTO "commodities-source-tb" (product_name, product_desc, product_url) VALUES
 ('Eggs', 'Great Value Large White Eggs, 12 Count', 'https://www.walmart.com/ip/Great-Value-Large-White-Eggs-12-Count/145051970?classType=REGULAR&athbdg=L1600&from=/search'),
-('Hamburger', '0% Lean / 20% Fat Ground Beef Chuck, 1 lb Tray', 'https://www.walmart.com/ip/80-Lean-20-Fat-Ground-Beef-Chuck-1-lb-Tray-Fresh-All-Natural/479601462?classType=REGULAR&athbdg=L1200'),
+('Hamburger', '80% Lean / 20% Fat Ground Beef Chuck, 1 lb Tray', 'https://www.walmart.com/ip/80-Lean-20-Fat-Ground-Beef-Chuck-1-lb-Tray-Fresh-All-Natural/479601462?classType=REGULAR&athbdg=L1200'),
 ('Bacon', 'Great Value Naturally Hickory Smoked Sliced Bacon, 12 oz', 'https://www.walmart.com/ip/Great-Value-Hickory-Smoked-Bacon-12-oz/23816525?classType=REGULAR&athbdg=L1200&from=/search'),
 ('Whole Milk', 'Great Value Whole Vitamin D Milk', 'https://www.walmart.com/ip/Great-Value-Whole-Vitamin-D-Milk-Gallon-Plastic-Jug-128-Fl-Oz/10450114?classType=REGULAR&athbdg=L1200'),
 ('Butter', 'Great Value Sweet Cream Salted Butter, 16 oz Box, 4 Sticks', 'https://www.walmart.com/ip/Great-Value-Sweet-Cream-Salted-Butter-16-oz-Box-4-Sticks-Refrigerated/132893363?classType=REGULAR&athbdg=L1200&from=/search'),
@@ -47,6 +47,9 @@ LEFT JOIN LATERAL (
     LIMIT 1
 ) i ON true
 ORDER BY s.id;
+
+to update ai-news run
+node import-ai-news.js
 
 vercel link
 https://commodities-tracker.vercel.app/
