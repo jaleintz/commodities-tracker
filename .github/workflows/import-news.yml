@@ -2,10 +2,14 @@ name: Import AI News
 
 on:
   schedule:
-    # Runs at 6:00 AM Central (11:00 AM UTC in CST, 12:00 PM UTC in CDT)
-    - cron: '0 12 * * *'
-    # Runs at 7:00 PM Central (1:00 AM UTC next day in CST, 12:00 AM UTC next day in CDT)
-    - cron: '0 1 * * *'
+    # Runs at 8:00 AM Central (2:00 PM UTC in CST, 1:00 PM UTC in CDT)
+    - cron: '0 14 * * *'
+    # Runs at 12:00 PM Central (6:00 PM UTC in CST, 5:00 PM UTC in CDT)
+    - cron: '0 18 * * *'
+    # Runs at 4:00 PM Central (10:00 PM UTC in CST, 9:00 PM UTC in CDT)
+    - cron: '0 22 * * *'
+    # Runs at 8:00 PM Central (2:00 AM UTC next day in CST, 1:00 AM UTC next day in CDT)
+    - cron: '0 2 * * *'
   workflow_dispatch: # Allows manual triggering from GitHub Actions tab
 
 jobs:
