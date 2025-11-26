@@ -8,7 +8,10 @@
       "Bash(node export-data.js:*)",
       "Bash(node import-data.js:*)",
       "Bash(node fetch-ai-news.js:*)",
-      "Bash(node import-ai-news.js:*)"
+      "Bash(node import-ai-news.js:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
