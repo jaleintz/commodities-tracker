@@ -44,11 +44,23 @@ export default function AINewsPage() {
         throw error
       }
 
-      // Filter to only show articles from C-sharpcorner.com and biztoc.com
-      const filtered = (data || []).filter(article =>
-        article.url.toLowerCase().includes('c-sharpcorner.com') ||
-        article.url.toLowerCase().includes('biztoc.com')
-      )
+      // Filter to only show articles from approved sources
+      const filtered = (data || []).filter(article => {
+        const url = article.url.toLowerCase()
+        const sourceName = (article.source_name || '').toLowerCase()
+
+        return (
+          url.includes('businessline') || sourceName.includes('businessline') ||
+          url.includes('theinformation.com') ||
+          url.includes('biztoc.com') ||
+          url.includes('pymnts.com') ||
+          url.includes('channelnewsasia.com') || sourceName.includes('cna') ||
+          url.includes('timesofindia') || sourceName.includes('times of india') ||
+          sourceName.includes('livemin') ||
+          url.includes('oilprice.com') ||
+          url.includes('gizmodo.com')
+        )
+      })
 
       setArticles(filtered)
     } catch (err) {
