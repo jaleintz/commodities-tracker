@@ -49,6 +49,20 @@ https.get(url, options, (res) => {
       fs.writeFileSync('ainews.json', JSON.stringify(jsonData, null, 2));
       console.log('✓ Saved to ainews.json');
 
+      console.log('Clearing existing data from ai_news_tb...');
+
+      // Delete all existing records from the table
+      const { error: deleteError } = await supabase
+        .from('ai_news_tb')
+        .delete()
+        .neq('id', 0); // This deletes all rows
+
+      if (deleteError) {
+        console.error('Error clearing table:', deleteError.message);
+        return;
+      }
+
+      console.log('✓ Successfully cleared existing data');
       console.log('Inserting articles into database...');
 
       let insertedCount = 0;

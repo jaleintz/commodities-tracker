@@ -8,3 +8,12 @@ CREATE TABLE public.test01 (
   age bigint NOT NULL,
   CONSTRAINT test01_pkey PRIMARY KEY (id)
 );
+
+Currently allowed news domains:
+
+pymnts.com - Payment and fintech news
+OilPrice.com - Energy and commodities news
+CNA - Channel NewsAsia
+Gizmodo.com - Technology news
+BusinessLine - The Hindu Business Line
+You filtered out many sources including

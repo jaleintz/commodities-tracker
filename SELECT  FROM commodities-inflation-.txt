@@ -53,3 +53,9 @@ node import-ai-news.js
 
 vercel link
 https://commodities-tracker.vercel.app/
+
+supabase user name and password
+jaleintz's Org
+jaleintz@gmail.com
+IceTipBergRounds
+

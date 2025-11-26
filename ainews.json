@@ -1,7 +1,20 @@
 {
   "status": "ok",
-  "totalResults": 87,
+  "totalResults": 88,
   "articles": [
+    {
+      "source": {
+        "id": null,
+        "name": "Gizmodo.com"
+      },
+      "author": "Mike Pearl",
+      "title": "The ‘Genesis Mission’: Here’s What’s in Trump’s Most Grandiose AI Executive Order Yet",
+      "description": "There's a real plan here, of sorts.",
+      "url": "https://gizmodo.com/trump-genesis-mission-2000691153",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/11/vitruvian-man-1200x675.jpg",
+      "publishedAt": "2025-11-25T04:14:17Z",
+      "content": "The title of the executive order is on the short side for Trump: “Launching the Genesis Mission.”\r\nIt reads in part:\r\nIn this pivotal moment, the challenges we face require a historic national effort… [+4874 chars]"
+    },
     {
       "source": {
         "id": null,
@@ -190,12 +203,12 @@
         "name": "CNA"
       },
       "author": null,
-      "title": "Zoom lifts annual outlook on growing demand for AI tools in hybrid work",
-      "description": "Zoom Communications raised its annual revenue and profit forecasts on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.Shares of the company rose 3.5 per cent in extended trading. Zoom has intensified…",
-      "url": "https://www.channelnewsasia.com/business/zoom-lifts-annual-outlook-growing-demand-ai-tools-in-hybrid-work-5488081",
+      "title": "Zoom Communications lifts annual outlook on accelerated demand for AI tools in hybrid work",
+      "description": "Zoom Communications raised its annual revenue and profit forecast on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.Shares of the company were up 3.7 per cent in extended trading. Zoom has intensifi…",
+      "url": "https://www.channelnewsasia.com/business/zoom-communications-lifts-annual-outlook-accelerated-demand-ai-tools-in-hybrid-work-5488081",
       "urlToImage": "https://dam.mediacorp.sg/image/upload/s--yzd2fFsy--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T214115Z_1_LYNXMPELAN11Q_RTROPTP_3_IPO-ZOOM.JPG?itok=xNIg2Cg3",
       "publishedAt": "2025-11-24T21:41:15Z",
-      "content": "Zoom Communications raised its annual revenue and profit forecasts on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.\r\nShares of the compa… [+1752 chars]"
+      "content": "Zoom Communications raised its annual revenue and profit forecast on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.\r\nShares of the compan… [+1618 chars]"
     },
     {
       "source": {
@@ -203,12 +216,12 @@
         "name": "CNA"
       },
       "author": null,
-      "title": "Zoom Communications lifts annual outlook on accelerated demand for AI tools in hybrid work",
-      "description": "Zoom Communications raised its annual revenue and profit forecast on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.Shares of the company were up 3.7 per cent in extended trading. Zoom has intensifi…",
-      "url": "https://www.channelnewsasia.com/business/zoom-communications-lifts-annual-outlook-accelerated-demand-ai-tools-in-hybrid-work-5488081",
+      "title": "Zoom lifts annual outlook on growing demand for AI tools in hybrid work",
+      "description": "Zoom Communications raised its annual revenue and profit forecasts on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.Shares of the company rose 3.5 per cent in extended trading. Zoom has intensified…",
+      "url": "https://www.channelnewsasia.com/business/zoom-lifts-annual-outlook-growing-demand-ai-tools-in-hybrid-work-5488081",
       "urlToImage": "https://dam.mediacorp.sg/image/upload/s--yzd2fFsy--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T214115Z_1_LYNXMPELAN11Q_RTROPTP_3_IPO-ZOOM.JPG?itok=xNIg2Cg3",
       "publishedAt": "2025-11-24T21:41:15Z",
-      "content": "Zoom Communications raised its annual revenue and profit forecast on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.\r\nShares of the compan… [+1618 chars]"
+      "content": "Zoom Communications raised its annual revenue and profit forecasts on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.\r\nShares of the compa… [+1752 chars]"
     },
     {
       "source": {
@@ -221,7 +234,7 @@
       "url": "https://oilprice.com/Energy/Crude-Oil/Middle-East-Energy-Leaders-Warn-of-Underinvestment-in-Oil-Bet-on-Digital-Growth.html",
       "urlToImage": "https://d32r1sh890xpii.cloudfront.net/article/718x300/2025-11-24_5qsoeenkgs.jpg",
       "publishedAt": "2025-11-24T21:00:00Z",
-      "content": "A new Wood Mackenzie report…\r\nThe oil market is bracing���\r\nChina's state oil giants are…\r\nBy Alan Mammoser - Nov 24, 2025, 3:00 PM CSTTwo conferences in the Middle East this month opened insights on e… [+11548 chars]"
+      "content": "A new Wood Mackenzie report…\r\nThe oil market is bracing…\r\nChina's state oil giants are…\r\nBy Alan Mammoser - Nov 24, 2025, 3:00 PM CSTTwo conferences in the Middle East this month opened insights on e… [+11548 chars]"
     },
     {
       "source": {
@@ -385,7 +398,7 @@
         "name": "Gizmodo.com"
       },
       "author": "AJ Dellinger",
-      "title": "Sam Altman and Jony Ive Say You’ll Want to ‘Lick’ and ‘Bite�� Their New Hardware Prototype",
+      "title": "Sam Altman and Jony Ive Say You’ll Want to ‘Lick’ and ‘Bite’ Their New Hardware Prototype",
       "description": "Just what everyone is looking for.",
       "url": "https://gizmodo.com/sam-altman-and-jony-ive-say-youll-want-to-lick-and-bite-their-new-hardware-prototype-2000690792",
       "urlToImage": "https://gizmodo.com/app/uploads/2025/11/Screenshot-2025-11-24-at-11.15.50 AM-e1764008101296-1200x675.jpg",
