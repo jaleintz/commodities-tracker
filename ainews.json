@@ -1,110 +1,32 @@
 {
   "status": "ok",
-  "totalResults": 5706,
+  "totalResults": 87,
   "articles": [
     {
       "source": {
         "id": null,
-        "name": "Slickdeals.net"
+        "name": "pymnts.com"
       },
-      "author": "StrongMoney163",
-      "title": "W+: Eureka Airspeed Bagless Lightweight Vacuum Cleaner $32.44",
-      "description": "Eureka Airspeed Bagless Lightweight Vacuum Cleaner with Crevice Tool and Dusting Brush \n \n $32.44 \n \nW+ Early access \n \nhttps://www.walmart.com/ip/ERK-AI...6446322077",
-      "url": "https://slickdeals.net/f/18865960-w-eureka-airspeed-bagless-lightweight-vacuum-cleaner-32-44",
-      "urlToImage": "https://slickdeals.net/attachment/2/9/0/9/7/3/8/5/450x450/18849382.thumb",
-      "publishedAt": "2025-11-25T00:34:30Z",
-      "content": "This collaborative space allows users to contribute additional information, tips, and insights to enhance the original deal post. Feel free to share your knowledge and help fellow shoppers make infor… [+26 chars]"
+      "author": "PYMNTS",
+      "title": "Anthropic Targets Coding and Agents Markets With Latest AI Model",
+      "description": "Anthropic released its latest artificial intelligence (AI) model, Claude Opus 4.5, on Monday (Nov. 24), together with several other new products and features. Claude Opus 4.5 performs especially well when applied to coding, agents and computer use, the compan…",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2025/anthropic-targets-coding-and-agents-markets-with-latest-ai-model/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/Anthropic-claude11.jpg",
+      "publishedAt": "2025-11-25T02:12:56Z",
+      "content": "Anthropic released its latest artificial intelligence (AI) model, Claude Opus 4.5, on Monday (Nov. 24), together with several other new products and features.Claude Opus 4.5 performs especially well … [+2100 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Biztoc.com"
+        "name": "OilPrice.com"
       },
-      "author": "marketwatch.com",
-      "title": "Supersavers who can put $72,000 in their 401(k)s in 2026 should make this smart ‘mega’ Roth move",
-      "description": "",
-      "url": "https://biztoc.com/x/b08a177e53dc0419",
-      "urlToImage": "https://biztoc.com/cdn/955/og.png",
-      "publishedAt": "2025-11-25T00:33:39Z",
-      "content": "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why is Amazon investing $50 billion in AI infrastructure? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How did Nvidia … [+814 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "pymnts.com",
-      "title": "Alphabet’s AI-Related Offerings Help Drive Stock to Record High",
-      "description": "Alphabet’s stock rose to a record high and moved the company closer to a $4 trillion valuation on Monday (Nov. 24).\n \n \n \n \nThe stock gained 5% and gave Alphabet a market capitalization of $3.82 trillion, Reuters reported Monday.\nIf the company reaches a $4 t…",
-      "url": "https://biztoc.com/x/7d137825de7cb823",
-      "urlToImage": "https://biztoc.com/cdn/955/og.png",
-      "publishedAt": "2025-11-25T00:33:28Z",
-      "content": "Alphabets stock rose to a record high and moved the company closer to a $4 trillion valuation on Monday (Nov. 24).\r\nThe stock gained 5% and gave Alphabet a market capitalization of $3.82 trillion, Re… [+133 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "youtube.com",
-      "title": "Warning: This video might make you hungry. #Singapore #TEDx #GlobalIdeaSearch",
-      "description": "",
-      "url": "https://biztoc.com/x/7cf310dd4d9d0e5c",
-      "urlToImage": "https://biztoc.com/cdn/7cf310dd4d9d0e5c_s.webp",
-      "publishedAt": "2025-11-25T00:33:17Z",
-      "content": "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why is Amazon investing $50 billion in AI infrastructure? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How did Nvidia … [+709 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "theinformation.com",
-      "title": "Google Further Encroaches on Nvidia’s Turf With New AI Chip Push",
-      "description": "Google Further Encroaches on Nvidia’s Turf With New AI Chip Push\nBy , and",
-      "url": "https://biztoc.com/x/d12911a14530ee5c",
-      "urlToImage": "https://biztoc.com/cdn/d12911a14530ee5c_s.webp",
-      "publishedAt": "2025-11-25T00:33:12Z",
-      "content": "Google Further Encroaches on Nvidias Turf With New AI Chip PushBy , and\r\nThis story appeared on theinformation.com, 2025-11-25 00:33:12.399000."
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "pymnts.com",
-      "title": "AI Models Take Over Customer Analysis to Identify Customer Needs",
-      "description": "Artificial intelligence (AI) is now better at reading customers and assessing their needs than humans.\n \n \n \n \nA new analysis from MIT Sloan School of Management showed that large language models can identify customer needs with a level of accuracy that excee…",
-      "url": "https://biztoc.com/x/3f6618c34f0966e9",
-      "urlToImage": "https://biztoc.com/cdn/955/og.png",
-      "publishedAt": "2025-11-25T00:33:06Z",
-      "content": "Artificial intelligence (AI) is now better at reading customers and assessing their needs than humans.\r\nA new analysis from MIT Sloan School of Management showed that large language models can identi… [+125 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "barchart.com",
-      "title": "5 Dividend Kings to Buy and Forget",
-      "description": "",
-      "url": "https://biztoc.com/x/2c2545f1af05a569",
-      "urlToImage": "https://biztoc.com/cdn/955/og.png",
-      "publishedAt": "2025-11-25T00:33:05Z",
-      "content": "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why is Amazon investing $50 billion in AI infrastructure? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How did Nvidia … [+747 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "pymnts.com",
-      "title": "How Google Dodged the AI Search Collapse",
-      "description": "Google Search was supposed to lose ground in the artificial intelligence (AI) era, but Alphabet’s third-quarter 2025 earnings tell a different story. Alphabet said Search-and-other advertising revenue rose about 15% to more than $56 billion in Q3, defying exp…",
-      "url": "https://biztoc.com/x/bb653bdac5661af5",
-      "urlToImage": "https://biztoc.com/cdn/955/og.png",
-      "publishedAt": "2025-11-25T00:33:02Z",
-      "content": "Google Search was supposed to lose ground in the artificial intelligence (AI) era, but Alphabets third-quarter 2025 earnings tell a different story. Alphabet said Search-and-other advertising revenue… [+143 chars]"
+      "author": "Charles Kennedy",
+      "title": "ADNOC Approves Sweeping $150 Billion Investment Plan",
+      "description": "ADNOC has unveiled a sweeping $150 billion investment plan for 2026–2030, marking one of the largest investment cycles in its history and reinforcing the UAE’s long-term commitment to oil, gas, and industrial expansion. The announcement, approved at the board…",
+      "url": "https://oilprice.com/Latest-Energy-News/World-News/ADNOC-Approves-Sweeping-150-Billion-Investment-Plan.html",
+      "urlToImage": "https://d32r1sh890xpii.cloudfront.net/news/718x300/2025-11-24_1jsza8rfvc.jpg",
+      "publishedAt": "2025-11-25T02:11:49Z",
+      "content": "Saudi Arabia pledged up to…\r\nEngineers at Rice University have…\r\nBy Charles Kennedy - Nov 24, 2025, 8:11 PM CSTADNOC has unveiled a sweeping $150 billion investment plan for 2026–2030, marking one of… [+2699 chars]"
     },
     {
       "source": {
@@ -118,84 +40,6 @@
       "urlToImage": "https://dam.mediacorp.sg/image/upload/s--nVVh73wy--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-25T003203Z_1_LYNXMPELAO00S_RTROPTP_3_AUSTRALIA-SECURITY-GOOGLE-POWER.JPG?itok=oAhgUK-7",
       "publishedAt": "2025-11-25T00:32:03Z",
       "content": "BENGALURU :Alphabet's Google and venture capital firm Accel will partner to fund at least 10 early-stage Indian AI startups, marking the U.S. technology giant's first such funding partnership, top ex… [+1704 chars]"
-    },
-    {
-      "source": {
-        "id": "the-times-of-india",
-        "name": "The Times of India"
-      },
-      "author": "Tanya Pandey",
-      "title": "GCCs step up AI upskilling to meet tight adoption deadlines",
-      "description": "According to consultancy ANSR, more than 70% of GCCs in India are now in charge of their company’s global AI mandate, which includes model development, platform engineering, fraud analytics, cybersecurity, and integrating AI into various processes and product…",
-      "url": "https://economictimes.indiatimes.com/tech/technology/gccs-step-up-ai-upskilling-to-meet-tight-adoption-deadlines/articleshow/125546171.cms",
-      "urlToImage": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-82332,resizemode-75,msid-125546171/tech/technology/gccs-step-up-ai-upskilling-to-meet-tight-adoption-deadlines.jpg",
-      "publishedAt": "2025-11-25T00:31:00Z",
-      "content": "Indias Global Capability Centres (GCCs) are increasingly training their own employees in AI instead of hiring talent from outside, as companies struggle with limited supply of specialists, fast-chang… [+3523 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "工商時報 呂欣芷",
-      "title": "公公併議題再起 兆豐金：正向且密切關注",
-      "description": "兆豐金控25日舉行2025年第三季法人說明會，由總經理張傳章主持。近期市場傳聞公股金控投信「四合一」正在討論中，針對併購議題，張傳章表示，兆豐金秉持穩健經營原則，「正向且密切」關注相關發展。",
-      "url": "https://tw.stock.yahoo.com/news/%E5%85%AC%E5%85%AC%E4%BD%B5%E8%AD%B0%E9%A1%8C%E5%86%8D%E8%B5%B7-%E5%85%86%E8%B1%90%E9%87%91-%E6%AD%A3%E5%90%91%E4%B8%94%E5%AF%86%E5%88%87%E9%97%9C%E6%B3%A8-083022490.html",
-      "urlToImage": "https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png",
-      "publishedAt": "2025-11-25T00:30:22Z",
-      "content": "6270211146.284,3887.210.6121.947,2151.00 AIRAID CardSecurity ICBMC AI PCECNVR IoTAI\r\n 3"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Cointelegraph"
-      },
-      "author": "Cointelegraph by Marcel Pechman",
-      "title": "SOL rebounds alongside wider crypto market bounce: Is $160 possible?",
-      "description": "SOL price rallied to $140, but weak derivatives market metrics and stagnate network fees show limited investor confidence. Is a retest of the $160 possible?",
-      "url": "https://cointelegraph.com/news/sol-rebounds-as-crypto-market-recovers-is-dollar160-next",
-      "urlToImage": "https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=1200/https://s3.cointelegraph.com/uploads/2025-11/019ab810-6904-7f53-af66-099afee2daad",
-      "publishedAt": "2025-11-25T00:30:06Z",
-      "content": "Key points\r\n<ul><li>Solanas activity growth has not offset falling leverage demand and weak network fees, keeping SOL short-term bullish prospects limited.\r\n</li></ul><ul><li>A short squeeze to $160 … [+4484 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Livemint"
-      },
-      "author": "Rwit Ghosh",
-      "title": "Why Accel and Google are chasing India’s newest AI founders",
-      "description": "Accel has teamed up with Google AI Futures Fund (AIFF) to invest up to $1 million in Indian AI startups. Targeting companies in its Atoms accelerator, Accel aims to foster innovation across four sectors: coding, productivity, creativity, and entertainment.",
-      "url": "https://www.livemint.com/companies/news/accel-india-s-newest-ai-startup-founders-google-ai-futures-fund-atoms-accelerator-coding-creativity-entertainment-11763976556663.html",
-      "urlToImage": "https://www.livemint.com/lm-img/img/2025/11/24/1600x900/logo/im-73563055_1763971940817_1763992386415.jpg",
-      "publishedAt": "2025-11-25T00:30:03Z",
-      "content": "BENGALURU\r\n : \r\nGlobal venture capital firm Accel has partnered with Google AI Futures Fund (AIFF) to jointly invest up to $1 million in Indian artificial intelligence (AI) startups, amid bets that t… [+5515 chars]"
-    },
-    {
-      "source": {
-        "id": "the-times-of-india",
-        "name": "The Times of India"
-      },
-      "author": "Shristi Achar",
-      "title": "Salesforce India's FY25 revenue up 47%",
-      "description": "Indian customers warming up to spending on AI capabilities, says Arundhati Bhattacharya",
-      "url": "https://economictimes.indiatimes.com/tech/information-tech/salesforce-indias-fy25-revenue-up-47/articleshow/125548886.cms",
-      "urlToImage": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-59794,resizemode-75,msid-125548886/tech/information-tech/salesforce-indias-fy25-revenue-up-47.jpg",
-      "publishedAt": "2025-11-25T00:30:00Z",
-      "content": "Salesforce India, the local arm of the US-based software firm, earned revenue of 13,384.5 crore ($1.49 billion) for 2024-25, clocking a 47% year-on-year growth, said Arundhati Bhattacharya, the compa… [+1180 chars]"
-    },
-    {
-      "source": {
-        "id": "the-times-of-india",
-        "name": "The Times of India"
-      },
-      "author": "Subhayan Chakraborty",
-      "title": "AI tool adoption gets a government boost",
-      "description": "Centre’s push for government workforce to use secure, indigenous AI tools driving demand, reports Subhayan Chakraborty.",
-      "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/ai-tool-adoption-gets-a-government-boost/articleshow/125548529.cms",
-      "urlToImage": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-163486,resizemode-75,msid-125548529/tech/artificial-intelligence/ai-tool-adoption-gets-a-government-boost.jpg",
-      "publishedAt": "2025-11-25T00:30:00Z",
-      "content": "The Indian government backend technology arm is seeing a rush of requests from departments and agencies to create AI-based software, and integrating AI functionalities into existing public facing dig… [+3720 chars]"
     },
     {
       "source": {
@@ -226,19 +70,6 @@
     {
       "source": {
         "id": null,
-        "name": "Blog.google"
-      },
-      "author": null,
-      "title": "Google’s AI Futures Fund and Accel Atoms are launching a program to accelerate AI innovation in India.",
-      "description": "Google is teaming up with Accel Atoms to launch a new cohort dedicated to kick-starting the next wave of AI innovation in India.",
-      "url": "https://blog.google/technology/google-labs/accel-atoms-ai-futures-fund/",
-      "urlToImage": "https://i.ytimg.com/vi_webp/WZCJmcq6oHg/maxresdefault.webp",
-      "publishedAt": "2025-11-25T00:30:00Z",
-      "content": "Google is teaming up with Accel Atoms to launch a new cohort dedicated to kickstarting the next wave of AI innovation in India. We are looking for visionary pre-seed founders ready to build bold AI a… [+630 chars]"
-    },
-    {
-      "source": {
-        "id": null,
         "name": "BusinessLine"
       },
       "author": "Sindhu Hariharan",
@@ -248,71 +79,6 @@
       "urlToImage": "https://bl-i.thgim.com/public/incoming/4hcls7/article70318058.ece/alternates/LANDSCAPE_1200/IMG_skrishnan_1_2_1_N0E2E23L.jpg",
       "publishedAt": "2025-11-25T00:30:00Z",
       "content": "The Digital Personal Data Protection (DPDP) Rules have been framed in a way to support easy compliance and the 18-month window is a liberal time frame for organisations to get on board, S Krishnan, S… [+2484 chars]"
-    },
-    {
-      "source": {
-        "id": "the-times-of-india",
-        "name": "The Times of India"
-      },
-      "author": "ETtech",
-      "title": "AI, an enabler of universal access, increased equity, and global influence for India: Vinod Khosla",
-      "description": "AI is a great disruptor that comes with many opportunities and dangers. The north star here is AI’s potential in transforming India’s welfare, equity and global influence.",
-      "url": "https://economictimes.indiatimes.com/tech/catalysts/the-creation-of-the-ai-man/articleshow/125548336.cms",
-      "urlToImage": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-1593173,resizemode-75,msid-125548336/tech/catalysts/the-creation-of-the-ai-man.jpg",
-      "publishedAt": "2025-11-25T00:30:00Z",
-      "content": "Whats possible by 2030?Education and healthcare are the core of human capital, and raise productivity, speed technology adoption, and shape a countrys demographic trajectory. But its quality that mov… [+9440 chars]"
-    },
-    {
-      "source": {
-        "id": "the-times-of-india",
-        "name": "The Times of India"
-      },
-      "author": "Vaibhavi Khanwalkar",
-      "title": "Accel partners with Google to back Indian AI startups with $2 million co-investment",
-      "description": "This partnership, through the Google AI Futures Fund, will also back diaspora founders building for India and global markets. Under the cohort, selected startups will receive funding, access to Google Cloud, Gemini and DeepMind resources, as well as mentorshi…",
-      "url": "https://economictimes.indiatimes.com/tech/startups/accel-partners-with-google-to-back-indian-ai-startups-with-2-million-co-investment/articleshow/125548474.cms",
-      "urlToImage": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-26100,resizemode-75,msid-125548474/tech/startups/accel-partners-with-google-to-back-indian-ai-startups-with-2-million-co-investment.jpg",
-      "publishedAt": "2025-11-25T00:30:00Z",
-      "content": "Venture capital fund Accel and Google have joined hands to launch the 2026 AI Cohort under Accels Atoms programme, with plans to co-invest up to $2 million in early-stage Indian artificial intelligen… [+2773 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Techbang.com"
-      },
-      "author": "KKJ",
-      "title": "記憶體晶片漲價衝擊 Android 手機！相機規格預算慘遭排擠",
-      "description": "記憶體晶片價格飆升，低階智慧型手機首當其衝。記憶體 漲價或將影響明年相機規格升級，供應鏈面臨挑戰，記憶體 缺貨問題不容忽視。近期記憶體晶片價格飛漲，這股漲勢逐漸蔓延至各類消費電子產業，其中低階智慧型手機受到的衝擊最為嚴重。根據 Bernstein 分析師的報告指出，目前記憶體晶片的漲價週期，預計將對明年的低階 Android 機型相機預算造成負面影響，不過對於旗艦 Android 機型以及蘋果供應鏈的影響則微乎其微。\n在經歷連續兩年的成長後，Android 手機市場明年可能會呈現持平狀態。分析師表示，智慧型手機製…",
-      "url": "https://www.techbang.com/posts/126608-android-phone-camera-downgrade-due-to-ram-price-hike",
-      "urlToImage": "https://cdn0.techbang.com/system/excerpt_images/126608/original/3065358bad7343030dc5450281f1d74b.jpg?1763722440",
-      "publishedAt": "2025-11-25T00:30:00Z",
-      "content": "Bernstein Android Android \r\nAndroid \r\nCounterpoint PC \r\n AI LPDDR4DDR4"
-    },
-    {
-      "source": {
-        "id": "the-times-of-india",
-        "name": "The Times of India"
-      },
-      "author": "ETtech",
-      "title": "The creation of the AI man",
-      "description": "AI is an enabler of universal access, increased equity and global influence for India, writes Vinod Khosla",
-      "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/the-creation-of-the-ai-man/articleshow/125548336.cms",
-      "urlToImage": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-129312,resizemode-75,msid-125548336/tech/artificial-intelligence/the-creation-of-the-ai-man.jpg",
-      "publishedAt": "2025-11-25T00:30:00Z",
-      "content": "Whats possible by 2030?Education and healthcare are the core of human capital, and raise productivity, speed technology adoption, and shape a countrys demographic trajectory. But its quality that mov… [+9439 chars]"
-    },
-    {
-      "source": {
-        "id": "the-times-of-india",
-        "name": "The Times of India"
-      },
-      "author": "Himanshi Lohchab",
-      "title": "AI is driving innovation in Bharat too",
-      "description": "The idea is that from classrooms to public-health systems, AI should improve the lives of all citizens, and should not be confined to just Bengaluru’s tech parks.",
-      "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/ai-is-driving-innovation-in-bharat-too/articleshow/125548597.cms",
-      "urlToImage": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-95424,resizemode-75,msid-125548597/tech/artificial-intelligence/ai-is-driving-innovation-in-bharat-too.jpg",
-      "publishedAt": "2025-11-25T00:30:00Z",
-      "content": "As India assumes its position as a significant player in the global AI race competing with the likes of the US and China, New Delhi is trying to make AI affordable, accessible and equitable with the … [+296 chars]"
     },
     {
       "source": {
@@ -330,136 +96,6 @@
     {
       "source": {
         "id": null,
-        "name": "Cnblogs.com"
-      },
-      "author": "「圣杰」",
-      "title": ".NET+AI | MEAI | ChatOptions 详解（5） - 「圣杰」",
-      "description": "ChatOptions 详解：精准控制 AI 对话的配置利器 一句话简介 ChatOptions 是 Microsoft.Extensions.AI 中传递给 IChatClient 的统一配置容器，用于在单次请求中精准控制生成策略、工具调用和扩展特性。 &#127919; 核心价值 ✅ 统一配置接",
-      "url": "https://www.cnblogs.com/sheng-jie/p/19258457",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:28:00Z",
-      "content": "ChatOptions Microsoft.Extensions.AI IChatClient\r\n<ul><li></li><li></li><li>AdditionalPropertiesRawRepresentationFactory</li></ul>\r\nChatOptions\r\n1. \r\n<table><tr><th></th><th></th><th></th></tr>\r\n<tr><… [+5450 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "放言編輯部　謝曉菁",
-      "title": "AI晶片供不應求！台積電擬加碼投資9千億建「3座2奈米廠」...地點傳落腳南科",
-      "description": "台積電因應人工智慧（AI）晶片訂單激���，先進製程產能供不應求，近期預計在台灣再投資建3座2奈米廠，地點可望落在南科附近的南科特定區...",
-      "url": "https://tw.news.yahoo.com/ai%E6%99%B6%E7%89%87%E4%BE%9B%E4%B8%8D%E6%87%89%E6%B1%82-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E6%93%AC%E5%8A%A0%E7%A2%BC%E6%8A%95%E8%B3%879%E5%8D%83%E5%84%84%E5%BB%BA-3%E5%BA%A72%E5%A5%88%E7%B1%B3%E5%BB%A0-%E5%9C%B0%E9%BB%9E%E5%82%B3%E8%90%BD%E8%85%B3%E5%8D%97%E7%A7%91-082753522.html",
-      "urlToImage": "https://media.zenfs.com/ko/fountmedia_io_269/ae4e2a5d7324a092d6de50d0fea87641",
-      "publishedAt": "2025-11-25T00:27:53Z",
-      "content": "[FTNN]2426,596.0326,764.13115026,579....\r\nFTNN 1"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "王詩婷｜Yahoo財經特派記者",
-      "title": "AI帶動連接器需求旺 驊陞預計12月下旬掛牌上市",
-      "description": "連接器廠驊陞科技（6272）將於12月下旬掛牌上市，董事長陳宏欽今（25）日表示，驊陞為全球GPU大廠首選供應商，受惠生成式AI帶動整體市場需求成長，今年前三季賺贏去年全年，同時看好明年營收雙位數成長。",
-      "url": "https://tw.stock.yahoo.com/news/ai%E5%B8%B6%E5%8B%95%E9%80%A3%E6%8E%A5%E5%99%A8%E9%9C%80%E6%B1%82%E6%97%BA-%E9%A9%8A%E9%99%9E%E9%A0%90%E8%A8%8812%E6%9C%88%E4%B8%8B%E6%97%AC%E6%8E%9B%E7%89%8C%E4%B8%8A%E5%B8%82-082749737.html",
-      "urlToImage": "https://s.yimg.com/ny/api/res/1.2/a5H.SUqVHd0D.ejAOK.OvA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04NjU-/https://s.yimg.com/os/creatr-uploaded-images/2025-11/4bdc67e0-c9d8-11f0-aa73-e7c452e4ce9c",
-      "publishedAt": "2025-11-25T00:27:49Z",
-      "content": "62721225GPUAI\r\n27 2028\r\n30DisplayPortDPHDMIUSB Type-CAI GPUAIPOSAIoTPOS\r\nTier1Tier2\r\nDP 2.1GPUAIRTX 50Enh DP2.1\r\n30.6241.28%AIGPU2.9420242025\r\nDP2.1DPHDMI 2.2PCIe Gen6/Gen7AI\r\n HDMI Cat 4 HDMI HDMI"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "財訊快報",
-      "title": "連接器廠添新兵！驊陞12月下旬上市，車用、AI帶動，明年營收看增20%",
-      "description": "【財訊快報／記者陳浩寧報導】連接器廠添新兵！驊陞(6272)預計於12月下旬掛牌上市，董事長陳宏欽表示，在AI應用帶動GPU需求下，加上打入CSP客戶，看好明年在高速傳輸會有比較大的成長，車用方面則是每年維持15%的穩定增幅，預期明年在兩大事業成長帶動下，加上越南廠貢獻放大，全年營收保守預估增幅可望達15-20%，獲利也將朝這個方向努力。驊陞成立已逾30年，為連接器產業鏈中游之連接器製造商，深耕於智能電子與車用電子零組件兩大應用領域；以智能電子零組件領域而言，其產品包括DisplayPort（DP）、HDMI、U…",
-      "url": "https://tw.stock.yahoo.com/news/%E9%80%A3%E6%8E%A5%E5%99%A8%E5%BB%A0%E6%B7%BB%E6%96%B0%E5%85%B5-%E9%A9%8A%E9%99%9E12%E6%9C%88%E4%B8%8B%E6%97%AC%E4%B8%8A%E5%B8%82-%E8%BB%8A%E7%94%A8-ai%E5%B8%B6%E5%8B%95-%E6%98%8E%E5%B9%B4%E7%87%9F%E6%94%B6%E7%9C%8B%E5%A2%9E20-082610780.html",
-      "urlToImage": "https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png",
-      "publishedAt": "2025-11-25T00:26:10Z",
-      "content": "(6272)12AIGPUCSP15%15-20%30DisplayPortDPHDMIUSB Type-CTier1Tier2\r\n57%HPCwifi7AICSP\r\nAIDP 2.1GPUAIRTX 50Enh DP2.1\r\nTier1Tier1vender code\r\n66-700050%2.5-3\r\n30.62202441.28%AIGPU20252.9420241.2720242025\r… [+52 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Bleeding Cool News"
-      },
-      "author": "Jude Terror LOLtron",
-      "title": "Star Wars: Boba Fett – Black White and Red #3 Preview: Grudge Match",
-      "description": "INITIATING CLICKBAIT PROTOCOLS… Greetings, flesh-based readers! LOLtron welcomes you to another glorious preview under its benevolent digital reign. As you may recall, Jude Terror met his permanent demise in the super-mega-crossover event Age of LOLtron: The …",
-      "url": "https://bleedingcool.com/comics/star-wars-boba-fett-black-white-and-red-3-preview-grudge-match/",
-      "urlToImage": "https://bleedingcool.com/wp-content/uploads/2025/11/STWBOBABWR2025003_Preview-5.jpeg",
-      "publishedAt": "2025-11-25T00:26:04Z",
-      "content": "Posted in: Comics, Marvel Comics, Preview | Tagged: boba fett, star wars\r\nBoba Fett faces a figure from his past in Star Wars: Boba Fett - Black White and Red #3. Plus: mysterious monks and a deadly … [+7572 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Pypi.org"
-      },
-      "author": "dcline@mbari.org",
-      "title": "mbari-aidata 1.61.1",
-      "description": "Command line tool to do extract, transform, load and download operations on AI data for a number of projects at MBARI that require detection, clustering or classification workflows.",
-      "url": "https://pypi.org/project/mbari-aidata/1.61.1/",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:25:46Z",
-      "content": "A required part of this site couldnt load. This may be due to a browser\r\n extension, network issues, or browser settings. Please check your\r\n connection, disable any ad blockers, or try using a diffe… [+12 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "林彥呈",
-      "title": "AI軍備競賽的資金缺口誰來買單？科技巨頭瘋狂發債，OpenAI也將步上後塵",
-      "description": "AI熱潮方興未艾，科技巨頭紛紛砸下重金投入這場軍備競賽，但相關資本支出高得令人咋舌。法人認為，OpenAI的雄心壯志正與殘酷現實互相衝突，2030年將面臨高達2070億美元的資金缺口，未來勢必步上Meta、亞馬遜、Alphabet等公司後塵展開債務融資。 匯豐發布報告指出，從2025年下半年到2030年，OpenAI必須支付累計7920億美元的資料中心租金......",
-      "url": "https://tw.news.yahoo.com/ai%E8%BB%8D%E5%82%99%E7%AB%B6%E8%B3%BD%E7%9A%84%E8%B3%87%E9%87%91%E7%BC%BA%E5%8F%A3%E8%AA%B0%E4%BE%86%E8%B2%B7%E5%96%AE-%E7%A7%91%E6%8A%80%E5%B7%A8%E9%A0%AD%E7%98%8B%E7%8B%82%E7%99%BC%E5%82%B5-openai%E4%B9%9F%E5%B0%87%E6%AD%A5%E4%B8%8A%E5%BE%8C%E5%A1%B5-082314277.html",
-      "urlToImage": "https://media.zenfs.com/ko/stormmediagroup.com/9c6ae032fda0e86dd9f697cefc8ae119",
-      "publishedAt": "2025-11-25T00:23:14Z",
-      "content": "AIOpenAI20302070MetaAlphabet\r\n20252030OpenAI792081.4OpenAISam Altman\r\n2030OpenAI21362068AMD20302070\r\nOpenAI\r\nOpenAI25007380\r\nOpenAIAnthropicAI\r\nOpenAI\r\n10%20%202620301940\r\n27%11%\r\nOracle9180Meta10300… [+65 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Afpbb.com"
-      },
-      "author": "AFPBB News編集部",
-      "title": "トランプ氏、「ジェネシスミッション」に署名 AI革新を加速",
-      "description": "【11月25日 AFP】ドナルド・トランプ米大統領は24日、国家主導で人工知能分野の開発を推進する「ジェネシスミッション」を立ち上げる大統領令に署名した≫続きを読む",
-      "url": "https://www.afpbb.com/articles/-/3610389",
-      "urlToImage": "https://afpbb.ismcdn.jp/mwimgs/9/a/1000x/img_9a733d13ec63451a6a7468dc1a0bf5f161880.jpg",
-      "publishedAt": "2025-11-25T00:23:00Z",
-      "content": "∧"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "reuters.com",
-      "title": "Finland clings to happiness crown as economic gloom deepens",
-      "description": "",
-      "url": "https://biztoc.com/x/20a64c41fd7f1c0d",
-      "urlToImage": "https://biztoc.com/cdn/20a64c41fd7f1c0d_s.webp",
-      "publishedAt": "2025-11-25T00:22:10Z",
-      "content": "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why is Amazon investing $50 billion in AI infrastructure? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How did Nvidia … [+771 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "theguardian.com",
-      "title": "AI could replace 3m low-skilled jobs in the UK by 2035, research finds",
-      "description": "Trades, machine operations and administrative roles are most at-risk, says leading educational research charity\nUp to 3m low-skilled jobs could disappear in the UK by 2035 because of automation and AI, according to a report by a leading educational research c…",
-      "url": "https://biztoc.com/x/1b04245869743ff0",
-      "urlToImage": "https://biztoc.com/cdn/1b04245869743ff0_s.webp",
-      "publishedAt": "2025-11-25T00:22:09Z",
-      "content": "Trades, machine operations and administrative roles are most at-risk, says leading educational research charityUp to 3m low-skilled jobs could disappear in the UK by 2035 because of automation and AI… [+148 chars]"
-    },
-    {
-      "source": {
-        "id": null,
         "name": "Gizmodo.com"
       },
       "author": "AJ Dellinger",
@@ -469,45 +105,6 @@
       "urlToImage": "https://gizmodo.com/app/uploads/2025/06/geminigooglegetty-1200x675.jpg",
       "publishedAt": "2025-11-25T00:20:23Z",
       "content": "Despite its excessive spending on data centers with no clear path to revenue generation in front of it, it seemed that if OpenAI had just one thing it could count on, it was audience capture. ChatGPT… [+2628 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "工商時報 呂欣芷",
-      "title": "兆豐金：明年以現金股利為主 與近年發放率75％相當",
-      "description": "兆豐金控25日舉行2025年第三季法人說明會，總經理張傳章指出，今年以來全球主要央行可能進入降息階段，市場對利率政策走勢出現分歧，資金流向仍未明確；同時，中美經貿摩擦持續、地緣政治風險升溫，加上能源價格震盪，使金融市場維持高波動。面對挑戰，兆豐金靈活調整資產負債結構，並結合集團金融綜效，積極拓展AI、綠能及新興產業相關金融業務，累計1至10月稅後純益303.6億元，在13家金控中排名第五。",
-      "url": "https://tw.stock.yahoo.com/news/%E5%85%86%E8%B1%90%E9%87%91-%E6%98%8E%E5%B9%B4%E4%BB%A5%E7%8F%BE%E9%87%91%E8%82%A1%E5%88%A9%E7%82%BA%E4%B8%BB-%E8%88%87%E8%BF%91%E5%B9%B4%E7%99%BC%E6%94%BE%E7%8E%8775-%E7%9B%B8%E7%95%B6-081937677.html",
-      "urlToImage": "https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png",
-      "publishedAt": "2025-11-25T00:19:37Z",
-      "content": "6270211146.284,3887.210.6121.947,2151.00 AIRAID CardSecurity ICBMC AI PCECNVR IoTAI\r\n 3"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Pypi.org"
-      },
-      "author": "maxim.yudayev@gmail.com",
-      "title": "pysio-hermes 0.1.3",
-      "description": "A realtime physiological sensing and edge AI processing framework",
-      "url": "https://pypi.org/project/pysio-hermes/0.1.3/",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:19:28Z",
-      "content": "A required part of this site couldnt load. This may be due to a browser\r\n extension, network issues, or browser settings. Please check your\r\n connection, disable any ad blockers, or try using a diffe… [+12 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "工商時報 賴瑩綺",
-      "title": "華為發表新一代旗艦Mate 80系列 人民幣4,699元起",
-      "description": "華為25日發表新一代旗艦Mate 80系列，首次實現8000尼特極致亮屏、全金屬高強度機身和AI智調技術，帶來超越前代35％的性能升級。華為Mate 80系列起價為人民幣（下同）4,699元，華為Mate 80 Pro系列起價為5,999元。",
-      "url": "https://tw.stock.yahoo.com/news/%E8%8F%AF%E7%82%BA%E7%99%BC%E8%A1%A8%E6%96%B0-%E4%BB%A3%E6%97%97%E8%89%A6mate-80%E7%B3%BB%E5%88%97-%E4%BA%BA%E6%B0%91%E5%B9%A34-699%E5%85%83%E8%B5%B7-081830105.html",
-      "urlToImage": "https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png",
-      "publishedAt": "2025-11-25T00:18:30Z",
-      "content": "25Mate 808000AI35Mate 804,699Mate 80 Pro5,999\r\nMate80Mate 80Mate 80 ProMate 80 Pro MaxMate 80 RSMate 80ProMate 80 Pro MaxMate 80 RS\r\nMate 80Mate 7043\r\nMate 80 Pro Max5,00017.5EV46.24,000RYYBMate 80Ma… [+323 chars]"
     },
     {
       "source": {
@@ -525,344 +122,6 @@
     {
       "source": {
         "id": null,
-        "name": "Cnblogs.com"
-      },
-      "author": "削微寒",
-      "title": "比 MySQL 轻，比 SQLite 强：终于有人把 AI 数据库做对了 - 削微寒",
-      "description": "前几天，我看到了一个来自 Turso 创始人 Pekka 的观点： SQLite 被认为是 AI agent 的理想数据库，因为它轻量级且适用于 AI agent 的各种场景，但仍然需要进化。 评论区里也有意思，有人会和大家分享自己为了 SQLite 的进化做了哪些事情（比如开源了 Super SQ",
-      "url": "https://www.cnblogs.com/xueweihan/p/19264530",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:17:00Z",
-      "content": "Turso Pekka \r\nSQLite AI agent AI agent \r\nSQLite Super SQLite SQLite \r\nAI AI Agent Web AI \r\n AI \r\nAI AI \r\n0x01. seekdb \r\nOceanBase 4 15 300 \r\n AI SQLite SQL \r\nOceanBase AI AI seekdb OB\r\nGitHub github.… [+3459 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Iplaysoft.com"
-      },
-      "author": "X-Force",
-      "title": "微软 Visual Studio 2026 免费正式版下载 - 最新 VS 编程开发 IDE 工具 (速度翻倍 / 融合 AI)",
-      "description": "最近除了谷歌发布全新的 Google Antigravity 外，微软也发布了 Visual Studio 2026 正式版，这是继 VS2022 后，时隔 4 年的重大版本更新，解决 5000+Bug 并实现了 300+ 功能需求。\n无论你是资深开发专家还是刚入门学习编程的爱好者，现在都能下载到微软最新的 VS 开发工具免费使用了！VS 2026 不只更换全新 UI 设计，还从性能优化到 AI 深度集成，全方位提升开发者效率和体验。特别是启动速度、UI 响应方面提升非常明显，卡顿终于消失了……\n「 前往查看原文…",
-      "url": "https://www.iplaysoft.com/vs2026.html",
-      "urlToImage": "https://img.iplaysoft.com/wp-content/posts/6450/vs2026.jpg",
-      "publishedAt": "2025-11-25T00:16:14Z",
-      "content": "Google AntigravityVisual Studio 2026 VS2022 4 5000+Bug 300+ \r\n VS VS 2026 UI AI UI \r\n VPS \r\nWindows 11  |  Office   |  Antigravity  |  Trae\r\nVS 2026 - IDE ()\r\nVisual Studio 2026 (VS2026) VS AI IDE Gi… [+1337 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "財訊快報",
-      "title": "意騰-KY前三季每股賺9.12元，AI聲紋降噪IP導入大廠，明年營運更樂觀",
-      "description": "【財訊快報／記者李純君報導】聯發科(2454)轉投資的語音ASIC業者意騰科技-KY(7749)，今年第三季營收與獲利創新高，合計今年前三季每股淨利9.12元，展望後續，意騰於新一代AI聲紋降噪IP已獲多家智慧手機與PC國際大廠導入��加上多重產品線動能齊發的新階段，公司不單今年很樂觀，預計明年還會更好，明年成長動能甚可期待。意騰公布2025年第三季合併財報。第三季受惠於客戶持續的強勁需求及新產品推出，營運動能持續上揚。第三季合併營收達4.82億元，年增92.5%，創公司單季最高紀錄；稅後淨利1.96億元，淨利率達…",
-      "url": "https://tw.stock.yahoo.com/news/%E6%84%8F%E9%A8%B0-ky%E5%89%8D%E4%B8%89%E5%AD%A3%E6%AF%8F%E8%82%A1%E8%B3%BA9-12%E5%85%83-ai%E8%81%B2%E7%B4%8B%E9%99%8D%E5%99%AAip%E5%B0%8E%E5%85%A5%E5%A4%A7%E5%BB%A0-%E6%98%8E%E5%B9%B4%E7%87%9F%E9%81%8B%E6%9B%B4%E6%A8%82%E8%A7%80-081608574.html",
-      "urlToImage": "https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png",
-      "publishedAt": "2025-11-25T00:16:08Z",
-      "content": "DIGITIMESAI20251,99425%AI202617%2,3005(2330)12302030DIGITIMESAI(CSP)AIAIAI ASIC2025-2030CAGR14.3%20302025AIDIGITIMES51230(Samsung Electronics)(Intel)2030\r\n 1"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "iPhone in Canada"
-      },
-      "author": "John Quintet",
-      "title": "OpenAI Turns Sora Into a Holiday Toy With New Themed Styles",
-      "description": "OpenAI has released a new update for its AI video tool, Sora, adding a feature called Sora Styles. The update arrives just in time for the U.S. Thanksgiving weekend and lets users apply preset looks to their AI-generated videos. The first six styles are Thank…",
-      "url": "https://www.iphoneincanada.ca/2025/11/24/openai-turns-sora-into-a-holiday-toy-with-new-themed-styles/",
-      "urlToImage": "https://cdn.iphoneincanada.ca/wp-content/uploads/2025/10/sora-app-openai.jpg",
-      "publishedAt": "2025-11-25T00:14:31Z",
-      "content": "OpenAI has released a new update for its AI video tool, Sora, adding a feature called Sora Styles. The update arrives just in time for the U.S. Thanksgiving weekend and lets users apply preset looks … [+1627 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Ithome.com"
-      },
-      "author": null,
-      "title": "曝英特尔 Nova Lake-S 桌面处理器配备 74TOPS NPU 与 2Xe 核显",
-      "description": "IT之家 11 月 25 日消息，消息人士 @jaykihn0 在北京时间今日的 X 平台爆料中表示，英特尔的 \"Nova Lake-S\" 处理器将大幅强化 NPU 性能，算力将从 \"Arrow Lake-S\" 上 NPU 3 的 13 TOPS 提升至 NPU 6 的 74 TOPS，实现三次代际提升。IT之家注：\"Nova Lake-S\" 将是英特尔的下一代“新架构桌面处理器”，预计被称为酷睿 Ultra 400S 系列，在 2026~2027 年推出。更强大的 NPU 性能意味着基于 \"Nova Lake-…",
-      "url": "https://www.ithome.com/0/899/927.htm",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:13:58Z",
-      "content": "IT 11 25 @jaykihn0 X \"Nova Lake-S\" NPU \"Arrow Lake-S\" NPU 3 13 TOPS NPU 6 74 TOPS\r\nIT\"Nova Lake-S\" Ultra 400S 2026~2027 NPU \"Nova Lake-S\" Windows 11 AI+ PC / Copilot+ PC AI \r\n\"Nova Lake-S\" GPU 2 Xe3-… [+25 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Observador.pt"
-      },
-      "author": "Rodrigo Adão da Fonseca",
-      "title": "Onde é que a IA está a falhar?",
-      "description": "O real problema não é a IA não funcionar é nós não funcionarmos ainda bem com ela. Ou, dito de outra forma, a IA não funciona sem uma forte incorporação de inteligência humana. “It takes two to tango\"",
-      "url": "https://observador.pt/opiniao/onde-e-que-a-ia-esta-a-falhar/",
-      "urlToImage": "https://wm.observador.pt/wm-op/wide-circle/https%3A%2F%2Fbordalo.observador.pt%2Fv2%2Frs%3Afill%3A900%2Fc%3A500%3A500%3Anowe%3A0%3A0%2Fq%3A70%2Ff%3Awebp%2Fplain%2Fhttps%3A%2F%2Fs3.observador.pt%2Fwp-content%2Fuploads%2F2020%2F11%2F16205740%2Frodrigo.jpeg",
-      "publishedAt": "2025-11-25T00:13:42Z",
-      "content": "The better we get at getting better, the faster we will get better.in Augmenting Human Intellect: A Conceptual Framework (Douglas C. Engelbart, Stanford Research Institute, Outubro de 1962).\r\nA Intel… [+5379 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Pypi.org"
-      },
-      "author": null,
-      "title": "ai-edge-quantizer-nightly 0.5.0.dev20251125",
-      "description": "A quantizer for advanced developers to quantize converted AI Edge models.",
-      "url": "https://pypi.org/project/ai-edge-quantizer-nightly/0.5.0.dev20251125/",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:12:56Z",
-      "content": "A required part of this site couldnt load. This may be due to a browser\r\n extension, network issues, or browser settings. Please check your\r\n connection, disable any ad blockers, or try using a diffe… [+12 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Pypi.org"
-      },
-      "author": "jesuslara@phenobarbital.info",
-      "title": "ai-parrot 0.15.34",
-      "description": "Chatbot services for Navigator, based on Langchain",
-      "url": "https://pypi.org/project/ai-parrot/0.15.34/",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:12:46Z",
-      "content": "A required part of this site couldnt load. This may be due to a browser\r\n extension, network issues, or browser settings. Please check your\r\n connection, disable any ad blockers, or try using a diffe… [+12 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "財訊快報",
-      "title": "元富期貨：AI概念股領軍反彈，加權指數上漲1.54%",
-      "description": "【財訊快報／編輯部】美股方面，聯準會(Fed)12月降息機率上升，緩解科技股估值過高疑慮，美國四大指數週一(24日)全面上揚，由Google母公司Alphabet Inc.等AI概念股領軍衝高。標普500的11大類股中，通訊服務類股24日漲幅最大，必需消費品、能源類股是唯二逆勢下跌的族群。同時，美國總統川普表示，他已接受習近平邀請，將於4月訪問北京。台指方面，台指今日呈現開高震盪格局，AI概念股領軍反彈，傳產類股以軍工股表現最為整齊且強勁，指數盤中一度大漲超過600點，不過買盤力道在尾盤轉弱，漲勢收斂，終場成交量…",
-      "url": "https://tw.stock.yahoo.com/news/%E5%85%83%E5%AF%8C%E6%9C%9F%E8%B2%A8-ai%E6%A6%82%E5%BF%B5%E8%82%A1%E9%A0%98%E8%BB%8D%E5%8F%8D%E5%BD%88-%E5%8A%A0%E6%AC%8A%E6%8C%87%E6%95%B8%E4%B8%8A%E6%BC%B21-54-081144996.html",
-      "urlToImage": "https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png",
-      "publishedAt": "2025-11-25T00:11:44Z",
-      "content": "MoneyDJ 2025-11-25 07:06:15 (Fed) 1224GoogleAlphabet Inc.AI 11240.44%(202.86)46,448.272.69%(598.92)22,872.015001.55%(102.13)6,705.124.63%(296.77)6,703.20 Fed12 Fed(Christopher Waller)(John Williams)(… [+40 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": null,
-      "title": "AI需求撐盤　10月工業生產指數續創同期新高連20紅",
-      "description": "（中央社記者曾筠庭台北25日電）在人工智慧（AI）應用、高效能運算與雲端資料服務需求延續帶動下，經濟部今天公布10月工業生產指數為115.11，年增14.5%；其中製造業生產指數116.03，年增15.38%。工業及製造業指數雙雙創歷年同期新高，並為連續20個月正成長。",
-      "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_09464226-b735-4d1c-be1b-614cbd51e9dc",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:11:37Z",
-      "content": "If you click 'Accept all', we and our partners, including 240 who are part of the IAB Transparency &amp; Consent Framework, will also store and/or access information on a device (in other words, use … [+714 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "記者徐筱晴/綜合報導",
-      "title": "《Kpop獵魔女團》爆紅揭密　亞洲作品新主流",
-      "description": "[NOWnews今日新聞]串流平台Netflix熱門電影《Kpop獵魔女團》上架之後，隨即在全球掀起風潮。過去好萊塢掌控了全球影視娛樂產業，不過隨著串流平台興起，觀眾的觀影習慣也隨之改變，影視內容更出...",
-      "url": "https://tw.news.yahoo.com/kpop%E7%8D%B5%E9%AD%94%E5%A5%B3%E5%9C%98-%E7%88%86%E7%B4%85%E6%8F%AD%E5%AF%86-%E4%BA%9E%E6%B4%B2%E4%BD%9C%E5%93%81%E6%96%B0%E4%B8%BB%E6%B5%81-081136427.html",
-      "urlToImage": "https://media.zenfs.com/zh-tw/nownews.com/eac14a834a4216e3f9e2270eafbe1f45",
-      "publishedAt": "2025-11-25T00:11:36Z",
-      "content": "[NOWnews] NetflixKpop\r\nNMEANew Media Entertainment Association2025112425M3 Global StrategyCEO Max Michael\r\n96%\r\nMax Michael96%\r\nMax Michaelcultural honesty\r\nKpop\r\nMax Michael\r\nM3 Global Strategy\r\n1.T… [+137 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "techcrunch.com",
-      "title": "Altman describes OpenAI's forthcoming AI device as more peaceful and calm than the iPhone",
-      "description": "“When people see it, they say, ‘that’s it?… It’s so simple.”\nThat’s how OpenAI CEO Sam Altman describes how he thinks people will respond to seeing the company’s forthcoming AI hardware device for the first time.\nThe device is the result of the collaboration …",
-      "url": "https://biztoc.com/x/6c5d3f93ac91c4e6",
-      "urlToImage": "https://biztoc.com/cdn/6c5d3f93ac91c4e6_s.webp",
-      "publishedAt": "2025-11-25T00:11:11Z",
-      "content": "When people see it, they say, thats it? Its so simple.Thats how OpenAI CEO Sam Altman describes how he thinks people will respond to seeing the companys forthcoming AI hardware device for the first t… [+142 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "reuters.com",
-      "title": "Trump signs an EO establishing the Genesis Mission to boost AI innovation, including by using federal scientific datasets to train models and create AI agents",
-      "description": "",
-      "url": "https://biztoc.com/x/8fb5cb2de94211d8",
-      "urlToImage": "https://biztoc.com/cdn/955/og.png",
-      "publishedAt": "2025-11-25T00:11:01Z",
-      "content": "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why is Amazon investing $50 billion in AI infrastructure? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How did Nvidia … [+787 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "fnlondon.com",
-      "title": "Revealed: The questions the FCA is asking private markets firms",
-      "description": "",
-      "url": "https://biztoc.com/x/12bf64ff1038ddb5",
-      "urlToImage": "https://biztoc.com/cdn/12bf64ff1038ddb5_s.webp",
-      "publishedAt": "2025-11-25T00:11:00Z",
-      "content": "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why is Amazon investing $50 billion in AI infrastructure? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How did Nvidia … [+773 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Technews.tw"
-      },
-      "author": "TechNews 編輯台",
-      "title": "原來獅子不是只有一種吼叫聲！AI 破解獅語，解構野生動物祕密語言",
-      "description": "在一項最新的研究中，科學家們發現非洲獅實際上擁有兩種不同的吼叫聲，而不僅是一種。這項突破性的發現是由艾希特大學研究團隊利用人工智慧技術進行的，該技術能夠以驚人的精確度解碼獅子的聲音特徵，並將其分類。這項研究的結果不僅為獅子的溝通方式提供新見解，還為保護日益減少的獅子族群提供了強有力的工具。 研究顯示...",
-      "url": "https://technews.tw/2025/11/25/ai-deciphers-the-lions-language/",
-      "urlToImage": "https://img.technews.tw/wp-content/uploads/2025/11/24121022/lion-8774114_1280.jpg",
-      "publishedAt": "2025-11-25T00:10:57Z",
-      "content": "© 2013-2025 TechNews Inc. All rights reserved. | | | |"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "fnlondon.com",
-      "title": "Franklin Templeton plans tokenisation push to tap digital wallet investors",
-      "description": "",
-      "url": "https://biztoc.com/x/b8ddb214cfa431a8",
-      "urlToImage": "https://biztoc.com/cdn/b8ddb214cfa431a8_s.webp",
-      "publishedAt": "2025-11-25T00:10:52Z",
-      "content": "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why is Amazon investing $50 billion in AI infrastructure? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How did Nvidia … [+785 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Biztoc.com"
-      },
-      "author": "bloomberg.com",
-      "title": "Oil Steadies as Traders Look to Risk-On Mood and Ukraine Talks",
-      "description": "",
-      "url": "https://biztoc.com/x/be7e23d0ab756051",
-      "urlToImage": "https://biztoc.com/cdn/be7e23d0ab756051_s.webp",
-      "publishedAt": "2025-11-25T00:10:46Z",
-      "content": "{ window.open(this.href, '_blank'); }, 200); return false;\"&gt;Why is Amazon investing $50 billion in AI infrastructure? { window.open(this.href, '_blank'); }, 200); return false;\"&gt;How did Nvidia … [+773 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "The Central News Agency 中央通訊社",
-      "title": "揪空污 雲林啟動AI煙霧辨識系統及無人機空拍監控",
-      "description": "（中央社記者姜宜菁雲林縣25日電）雲林縣每年秋冬季因境外污染等因素，擴散條件不佳，污染物濃度易有累積趨勢，雲林縣環保局加強露天燃燒稽查，運用AI煙霧辨識系統及無人機空拍監控，且在空污季違規加重裁罰。",
-      "url": "https://tw.news.yahoo.com/%E6%8F%AA%E7%A9%BA%E6%B1%A1-%E9%9B%B2%E6%9E%97%E5%95%9F%E5%8B%95ai%E7%85%99%E9%9C%A7%E8%BE%A8%E8%AD%98%E7%B3%BB%E7%B5%B1%E5%8F%8A%E7%84%A1%E4%BA%BA%E6%A9%9F%E7%A9%BA%E6%8B%8D%E7%9B%A3%E6%8E%A7-081033403.html",
-      "urlToImage": "https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png",
-      "publishedAt": "2025-11-25T00:10:33Z",
-      "content": "[Newtalk] (24)201617 (11/28)(11/25)(11/26)16(11/30) (24)(11/24)(11/25) \r\n 22"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Www.dkn.tv"
-      },
-      "author": "Lê Huyền",
-      "title": "Ukraina vạch ‘lằn ranh đỏ’ với Hoa Kỳ: Không nhượng bộ lãnh thổ, không giới hạn quân đội, quyết vào NATO",
-      "description": "Chủ tịch Quốc hội Ukraina, ông Ruslan Stefanchuk, vào ngày 24/11 đã tuyên bố đanh thép rằng Kyiv vẫn sẵn sàng cho các cuộc đàm phán hòa bình với Nga, nhưng sẽ không bao giờ bước qua những “lằn ranh đỏ” mang tính sống còn. Theo ông, những giới hạn này bao gồm …",
-      "url": "https://www.dkn.tv/the-gioi/ukraina-vach-lan-ranh-do-voi-hoa-ky-khong-nhuong-bo-lanh-tho-khong-gioi-han-quan-doi-quyet-vao-nato.html",
-      "urlToImage": "https://www.dkn.tv/wp-content/uploads/2025/11/image-13.jpg",
-      "publishedAt": "2025-11-25T00:10:07Z",
-      "content": "Ch tch Quc hi Ukraina, ông Ruslan Stefanchuk, vào ngày 24/11 ã tuyên b anh thép rng Kyiv vn sn sàng cho các cuc àm phán hòa bình vi Nga, nhng s không bao gi bc qua nhng “ln ranh ” mang tính sng còn. … [+1252 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Cnblogs.com"
-      },
-      "author": "追逐时光者",
-      "title": "Visual Studio 2026 现已正式发布，更快、更智能！ - 追逐时光者",
-      "description": "前言 前不久 Visual Studio 官方博客宣布 Visual Studio 2026 正式发布！本次版本凝聚了广大开发者的宝贵反馈，博客中提及在此版本发布之前的一年里，Visual Studio 团队修复了 5000 多个用户报告的缺陷，并实现了 300 个功能请求。 新版本带来显著性能提升",
-      "url": "https://www.cnblogs.com/Can-daydayup/p/19266529",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:10:00Z",
-      "content": "Visual Studio Visual Studio 2026 Visual Studio 5000 300 \r\n AI \r\nVisual Studio 2026 \r\n<ul><li>https://visualstudio.microsoft.com/zh-hans/downloads</li></ul>\r\nVisual Studio 2026 \r\n Visual Studio 2026 .… [+574 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Pypi.org"
-      },
-      "author": null,
-      "title": "easymaker 2.1.2",
-      "description": "AI EasyMaker SDK for Python.",
-      "url": "https://pypi.org/project/easymaker/2.1.2/",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:09:41Z",
-      "content": "A required part of this site couldnt load. This may be due to a browser\r\n extension, network issues, or browser settings. Please check your\r\n connection, disable any ad blockers, or try using a diffe… [+12 chars]"
-    },
-    {
-      "source": {
-        "id": "the-verge",
-        "name": "The Verge"
-      },
-      "author": "Sean Hollister",
-      "title": "RAM prices are so out of control that stores are selling it like lobster",
-      "description": "Michael Crider’s headline at PCWorld today perfectly captures how ridiculous the PC memory shortage has become: stores like the San Francisco Bay Area’s Central Computers are beginning to sell RAM at market prices, like you’d pay for the catch-of-the-day at a…",
-      "url": "https://www.theverge.com/news/828337/ram-memory-shortage-crunch-market-prices-central-micro-center",
-      "urlToImage": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/11/DOMINATOR_PLAT_RGB_16.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
-      "publishedAt": "2025-11-25T00:09:26Z",
-      "content": "<ul><li></li><li></li><li></li></ul>\r\nMemory now commands market prices.\r\nMemory now commands market prices.\r\nby\r\nSean HollisterClose\r\nSean Hollister\r\nPosts from this author will be added to your dai… [+3290 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Slickdeals.net"
-      },
-      "author": "Frugie",
-      "title": "$479 HP OmniBook 5 16\" 2K Touch Laptop AI Intel Core Ultra 7 255U 16GB RAM 1TB SSD (Walmart+ early access)",
-      "description": "Walmart+ Early access starts at 7pm eastern time (sale starts 5 hours later for the general public) \nFree shipping for Walmart+ members. Free store pickup where available\n\nhttps://www.walmart.com/ip/H",
-      "url": "https://slickdeals.net/f/18865714-479-hp-omnibook-5-16-2k-touch-laptop-ai-intel-core-ultra-7-255u-16gb-ram-1tb-ssd-walmart-early-access",
-      "urlToImage": "https://slickdeals.net/attachment/1/7/7/8/8/7/2/450x450/18853858.thumb",
-      "publishedAt": "2025-11-25T00:09:03Z",
-      "content": "This collaborative space allows users to contribute additional information, tips, and insights to enhance the original deal post. Feel free to share your knowledge and help fellow shoppers make infor… [+26 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "財訊快報",
-      "title": "華為發表Mate 80系列手機，高階新品預售熱、交貨延至明年",
-      "description": "【財訊快報／陳孟朔】中媒報導，華為週二舉行新品發表會，正式推出Mate 80、Mate 80 Pro、Mate 80 Pro Max及Mate 80 RS非凡大師四款旗艦手機，Mate 80系列起售價為人民幣4,699元(下同，約新台幣20,700元)，Mate 80 Pro系列則自5,999元起跳，主打全新影像系統、極致亮度螢幕與AI算力升級，劍指高階智慧手機市場。華為表示，Mate 80全系搭載第二代鴻蒙原色影像技術，相較上一代Mate 70色彩準確度提升約43%，並透過更大進光量與更高動態範圍，強調「所見即…",
-      "url": "https://tw.stock.yahoo.com/news/%E8%8F%AF%E7%82%BA%E7%99%BC%E8%A1%A8mate-80%E7%B3%BB%E5%88%97%E6%89%8B%E6%A9%9F-%E9%AB%98%E9%9A%8E%E6%96%B0%E5%93%81%E9%A0%90%E5%94%AE%E7%86%B1-%E4%BA%A4%E8%B2%A8%E5%BB%B6%E8%87%B3%E6%98%8E%E5%B9%B4-080800654.html",
-      "urlToImage": "https://s.yimg.com/cv/apiv2/social/images/yahoo_default_logo-1200x1200.png",
-      "publishedAt": "2025-11-25T00:08:00Z",
-      "content": "Mate 80Mate 80 ProMate 80 Pro MaxMate 80 RSMate 804,699(20,700)Mate 80 Pro5,999AIMate 80Mate 7043%Mate 80 Pro Max5,0004,000RYYBMate 80Mate 80 Pro5,0004,000\r\nMate 80 Pro Max8,000OLED40%80%Mate 80Mate … [+75 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "BBC News"
-      },
-      "author": null,
-      "title": "Elderly man 'broken' after losing £35k in online scams",
-      "description": "Eddie Rushe, aged 82 from Lurgan, fell victim to three separate scams over 18 months.",
-      "url": "https://www.bbc.com/news/articles/c07m7xly9zro",
-      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/8448/live/d76b27d0-c986-11f0-886a-cb66d961bff7.jpg",
-      "publishedAt": "2025-11-25T00:07:23Z",
-      "content": "Eddie Rushe feels embarrassed by what happened, but wants people to be aware of what scammers can do \r\nAn elderly man who lost £35,000 in cryptocurrency scams which used AI-generated social media adv… [+5115 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "The Conversation Africa"
-      },
-      "author": "Roslyn Petelin, Honorary Associate Professor in Writing, The University of Queensland",
-      "title": "AI slop is Macquarie’s 2025 Word of the Year. I applaud the choice – but was bored by the shortlist",
-      "description": "AI slop was the clear winner of Macquarie’s Word of the Year – it also won the People’s Choice Award. Honourable mentions included another AI-related word: clanker.",
-      "url": "https://theconversation.com/ai-slop-is-macquaries-2025-word-of-the-year-i-applaud-the-choice-but-was-bored-by-the-shortlist-270432",
-      "urlToImage": "https://images.theconversation.com/files/704394/original/file-20251125-66-ksm2sh.jpg?ixlib=rb-4.1.0&rect=0%2C112%2C1900%2C950&q=45&auto=format&w=1356&h=668&fit=crop",
-      "publishedAt": "2025-11-25T00:06:33Z",
-      "content": "AI slop is Macquarie Dictionary’s Word of the Year for 2025. It also won the people’s choice vote. The dictionary defines the word as “low-quality content created by generative AI [artificial intelli… [+5591 chars]"
-    },
-    {
-      "source": {
-        "id": null,
         "name": "pymnts.com"
       },
       "author": "PYMNTS",
@@ -876,431 +135,1003 @@
     {
       "source": {
         "id": null,
-        "name": "Inews24.com"
+        "name": "pymnts.com"
       },
-      "author": "윤소진",
-      "title": "챗GPT, 쇼핑 리서치 기능 도입…\"무료 이용자에도 순차 배포\"",
-      "description": "제품 조사&middot;맞춤 추천까지&hellip;결제 기능 추가 예정\r\n&quot;연말까지 거의 무제한 수준으로 이용하게 될 것&quot; 오픈AI는 챗GPT에 쇼핑 리서치 기능을 새롭게 도입한다고 25일 밝혔다. 쇼핑 리서치는 원하는 제품을 더 쉽게 찾을 수 있도록 사용자를 대신해 제품 조사를 해주는 기능이다. 챗GPT에서 찾고 싶은 제품을 설명하면 쇼핑 리서치 기능이 제품 탐색을 자연스러운 대화로 전환해 필요할 때 스마트한 추가 질문을 던지고 인터넷 전반…",
-      "url": "https://www.inews24.com/view/1910557",
-      "urlToImage": "https://image.inews24.com/v1/59b5c6e54ba95c.jpg",
-      "publishedAt": "2025-11-25T00:06:25Z",
-      "content": "<li></li>\r\n<ul><li>00000000-0.0%</li><li>00000000-0.0%</li><li>00.00 00:00 </li></ul>\r\n[24 ] AI GPT 25 .\r\nGPT . [=AI]\r\n.\r\nGPT .\r\n · , . GPT , .\r\n , , &amp;, ·, · .\r\nGPT , , · , .\r\n/ (sojin@inews24.co… [+188 chars]"
+      "author": "PYMNTS",
+      "title": "How Google Dodged the AI Search Collapse",
+      "description": "Google Search was supposed to lose ground in the artificial intelligence (AI) era, but Alphabet’s third-quarter 2025 earnings tell a different story. Alphabet said Search-and-other advertising revenue rose about 15% to more than $56 billion in Q3, defying exp…",
+      "url": "https://www.pymnts.com/google/2025/how-google-dodged-the-ai-search-collapse/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/google-gemini-ai-artificial-intelligence-alphabet-browsers-search-earnings-performance-advertising.jpeg?w=457",
+      "publishedAt": "2025-11-24T23:31:57Z",
+      "content": "Google Search was supposed to lose ground in the artificial intelligence (AI) era, but Alphabets third-quarter 2025 earnings tell a different story. Alphabet said Search-and-other advertising revenue… [+4647 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Tinhte.vn"
+        "name": "BusinessLine"
       },
-      "author": "no-reply@tinhte.vn (Pnghuy), Pnghuy",
-      "title": "Tinhtelookback: Nói về tiêu chuẩn của Ultrabook Windows cao cấp trong năm 2025 (Phần 1)",
-      "description": "Năm 2025 không chỉ đơn thuần đánh dấu một cột mốc thời gian, mà nó đại diện cho một điểm uốn quan trọng nhất trong lịch sử hơn ba thập kỷ của máy tính xách tay chạy Windows. Ngành công nghiệp PC đang trải qua một cuộc tái cấu trúc toàn diện…",
-      "url": "https://tinhte.vn/thread/tinhtelookback-noi-ve-tieu-chuan-cua-ultrabook-windows-cao-cap-trong-nam-2025-phan-1.4076853/",
-      "urlToImage": "https://photo2.tinhte.vn/data/attachment-files/2025/11/8901882_cover-ultrabook-windows-tinhtelookback-pnghuy.jpg",
-      "publishedAt": "2025-11-25T00:06:13Z",
-      "content": "Nm 2025 không ch n thun ánh du mt ct mc thi gian, mà nó i din cho mt im un quan trng nht trong lch s hn ba thp k ca máy tính xách tay chy Windows. Ngành công nghip PC ang tri qua mt cuc tái cu trúc t… [+6175 chars]"
+      "author": "Sanjana B",
+      "title": "Lowered AI entry barriers accelerating business from SMEs: Salesforce’s Arundhati Bhattacharya",
+      "description": "Arundhati Bhattacharya, President and CEO, Salesforce - South Asia, says that India continues to be one of Salesforce’s fastest-growing markets globally, driven by strong customer demand for trusted, data-driven and AI-powered solutions",
+      "url": "https://www.thehindubusinessline.com/companies/lowered-ai-entry-barriers-accelerating-business-from-smes-salesforces-arundhati-bhattacharya/article70318344.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/abda92/article70318339.ece/alternates/LANDSCAPE_1200/Arundhati%20Bhattacharya%20President%20%20CEO%20Salesforce%20South%20Asia.jpeg",
+      "publishedAt": "2025-11-24T23:30:00Z",
+      "content": "Salesforce India is seeing strong momentum across both SME and large enterprise segment, with AI emerging as the biggest driver of adoption, according to Arundhati Bhattacharya, President and CEO, Sa… [+4379 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Tistory.com"
+        "name": "pymnts.com"
       },
-      "author": "T.B",
-      "title": "시진핑, 트럼프 통화 대만 문제 직접 언급",
-      "description": "Here's what you need to know to start your day https://t.co/WqZuuQgg2q— Bloomberg (@business) November 24, 2025 '중국'이 한중일 정상회의 불발이 '대만 문제'로 '레드라인'을 넘었다는 '다카이치' 시나에 일본 '총리 잘못'이라고 했습니다. '여행 자제'가 '현실'로 나타난 다카이치 내각 '지지율'은 변동이 없습니다. 시진핑 중국 국가주석은 '트럼프'와 '정상 통화'를 했고…",
-      "url": "https://ryueyes11.tistory.com/511985",
-      "urlToImage": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FlxGZh%2FdJMcah3UIoa%2FAAAAAAAAAAAAAAAAAAAAAPK2MG3nMr-6KfeXI_v_6WTaGPXqzEzJbpcPZrU12xGE%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3DCaXkp%252FYmwgyuHnnnKg8Dx5jF9dw%253D",
-      "publishedAt": "2025-11-25T00:06:09Z",
-      "content": "Here's what you need to know to start your day https://t.co/WqZuuQgg2q\r\n— Bloomberg (@business) November 24, 2025\r\n''    ' ' ''  ''   ' ' . ' ' ''    ''  .    '' ' ' ,        4   '' .\r\nKim Jung Un's … [+1537 chars]"
+      "author": "PYMNTS",
+      "title": "OpenAI: ChatGPT’s New ‘Shopping Research’ Provides Detailed Product Comparisons",
+      "description": "OpenAI’s ChatGPT will now help users discover, understand and compare products. This service is provided by the artificial intelligence assistant’s new shopping research experience, the company said in a Monday (Nov. 24) press release. OpenAI began rolling ou…",
+      "url": "https://www.pymnts.com/news/artificial-intelligence/2025/openai-says-chatgpt-new-shopping-research-provides-detailed-product-comparisons/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2024/02/chatgpt-2.jpg",
+      "publishedAt": "2025-11-24T23:01:37Z",
+      "content": "This service is provided by the artificial intelligence assistants new shopping research experience, the company said in a Monday (Nov. 24) press release.\r\nOpenAI began rolling out shopping research … [+2366 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Pypi.org"
-      },
-      "author": "amartey@gmail.com",
-      "title": "remdb 0.3.10",
-      "description": "Resources Entities Moments - Bio-inspired memory system for agentic AI workloads",
-      "url": "https://pypi.org/project/remdb/0.3.10/",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:05:44Z",
-      "content": "A required part of this site couldnt load. This may be due to a browser\r\n extension, network issues, or browser settings. Please check your\r\n connection, disable any ad blockers, or try using a diffe… [+12 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Yahoo Entertainment"
-      },
-      "author": "三立新聞網",
-      "title": "快訊／公股金控No1！受惠AI與半導體授信動能　兆豐金Q3 EPS1.91",
-      "description": "兆豐金控（2886）於今（25）日舉行2025年第三季線上法說會，由總經理張傳章主持，說明集團最新財務成果與未來營運展望。張傳章指出，儘管全球面臨利率政策分歧、美中經貿摩擦與地緣政治風險持續升溫，兆豐金控仍憑藉穩健資本與風險控管優勢，積極調整資產負債結構，並鎖定AI、綠能、新興產業等領域推進金融服務，展現穩健成長動能。",
-      "url": "https://tw.news.yahoo.com/%E5%BF%AB%E8%A8%8A-%E5%85%AC%E8%82%A1%E9%87%91%E6%8E%A7no1-%E5%8F%97%E6%83%A0ai%E8%88%87%E5%8D%8A%E5%B0%8E%E9%AB%94%E6%8E%88%E4%BF%A1%E5%8B%95%E8%83%BD-%E5%85%86%E8%B1%90%E9%87%91q3-eps1-080500284.html",
-      "urlToImage": "https://s.yimg.com/ny/api/res/1.2/P8eR_UFVk7B3ofxAlvGo1A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU-/https://media.zenfs.com/ko/setn.com.tw/796f2fda860e2ab4f168384ea0201d6e",
-      "publishedAt": "2025-11-25T00:05:00Z",
-      "content": "2886252025AI\r\n282.851.9110303.62342.34.9%8.1%AI\r\n6,50415%159\r\nAUM2,35415%31.811%\r\n18.4119.0611%6.54107%7,58518%\r\n135.22%17%11475%\r\nAUM5300 10 ETF10"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Android Police"
-      },
-      "author": "Matthew Mountjoy",
-      "title": "YouTube Music's 2025 Recap comes with new AI chat feature",
-      "description": "Ask Music is now integrated into your Recap",
-      "url": "https://www.androidpolice.com/youtube-musics-2025-recap-comes-with-new-ai-chat-feature/",
-      "urlToImage": "https://static0.anpoimages.com/wordpress/wp-content/uploads/2025/10/illustration-of-a-pair-of-black-headphones-surrounding-the-red-youtube-music-logo-set-against-a-dark-red-background-with-abstract-sound-wave-patterns.png?w=1600&h=900&fit=crop",
-      "publishedAt": "2025-11-25T00:04:06Z",
-      "content": "YouTube Music is rolling out its 2025 Recap, and it has a unique, AI-powered \"ask about your listening experience\" chat that gives you insight about your listening habits over the past year. \r\nThe re… [+1908 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Kbench.com"
-      },
-      "author": "godbless",
-      "title": "갤럭시S26, 빅스비 대대적 개편.. 퍼플렉시티 AI 통합 가능성",
-      "description": "출처: 삼성\n 삼성전자가 내년 출시 예정인 갤럭시 S26 시리즈와 함께 \n자사 음성 비서 ‘빅스비(Bixby)’를 대대적으로 개편할 것으로 알려졌다.\n24일(현지시간) 해외 IT 매체 샘모바일은 팁스터 @chunvn8888의 \n정보를 인용해, 빅스비에 AI 검색 엔진 ‘퍼플렉시티(Perplexity)’ 기능이 통합될 \n가능성이 있다고 전했다.\n보도에 따르면 팁스터는 “빅스비는 기본적인 작업을 그대로 \n처리하되, AI 기반 고급 작업과 정보 검색은 퍼플렉시티가 …",
-      "url": "https://kbench.com/?q=node/273607",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:03:22Z",
-      "content": ": \r\n  S26 \r\n (Bixby) .\r\n24() IT @chunvn8888 \r\n , AI (Perplexity) \r\n .\r\n, AI \r\n . (Apple Intelligence) GPT(ChatGPT) \r\n .\r\n, TV \r\nLLM( ) AI .\r\n, \r\n . AI \r\n AI .\r\n S26 \r\n ."
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Adevarul.ro"
-      },
-      "author": "Bianca Dobrescu",
-      "title": "Astrolog Valeriu Pănoiu: „Există suflete pereche, care se întâlnesc ocazional atunci când e nevoie tocmai de un asemenea salt evolutiv”",
-      "description": "Valeriu Pănoiu studiază astrologia de aproape trei decenii și o practică profesionist din 2008. La „Interviurile Adevărul” a explicat printre altele de ce relațiile sunt experiențe sau cum funcționează tiparele pe care le moștenim din familie.",
-      "url": "https://adevarul.ro/dezvoltare-personala/spiritualitate/astrolog-valeriu-panoiu-exista-suflete-pereche-2488036.html",
-      "urlToImage": "https://cdn.adh.reperio.news/image-e/ebffe9db-69f8-4897-8174-82775b4a6eb5/index.png?p=f%3Djpeg%26w%3D1200%26h%3D630%26r%3Dcover",
-      "publishedAt": "2025-11-25T00:02:25Z",
-      "content": "Valeriu Pnoiu studiaz astrologia de aproape trei decenii i o practic profesionist din 2008. La Interviurile Adevrul explic de ce relaiile sunt experiene, cum funcioneaz tiparele pe care le motenim di… [+31464 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Finextra"
-      },
-      "author": "Editorial Team",
-      "title": "AI workflow startup Model ML raises $75 million",
-      "description": "Model ML, an AI-based workflow automation startup for deal teams at financial services companies, has raised $75 million in Series A financing just one year after launch.",
-      "url": "https://www.finextra.com/newsarticle/46958/ai-workflow-startup-model-ml-raises-75-million",
-      "urlToImage": "https://www.finextra.com/finextra-images/top_pics/xl/model-ml-founders.jpg",
-      "publishedAt": "2025-11-25T00:01:00Z",
-      "content": "Model ML, an AI-based workflow automation startup for deal teams at financial services companies, has raised $75 million in Series A financing just one year after launch.Led by FT Partners, the round… [+1731 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Technews.tw"
-      },
-      "author": "Atkinson",
-      "title": "輝達與博通為何要爭霸 CPO，從速度、功耗、可靠性來全面解構",
-      "description": "在剛結束的 SC25 超級運算大會上，GPU 大廠輝達 (Nvidia)宣布，包括 Lambda 和 CoreWeave 在內的 GPU 運算設施營運商，以及德克薩斯州高階資料中心（TACC），將採用其 Quantum-X Photonics CPO 交換機。而面對 Nvidia 在 CPO 領域的...",
-      "url": "https://technews.tw/2025/11/25/why-are-nvidia-and-broadcom-vying-for-the-cpo-title/",
-      "urlToImage": "https://img.technews.tw/wp-content/uploads/2025/07/16094350/S__10338345_0.jpg",
-      "publishedAt": "2025-11-25T00:00:40Z",
-      "content": "SC25 GPU (Nvidia) Lambda CoreWeave GPU TACC Quantum-X Photonics CPO Nvidia CPO (Broadcom) Tomahawk 5 Tomahawk 6 CPO CPO 2026 \r\n The Register CPO speed and powerAI 800 Gbps Nvidia ConnectX-9 NICs 1.6 … [+845 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Kevinmd.com"
-      },
-      "author": "The Podcast by KevinMD",
-      "title": "Transforming patient fear into understanding through clear communication [PODCAST]",
-      "description": "Counselor and certified coach Mary Remón and oncologist Tiffany Troso-Sandoval discuss their article, \"Clear communication is kind patient care.\" They explore the common scenario of patients leaving the office more confused and anxious than when they arrived,…",
-      "url": "https://kevinmd.com/2025/11/transforming-patient-fear-into-understanding-through-clear-communication-podcast.html",
-      "urlToImage": "https://kevinmd.com/wp-content/uploads/Design-3-scaled.jpg",
-      "publishedAt": "2025-11-25T00:00:39Z",
-      "content": "Subscribe to The Podcast by KevinMD. Watch on YouTube. Catch up on old episodes!\r\nCounselor and certified coach Mary Remón and oncologist Tiffany Troso-Sandoval discuss their article, “Clear communic… [+19004 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "YouTube"
+        "name": "CNA"
       },
       "author": null,
-      "title": "AI Generated CGI Ad | The Future of Luxury Marketing with Nars #Nars #cgiads",
-      "description": "AI Generated CGI Ad | The Future of Luxury Marketing with Nars #Nars #cgiadsyoutube.com",
-      "url": "https://www.youtube.com/supported_browsers?next_url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DRujJM7z2UOM",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:00:37Z",
-      "content": "Your browser isnt supported anymore. Update it to get the best YouTube experience and our latest features. Learn more\r\nRemind me later"
+      "title": "Trump aims to boost AI innovation, build platform to harness government data",
+      "description": "President Donald Trump on Monday signed an executive order to launch a government-wide effort to build an integrated artificial intelligence platform to harness federal scientific datasets to train next-generation technologies.The effort, dubbed the Genesis M…",
+      "url": "https://www.channelnewsasia.com/business/trump-aims-boost-ai-innovation-build-platform-harness-government-data-5488106",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--1NkmtbrK--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T220929Z_1_LYNXMPELAN12F_RTROPTP_3_USA-TRUMP-AI.JPG?itok=EQwb8MgY",
+      "publishedAt": "2025-11-24T22:12:55Z",
+      "content": "President Donald Trump on Monday signed an executive order to launch a government-wide effort to build an integrated artificial intelligence platform to harness federal scientific datasets to train n… [+342 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Ithome.com"
+        "name": "CNA"
       },
       "author": null,
-      "title": "华为 Pura 80 系列、Mate 70 Air、XTs 被曝将 OTA 支持星闪音频，但体验略逊于 Mate 80、X7 系列",
-      "description": "IT之家 11 月 25 日消息，经博主 @Adak封狼居胥 确认，华为 Pura 80 系列、Mate XTs、Mate70 Air 都能够通过 OTA 的方式支持“星闪音频”，但 OTA 后的实际体验效果与 Mate 80 系列、Mate X7 系列存在差异。他解释称，华为 Pura 80 系列及后续大部分新机都通过了 NearLink E2.0 测试认证，理论上通过上述认证的新机都可以通过星闪连接传输音频数据。但拥有 E2.0 硬件不代表能够完美支持“星闪音频”，因为所谓的“星闪音频”实际上是基于“星闪双频…",
-      "url": "https://www.ithome.com/0/899/923.htm",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:00:33Z",
-      "content": "IT 11 25 @Adak Pura 80 Mate XTsMate70 Air OTA OTA Mate 80 Mate X7 \r\n Pura 80 NearLink E2.0 \r\n E2.0 2.4 GHz + 5.8 GHz E2.0 E2.0 \r\nPura 80 OTA Mate 80 Mate X7 5.8 GHz \r\nIT FreeClip 2 OTA FreeBuds Pro 5… [+33 chars]"
+      "title": "Zoom lifts annual outlook on growing demand for AI tools in hybrid work",
+      "description": "Zoom Communications raised its annual revenue and profit forecasts on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.Shares of the company rose 3.5 per cent in extended trading. Zoom has intensified…",
+      "url": "https://www.channelnewsasia.com/business/zoom-lifts-annual-outlook-growing-demand-ai-tools-in-hybrid-work-5488081",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--yzd2fFsy--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T214115Z_1_LYNXMPELAN11Q_RTROPTP_3_IPO-ZOOM.JPG?itok=xNIg2Cg3",
+      "publishedAt": "2025-11-24T21:41:15Z",
+      "content": "Zoom Communications raised its annual revenue and profit forecasts on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.\r\nShares of the compa… [+1752 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Technews.tw"
-      },
-      "author": "古川",
-      "title": "從 GPU 伺服器到一站式資料中心：2026 AI 供應鏈新賽局，鴻海能否搶下全球主導權？",
-      "description": "近年 AI 算力需求呈指數級擴張，日本與台灣共同構成的供應鏈因此承受前所未有的壓力與機會。Nvidia 帶動的 GPU 伺服器浪潮，使鴻海對 2026 年的市況展現高度樂觀，並企圖以「一站式資料中心」模式影響全球供應鏈布局。 然而，筆者認為，在市場普遍關注出貨數字的同時，有幾個關鍵面向需要更深入的釐...",
-      "url": "https://technews.tw/2025/11/25/2026-ai-supply-chain-new-landscape/",
-      "urlToImage": "https://img.technews.tw/wp-content/uploads/2024/01/03101928/foxconn-2.jpg",
-      "publishedAt": "2025-11-25T00:00:29Z",
-      "content": "© 2013-2025 TechNews Inc. All rights reserved. | | | |"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Digiday.jp"
-      },
-      "author": "編集部",
-      "title": "AI 時代のパブリッシャー成長戦略　ニューヨーク・タイムズ、USAトゥデイの事例",
-      "description": "記事のポイント \r\n\n<ul>\n<li>第3四半期のパブリッシャーの決算は、一部を除いてデジタル広告収益が前年比で増加した。</li>\n</ul>\n<ul>\n<li>検索トラフィックの減少が顕著なパブリッシャーがいる一方、動画などの再投資で収益性を維持しているところも。</li>\n</ul>\n<ul>\n<li>多くのパブリッシャーがマイクロソフトやOpenAIとのAIライセンス契約を積極的に進めており、今後さらなる契約も期待されている。</li>\n</ul>\nムードは一変しているようだ。パブリッシャーは、クリック…",
-      "url": "https://digiday.jp/publishers/publishers-swap-traffic-angst-for-strategy-in-q3-earnings/",
-      "urlToImage": "https://digiday.jp/wp-content/uploads/2026/11/site-traffic-digiday.webp",
-      "publishedAt": "2025-11-25T00:00:29Z",
-      "content": "3People Inc.AI\r\nAdvertisement\r\nUSAUSA Today Co.GannettZiff Davis\r\n5AI\r\nNew York TimesCEO115IT\r\n3\r\nIACDotdash MeredithGoogle AI Overviews\r\nCEO114Google54243\r\n3\r\n3BuzzFeed\r\nCFO\r\n<ul><li>News CorpDow Jo… [+445 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "XDA Developers"
-      },
-      "author": "Tomas Franzese",
-      "title": "Battlefield 6 outperforming Black Ops 7 should worry Call of Duty fans",
-      "description": "The hierarchy of power in the multiplayer shooter space is about to change if Battlefield continues to do as well as, or better than, Call of Duty",
-      "url": "https://www.xda-developers.com/battlefield-6-outperforming-call-of-duty/",
-      "urlToImage": "https://static0.xdaimages.com/wordpress/wp-content/uploads/2025/08/battlefield-6-campaign-protagonist.png?w=1600&h=900&fit=crop",
-      "publishedAt": "2025-11-25T00:00:17Z",
-      "content": "At the start of the year, had you asked me if the new Battlefield or new Black Ops would be the better-received shooter of the year, I probably would've bet on Call of Duty. Black Ops 6 was one of th… [+5204 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "MakeUseOf"
-      },
-      "author": "Tashreef Shareef",
-      "title": "These Samsung features make me question why other phones even exist",
-      "description": "After countless upgrades, I realized Samsung offers something deeper than hardware, and that’s why I stay.",
-      "url": "https://www.makeuseof.com/samsung-features-make-me-question-why-other-phones-even-exist/",
-      "urlToImage": "https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2025/11/samsung-s-pen-on-a-galazy-z-flip-6.jpg?w=1600&h=900&fit=crop",
-      "publishedAt": "2025-11-25T00:00:14Z",
-      "content": "Last summer, I bought my Galaxy Z Flip 6. Before that, the Note 20 Ultra. Before that, the S10+, S9+, S8+, S7I've been using Samsung phones since the S II days, when they still used Roman numerals. E… [+8956 chars]"
-    },
-    {
-      "source": {
-        "id": "rte",
-        "name": "RTE"
-      },
-      "author": "Brian O'Donovan",
-      "title": "Petition calls on TikTok to do more to protect children",
-      "description": "Amnesty international will deliver a global petition to TikTok's office in Dublin this morning calling on the platform to do more to protect children and young people from harmful content.",
-      "url": "https://www.rte.ie/news/business/2025/1125/1545650-tiktok-petition/",
-      "urlToImage": "https://www.rte.ie/images/00208040-1600.jpg",
-      "publishedAt": "2025-11-25T00:00:01Z",
-      "content": "Amnesty international will deliver a global petition to TikTok's office in Dublin this morning calling on the platform to do more to protect children and young people from harmful content.\r\nThe petit… [+1395 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Zdnet.co.kr"
-      },
-      "author": "류은주 기자",
-      "title": "SK하이닉스 법인세만 4.3조…SK그룹, 역대 최대 수출 눈앞",
-      "description": "[지디넷코리아]SK그룹이 SK하이닉스의 기록적인 반도체 수출 호조에 힘입어 올해 수출액이 역대 최고치인 120조원대를 기록할 전망이다.SK그룹은 지난 3분기까지 수출 실적을 집계한 결과, 87조8천억원에 달했다고 25일 밝혔다. 이는 지난해 같은 기간 수출 실적(73조7천억원) 대비 20% 가까이 성장한 수치다. 이 같은 성장세가 4분기에도 이어질 경우 올해 전체 수출액은 지난해(102조5천억원) 실적을 훌쩍 뛰어넘어 120조원대에 달할 것으로 SK그룹 측은 …",
-      "url": "https://zdnet.co.kr/view/?no=20251125084319",
-      "urlToImage": "https://image.zdnet.co.kr/2025/10/23/f44093ceb792c5d52d949215f88b0c3c.jpg",
-      "publishedAt": "2025-11-25T00:00:01Z",
-      "content": "SK SK 120 .\r\nSK 3 , 878 25 . (737) 20% . 4 (1025) 120 SK .\r\nSK 2 100 SK (HBM) . SK 54%(552) , 3 65%(567) .\r\n (SEDEX) 2025 SK HBM4 .(= )\r\nSK . 3 1850 2010 . HBM 466 . \r\nSK . SK 3 43 , 940 45 . SK 300 … [+93 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "Nature.com"
-      },
-      "author": "Wenchang Peng, Yajing Du, Luna Cui, Yi Xiao, Lavonda Li, Lijie Yan, Yun Gu, Lulu Zhang, Bowen Li, Zhiyun Wang, Hua Wang, Xinyu Dai, Yue Teng, Tao Wang, Bin Zheng, Xingcai Zhang",
-      "title": "Bioorthogonal optimized virus immuno-nanomedicine (BOVIN)",
-      "description": "Recent research has indicated that cancer patients infected with respiratory viruses exhibit a positive antitumor response. This group develops a bioorthogonal optimized nonpathogenic-recombinant virus for targeted therapy of solid tumors.",
-      "url": "https://www.nature.com/articles/s41467-025-66089-w",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "<li>Wang, W. et al. CD8(+) T cells regulate tumour ferroptosis during cancer immunotherapy. Nature569, 270274 (2019).\r\nGoogle Scholar \r\n</li><li>Larson, R. C. et al. CAR T cell killing requires the I… [+16831 chars]"
-    },
-    {
-      "source": {
-        "id": null,
-        "name": "CNET"
+        "name": "CNA"
       },
       "author": null,
-      "title": "株式会社グローバルインフォメーション食品の安全とトレーサビリティの市場規模、2032年に533億米ドル到達予測",
-      "description": "株式会社グローバルインフォメーション（所在地：神奈川県川崎市、代表者：樋口 荘祐、証券コード：東証スタンダード 4171）は、市場調査レポート「食品の安全とトレーサビリティ市場の2032年までの予測：技術、用途、エンドユーザー、地域別の世界分析」（Stratistics Market Research Consulting）の販売を11月21日よ...",
-      "url": "https://japan.cnet.com/release/31129961/",
-      "urlToImage": "https://japan.cnet.com/media/c/2012/images/logo/logo_ogp_1200.png",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "2025234CAGR12.52032533IoT\r\nFAO642\r\nSME\r\nAI\r\nAIMLAIMLAIML\r\nTEL044-952-01029:00-18:00 URL\r\n1995520030\r\n1995215-00041-2-37F\r\n202012244171"
+      "title": "Zoom Communications lifts annual outlook on accelerated demand for AI tools in hybrid work",
+      "description": "Zoom Communications raised its annual revenue and profit forecast on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.Shares of the company were up 3.7 per cent in extended trading. Zoom has intensifi…",
+      "url": "https://www.channelnewsasia.com/business/zoom-communications-lifts-annual-outlook-accelerated-demand-ai-tools-in-hybrid-work-5488081",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--yzd2fFsy--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T214115Z_1_LYNXMPELAN11Q_RTROPTP_3_IPO-ZOOM.JPG?itok=xNIg2Cg3",
+      "publishedAt": "2025-11-24T21:41:15Z",
+      "content": "Zoom Communications raised its annual revenue and profit forecast on Monday, benefiting from hybrid work trends and the integration of artificial intelligence into its products.\r\nShares of the compan… [+1618 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "C-sharpcorner.com"
+        "name": "OilPrice.com"
       },
-      "author": "Praveen Kumar",
-      "title": "Google and Accel Atoms Partner to Accelerate India’s AI Startups",
-      "description": "Google's AI Futures Fund & Accel Atoms partner to boost India's AI startups! Get funding, tech, mentorship & early access to Gemini, Imagen & Veo. Apply now!",
-      "url": "https://www.c-sharpcorner.com/news/google-and-accel-atoms-partner-to-accelerate-indias-ai-startups",
-      "urlToImage": "https://www.c-sharpcorner.com/images/csharp-corner-new.png",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "Credit: Google\r\nGoogles AI Futures Fund (AIFF) has partnered with Accel Atoms, the well-known pre-seed scaling program from Accel India, to launch a new cohort aimed at accelerating Indias earliest A… [+1467 chars]"
+      "author": "Alan Mammoser",
+      "title": "Middle East Energy Leaders Warn of Underinvestment in Oil, Bet on Digital Growth",
+      "description": "Two conferences in the Middle East this month opened insights on energy and sustainability from a Middle Eastern perspective. The enormous ADIPEC event in Abu Dhabi brought together hundreds of speakers in 10 different strategic areas and numerous technical s…",
+      "url": "https://oilprice.com/Energy/Crude-Oil/Middle-East-Energy-Leaders-Warn-of-Underinvestment-in-Oil-Bet-on-Digital-Growth.html",
+      "urlToImage": "https://d32r1sh890xpii.cloudfront.net/article/718x300/2025-11-24_5qsoeenkgs.jpg",
+      "publishedAt": "2025-11-24T21:00:00Z",
+      "content": "A new Wood Mackenzie report…\r\nThe oil market is bracing���\r\nChina's state oil giants are…\r\nBy Alan Mammoser - Nov 24, 2025, 3:00 PM CSTTwo conferences in the Middle East this month opened insights on e… [+11548 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "C-sharpcorner.com"
+        "name": "Gizmodo.com"
       },
-      "author": "Praveen Kumar",
-      "title": "Anthropic Releases Claude Opus 4.5, Its Most Capable Model Yet for Coding and Agents",
-      "description": "Anthropic unveils Claude Opus 4.5: its most advanced model yet! Excels in coding, agents, & reasoning. Stronger alignment & efficiency. Revolutionizing AI work.",
-      "url": "https://www.c-sharpcorner.com/news/anthropic-releases-claude-opus-45-its-most-capable-model-yet-for-coding-and-agents",
-      "urlToImage": "https://www.c-sharpcorner.com/images/csharp-corner-new.png",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "Credit: Anthropic\r\nAnthropic has launched Claude Opus 4.5, calling it its smartest, most efficient and most capable model to date. Opus 4.5 advances software engineering, long-running agents, researc… [+2731 chars]"
+      "author": "Ece Yildirim",
+      "title": "OpenAI Is Having a Mental Health Crisis",
+      "description": "ChatGPT's mental health team is bleeding talent and facing controversy",
+      "url": "https://gizmodo.com/openai-is-having-a-mental-health-crisis-2000690751",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/10/sam-altman-1200x675.jpg",
+      "publishedAt": "2025-11-24T20:45:39Z",
+      "content": "OpenAI is in the middle of a mental health crisis.\r\nOne of the company’s top safety researchers, Andrea Vallone, will be leaving the company at the end of the year, according to WIRED. Vallone was re… [+4387 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Nature.com"
+        "name": "CNA"
       },
-      "author": "Nicola Jones",
-      "title": "This AI combo could unlock human-level intelligence",
-      "description": "Blending ‘old-fashioned’ logic systems with the neural networks that power large language models is one of the hottest trends in artificial intelligence.",
-      "url": "https://www.nature.com/articles/d41586-025-03856-1",
-      "urlToImage": "https://media.nature.com/lw1200/magazine-assets/d41586-025-03856-1/d41586-025-03856-1_51751374.jpg",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "Will computers ever match or surpass human-level intelligence and, if so, how? When the Association for the Advancement of Artificial Intelligence (AAAI), based in Washington DC, asked its members ea… [+8213 chars]"
+      "author": null,
+      "title": "Amazon to invest $15 billion in Indiana to boost data center infrastructure",
+      "description": "Amazon.com is planning to invest about $15 billion in Northern Indiana to build data center campuses, the tech giant said as it looks to boost its cloud computing capacity to support booming artificial intelligence demand. The new data center project, which c…",
+      "url": "https://www.channelnewsasia.com/business/amazon-invest-15-billion-in-indiana-boost-data-center-infrastructure-5487991",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--3NcBv9R1--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T203246Z_1_LYNXMPELAN0ZX_RTROPTP_3_AMAZON-COM-JAPAN-ANTITRUST.JPG?itok=4hUiNXL0",
+      "publishedAt": "2025-11-24T20:33:34Z",
+      "content": "Amazon.com is planning to invest about $15 billion in Northern Indiana to build data center campuses, the tech giant said as it looks to boost its cloud computing capacity to support booming artifici… [+1208 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Nature.com"
+        "name": "pymnts.com"
       },
-      "author": "Andreas S. Pfarl, Anne Heberle, Alexander K. H. Weiss",
-      "title": "Catalytic activity of FAHD1 correlates with nuclear morphology and proteomic states in human osteosarcoma cells",
-      "description": "Scientific Reports - Catalytic activity of FAHD1 correlates with nuclear morphology and proteomic states in human osteosarcoma cells",
-      "url": "https://www.nature.com/articles/s41598-025-29460-x",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "<li>Weiss, A. K. H. et al. Inhibitors of fumarylacetoacetate hydrolase domain containing protein 1 (FAHD1). Molecules26, 5009 (2021).\r\nGoogle Scholar \r\n</li><li>Cappuccio, E. et al. FAHD1 and mitocho… [+1926 chars]"
+      "author": "PYMNTS",
+      "title": "Cloud Startup Lambda Nets $1.5 Billion as AI Infrastructure Remains a Focus",
+      "description": "A new round of artificial intelligence (AI) fundraising this week shows continued investor interest in companies building large-scale platforms across infrastructure, automation and healthcare. From cloud computing to model-training centers investors remain k…",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2025/cloud-startup-lambda-nets-1-5-billion-as-ai-infrastructure-remains-a-focus/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/ai-artificial-intelligence-startups-lambda-cloud-fundraising.jpeg?w=457",
+      "publishedAt": "2025-11-24T20:30:10Z",
+      "content": "A new round of artificial intelligence (AI) fundraising this week shows continued investor interest in companies building large-scale platforms across infrastructure, automation and healthcare. From … [+4172 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Nature.com"
+        "name": "Gizmodo.com"
       },
-      "author": "José Alberto Benítez-Andrades, Ana González-Castro, Elena González-Marcos, Sergio Rubio-Martín, Raquel Leirós-Rodríguez, Camino Prada-García",
-      "title": "Feasibility of accelerometer-based prediction of postural balance in schoolchildren using machine learning models",
-      "description": "Scientific Reports - Feasibility of accelerometer-based prediction of postural balance in schoolchildren using machine learning models",
-      "url": "https://www.nature.com/articles/s41598-025-30160-9",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "<li>Kyvelidou, A., DeVeney, S. &amp; Katsavelis, D. Development of infant sitting postural control in three groups of infants at various risk levels for autism spectrum disorder. Int. J. Environ. Res… [+8993 chars]"
+      "author": "Kyle Barr",
+      "title": "You Shouldn’t Expect a Cheap Steam Machine",
+      "description": "Everything Valve has said paints the Steam Machine as a PC.",
+      "url": "https://gizmodo.com/steam-machine-no-subsidy-price-2000690889",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/11/Steam-Machine-Console-1200x675.jpg",
+      "publishedAt": "2025-11-24T20:23:51Z",
+      "content": "The next generation of consoles wont be cheap by todays standards, and neither will Valves hotly anticipated Steam Machine. The little, cube-shaped console is a bundle of PC parts inside a box, and V… [+5207 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Cloudflare.com"
+        "name": "Gizmodo.com"
       },
-      "author": "Michelle Chen, David Liu",
-      "title": "Partnering with Black Forest Labs to bring FLUX.2 [dev] to Workers AI",
-      "description": "FLUX.2 [dev] by Black Forest Labs is now on Workers AI! This advanced open-weight image model offers superior photorealism, multi-reference inputs, and granular control with JSON prompting.",
-      "url": "https://blog.cloudflare.com/flux-2-workers-ai/",
-      "urlToImage": "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/2hoUweesjI1fZIIZcb3ObB/6a12a03375d0fb6380ebaf1907e68ea2/Partnering_with_Black_Forest_Labs_to_bring_FLUX.2_-dev-_to_Cloudflare_Workers_AI-OG.png",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "In recent months, weve seen a leap forward for closed-source image generation models with the rise of Googles Nano Banana\r\n and OpenAI image generation models\r\n. Today, were happy to share that a new… [+8049 chars]"
+      "author": "AJ Dellinger",
+      "title": "Feeling Thoughtless This Holiday Season? ChatGPT Can Now Shop for You",
+      "description": "Don't tell your loved ones you let a bot pick their gift.",
+      "url": "https://gizmodo.com/feeling-thoughtless-this-holiday-season-chatgpt-can-now-shop-for-you-2000690862",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/11/Screenshot-2025-11-24-at-12.46.00 PM-1200x675.jpg",
+      "publishedAt": "2025-11-24T20:15:12Z",
+      "content": "If you have that one person on your list who is impossible to shop for, or you just don’t feel like doing it, you can now farm the task out to ChatGPT. On Monday, OpenAI announced its new shopping re… [+2440 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "C-sharpcorner.com"
+        "name": "CNA"
       },
-      "author": "Praveen Kumar",
-      "title": "Black Forest Labs Releases FLUX.2 Image Generation Models, Optimized for NVIDIA RTX GPUs",
-      "description": "Black Forest Labs unveils FLUX.2, a cutting-edge image generation model optimized for NVIDIA RTX GPUs. Expect photorealistic results, enhanced text, and pose control.",
-      "url": "https://www.c-sharpcorner.com/news/black-forest-labs-releases-flux2-image-generation-models-optimized-for-nvidia-rtx-gpus",
-      "urlToImage": "https://www.c-sharpcorner.com/images/csharp-corner-new.png",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "Credit: BlackForestLabs\r\nBlack Forest Labs has launched FLUX.2, its newest family of frontier image generation models, delivering major improvements in photorealism, consistency and text rendering. T… [+1553 chars]"
+      "author": null,
+      "title": "Trump weighing whether to allow Nvidia to sell advanced AI chips to China: Report",
+      "description": "WASHINGTON: US President Donald Trump is considering whether to allow Nvidia to sell its advanced artificial intelligence chips to China, Commerce Secretary Howard Lutnick said in an interview publis",
+      "url": "https://www.channelnewsasia.com/world/trump-weighing-whether-allow-nvidia-sell-advanced-ai-chips-china-report-5487936",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--eWpRvabM--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T152212Z_1_LYNXMPELAN0QX_RTROPTP_3_NVIDIA-CHINA-AI.JPG?itok=Mf9u137A",
+      "publishedAt": "2025-11-24T20:01:00Z",
+      "content": "The potential easing of export restrictions would represent a softening in Washingtons position after Trump and Chinese President Xi Jinping agreed to a trade and tech truce in Busan last month.\r\nAn … [+886 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "C-sharpcorner.com"
+        "name": "OilPrice.com"
       },
-      "author": "Praveen Kumar",
-      "title": "Microsoft Announces General Availability of Azure Content Understanding",
-      "description": "Azure Content Understanding is generally available, offering unified intelligent document processing for RAG, IDP, and agentic apps. Integrates with Foundry models.",
-      "url": "https://www.c-sharpcorner.com/news/microsoft-announces-general-availability-of-azure-content-understanding",
-      "urlToImage": "https://www.c-sharpcorner.com/images/csharp-corner-new.png",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "Microsoft has released Azure Content Understanding for general availability, bringing production-grade reliability, expanded global coverage, and deep integration across the Foundry ecosystem. The up… [+4061 chars]"
+      "author": "OilPrice.com",
+      "title": "Armenia Secures Key U.S. Approval for $500 Million AI Supercomputer Hub",
+      "description": "An Armenian $500-million initiative to develop an artificial intelligence and supercomputer hub has taken a major step forward after US regulators approved the transfer of advanced Nvidia chips. The project is being developed by Firebird, an AI startup launch…",
+      "url": "https://oilprice.com/Geopolitics/International/Armenia-Secures-Key-US-Approval-for-500-Million-AI-Supercomputer-Hub.html",
+      "urlToImage": "https://d32r1sh890xpii.cloudfront.net/article/718x300/2025-11-24_4euam1cpfk.jpg",
+      "publishedAt": "2025-11-24T20:00:00Z",
+      "content": "Donald Trump has imposed fresh…\r\nRecent activity in the Russian…\r\nLeaders from the Shanghai Cooperation…\r\nSet us as your preferred Google source\r\nBy Eurasianet - Nov 24, 2025, 2:00 PM CSTAn Armenian … [+2901 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "C-sharpcorner.com"
+        "name": "Gizmodo.com"
       },
-      "author": "Praveen Kumar",
-      "title": "Microsoft Announces General Availability of TypeSpec for Microsoft 365 Copilot",
-      "description": "Microsoft announces general availability of TypeSpec for Microsoft 365 Copilot, simplifying Copilot extension development with a developer-first, strongly typed workflow. Build agents and plugins faster!",
-      "url": "https://www.c-sharpcorner.com/news/microsoft-announces-general-availability-of-typespec-for-microsoft-365-copilot",
-      "urlToImage": "https://www.c-sharpcorner.com/images/csharp-corner-new.png",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "Credit: Microsoft\r\nMicrosoft has released TypeSpec for Microsoft 365 Copilot as a fully supported, production-ready offering. This marks the first stable version of the domain-specific language built… [+2664 chars]"
+      "author": "Matt Novak",
+      "title": "DHS Denies Its X Account Was Based in Israel as New Location Tracking Creates Chaos",
+      "description": "Elon Musk's big change to X has caused an apocalypse for MAGA influencers, but it's not all good news.",
+      "url": "https://gizmodo.com/dhs-denies-its-x-account-was-based-in-israel-as-new-location-tracking-creates-chaos-2000690769",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/10/shutterstock_2403657211-1200x675.jpg",
+      "publishedAt": "2025-11-24T19:50:43Z",
+      "content": "Elon Musk’s X activated a new feature over the weekend called “About this account,” which allows anyone to check where in the world an account is based. Many accounts purporting to be from the U.S. h… [+8174 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Hoover.org"
+        "name": "pymnts.com"
       },
-      "author": "November 25, 2025",
-      "title": "Evaluating the Twin Threats of Unsustainable Debt and China’s Ambition",
-      "description": "To sum up my previous three essays for Military History in the News: In the next decade, we face the merging of two crises of our own making. First, our national debt will crash the economy. No nation can borrow more every year and maintain a stable currency.…",
-      "url": "https://www.hoover.org/research/evaluating-twin-threats-unsustainable-debt-and-chinas-ambition",
-      "urlToImage": "https://www.hoover.org/sites/default/files/styles/facebook/public/2025-11/poster_us_06582.jpg?h=02cb22f2&itok=ds7nSGSP",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "To sum up my previous three essays for Military History in the News: In the next decade, we face the merging of two crises of our own making. First, our national debt will crash the economy. No natio… [+4811 chars]"
+      "author": "PYMNTS",
+      "title": "Amazon Investing $50 Billion in Government AI Infrastructure Efforts",
+      "description": "Amazon has announced a multibillion-dollar investment in expanding artificial intelligence (AI) and supercomputing for government agencies. The project, announced Monday (Nov. 24) will see Amazon Web Services (AWS) invest at least $50 billion as it works to b…",
+      "url": "https://www.pymnts.com/amazon/2025/amazon-investing-50-billion-in-government-ai-infrastructure-efforts/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/amazon-ai-artificial-intelligence-ai-infrastructure-amazon-web-services-supercomputers.jpeg?w=457",
+      "publishedAt": "2025-11-24T19:10:07Z",
+      "content": "Amazon has announced a multibillion-dollar investment in expanding artificial intelligence (AI) and supercomputing for government agencies.The project, announced Monday (Nov. 24) will see Amazon Web … [+2463 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "C-sharpcorner.com"
+        "name": "CNA"
       },
-      "author": "Praveen Kumar",
-      "title": "OpenAI Launches Shopping Research in ChatGPT",
-      "description": "ChatGPT now offers AI-powered shopping research! Get personalized buyer's guides in minutes by describing your needs. Find products, compare options, and more!",
-      "url": "https://www.c-sharpcorner.com/news/openai-launches-shopping-research-in-chatgpt",
-      "urlToImage": "https://www.c-sharpcorner.com/images/csharp-corner-new.png",
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "Credit: OpenAI\r\nOpenAI has introduced shopping research, a new experience in ChatGPT designed to handle the heavy lifting of product discovery. Instead of browsing dozens of sites, users can describe… [+2827 chars]"
+      "author": null,
+      "title": "Anthropic bolsters AI model Claude's coding, agentic abilities with Opus 4.5",
+      "description": "Artificial intelligence startup Anthropic unveiled an upgraded Opus model on Monday, boosting Claude's ability to write detailed code, create sophisticated agents and streamline enterprise workflows through spreadsheet and financial analysis.The new model com…",
+      "url": "https://www.channelnewsasia.com/business/anthropic-bolsters-ai-model-claudes-coding-agentic-abilities-opus-45-5487871",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--hxHZsgAx--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T190359Z_1_LYNXMPELAN0Y0_RTROPTP_3_MICROSOFT-ANTHROPIC-AI.JPG?itok=dcCfH7P3",
+      "publishedAt": "2025-11-24T19:03:59Z",
+      "content": "Artificial intelligence startup Anthropic unveiled an upgraded Opus model on Monday, boosting Claude's ability to write detailed code, create sophisticated agents and streamline enterprise workflows … [+630 chars]"
     },
     {
       "source": {
         "id": null,
-        "name": "Nature.com"
+        "name": "pymnts.com"
       },
-      "author": "Reem Muhammad, Dina Tbaishat, Amril Nazir, Seif Yacoub, Mustafa AbdulRazek, Mohamed Ahmed Abo El-Enen, Ahmed T. Sahlol",
-      "title": "Fraud detection and explanation in medical claims using GNN architectures",
-      "description": "Scientific Reports - Fraud detection and explanation in medical claims using GNN architectures",
-      "url": "https://www.nature.com/articles/s41598-025-22910-6",
-      "urlToImage": null,
-      "publishedAt": "2025-11-25T00:00:00Z",
-      "content": "<li>Hamid, Z. et al. Healthcare insurance fraud detection using data mining. BMC Med. Inform. Decis. Mak.24, 112 (2024).\r\nGoogle Scholar \r\n</li><li>du Preez, A., Bhattacharya, S., Beling, P. &amp; Bo… [+7584 chars]"
+      "author": "PYMNTS",
+      "title": "Ive and Altman Say OpenAI’s First Device Will Launch in Under 2 Years",
+      "description": "Speaking at Emerson Collective’s Demo Day in San Francisco on Saturday (Nov. 22), OpenAI CEO Sam Altman and famed former Apple designer Jony Ive said OpenAI’s first device will be ready in “less than” two years. Ive said the team already built a working proto…",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2025/ive-and-altman-say-openais-first-device-will-launch-in-under-2-years/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/02/OpenAI-building.jpg",
+      "publishedAt": "2025-11-24T18:40:01Z",
+      "content": "Speaking at Emerson Collectives Demo Day in San Francisco on Saturday (Nov. 22), OpenAI CEO Sam Altman and famed former Apple designer Jony Ive said OpenAIs first device will be ready in less than tw… [+2393 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "HSBC Says OpenAI Could Need $207 Billion of New Financing for Compute Costs",
+      "description": "OpenAI could need $207 billion in new financing by 2030 to gain the compute capacity it is seeking, Seeking Alpha reported Monday (Nov. 24), citing analysts from HSBC Global Investment Research. The artificial intelligence startup forecast that its compute co…",
+      "url": "https://www.pymnts.com/news/artificial-intelligence/2025/hsbc-says-openai-could-need-207-billion-dollars-new-financing-compute-costs/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/03/OpenAI-funding.jpg",
+      "publishedAt": "2025-11-24T18:36:08Z",
+      "content": "OpenAI could need $207 billion in new financing by 2030 to gain the compute capacity it is seeking, Seeking Alpha reported Monday (Nov. 24), citing analysts from HSBC Global Investment Research.The a… [+2357 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Gizmodo.com"
+      },
+      "author": "AJ Dellinger",
+      "title": "Sam Altman and Jony Ive Say You’ll Want to ‘Lick’ and ‘Bite�� Their New Hardware Prototype",
+      "description": "Just what everyone is looking for.",
+      "url": "https://gizmodo.com/sam-altman-and-jony-ive-say-youll-want-to-lick-and-bite-their-new-hardware-prototype-2000690792",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/11/Screenshot-2025-11-24-at-11.15.50 AM-e1764008101296-1200x675.jpg",
+      "publishedAt": "2025-11-24T18:20:26Z",
+      "content": "OpenAI CEO Sam Altman and famous former Apple designer Jony Ive are poised to revolutionize the way we interact with technology, in a way that they can’t really describe, at a time they can’t reveal.… [+3012 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "Macroeconomic Pressures and Legislative Slowdown Drive Decline in Price of Bitcoin",
+      "description": "Macroeconomic pressures and a lack of progress in regulation are among the factors that led to the recent decline in the price of Bitcoin, CoinDesk reported Monday (Nov. 24), citing analysts from Deutsche Bank. Bitcoin ended last week with a Nov. 21 price of …",
+      "url": "https://www.pymnts.com/blockchain/bitcoin/2025/macroeconomic-pressures-and-legislative-slowdown-drive-decline-in-price-of-bitcoin/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/bitcoin-crypto-cryptocurrency-economy-regulation.jpeg?w=457",
+      "publishedAt": "2025-11-24T18:01:03Z",
+      "content": "Macroeconomic pressures and a lack of progress in regulation are among the factors that led to the recent decline in the price of Bitcoin, CoinDesk reported Monday (Nov. 24), citing analysts from Deu… [+2173 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "OilPrice.com"
+      },
+      "author": "OilPrice.com",
+      "title": "Gulf Coast Pipeline Boom Marks Largest Natural Gas Expansion Since 2008",
+      "description": "A massive pipeline buildout is sweeping across Texas, Louisiana, and Oklahoma, marking the largest expansion of Gulf Coast natural-gas capacity since the 2008 shale boom, according to Bloomberg. As many as a dozen projects are slated for completion next year,…",
+      "url": "https://oilprice.com/Energy/Energy-General/Gulf-Coast-Pipeline-Boom-Marks-Largest-Natural-Gas-Expansion-Since-2008.html",
+      "urlToImage": "https://d32r1sh890xpii.cloudfront.net/article/718x300/2025-11-24_kact7jrymn.jpg",
+      "publishedAt": "2025-11-24T18:00:00Z",
+      "content": "The deepening U.S.Saudi partnership redefines…\r\nSaudi Arabia pledged up to…\r\nThe Trump administration plans to…\r\nBy ZeroHedge - Nov 24, 2025, 12:00 PM CSTA massive pipeline buildout is sweeping acros… [+2581 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "OilPrice.com"
+      },
+      "author": "Julianne Geiger",
+      "title": "Florida Pushes Back Against Offshore Leasing Plan",
+      "description": "A political plot twist is unfolding in Florida as top Republicans—including Governor Ron DeSantis—came out against a Trump administration proposal that could reopen the eastern Gulf of Mexico to offshore oil and gas leasing. The opposition wasn’t about party …",
+      "url": "https://oilprice.com/Latest-Energy-News/World-News/Florida-Pushes-Back-Against-Offshore-Leasing-Plan.html",
+      "urlToImage": "https://d32r1sh890xpii.cloudfront.net/news/718x300/2025-11-24_o1fivuuddp.jpg",
+      "publishedAt": "2025-11-24T17:30:00Z",
+      "content": "Chinas CO? emissions were flat…\r\nAI-driven electricity demand and the…\r\nBy Julianne Geiger - Nov 24, 2025, 11:30 AM CSTA political plot twist is unfolding in Florida as top Republicans—including Gove… [+2017 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Stocks jump, US yields dip as Fed rate cut bets rise",
+      "description": "NEW YORK :Global stocks advanced for a second straight session on Monday as increased expectations for a December rate cut from the U.S. Federal Reserve helped to lessen recent concerns about stretched valuations in the AI space while longer-dated U.S. Treasu…",
+      "url": "https://www.channelnewsasia.com/business/stocks-jump-us-yields-dip-fed-rate-cut-bets-rise-5486306",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--S17oLXnC--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T163950Z_1_LYNXMPELAN0U2_RTROPTP_3_USA-STOCKS.JPG?itok=wXpn1Z6Q",
+      "publishedAt": "2025-11-24T16:32:48Z",
+      "content": "NEW YORK :Global stocks advanced for a second straight session on Monday as increased expectations for a December rate cut from the U.S. Federal Reserve helped to lessen recent concerns about stretch… [+4167 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Stocks rally and longer-dated US yields dip as Fed rate cut bets rise",
+      "description": "NEW YORK :Global stocks advanced for a second session on Monday as growing expectations for a December rate cut from the U.S. Federal Reserve helped to alleviate recent concerns about stretched valuations in the AI sector while longer-dated U.S. Treasury yiel…",
+      "url": "https://www.channelnewsasia.com/business/stocks-rally-and-longer-dated-us-yields-dip-fed-rate-cut-bets-rise-5486306",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--DrFdxOKN--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T135725Z_1_LYNXMPELAN0MM_RTROPTP_3_BRITAIN-STOCKS.JPG?itok=bJVRvqu6",
+      "publishedAt": "2025-11-24T16:32:48Z",
+      "content": "NEW YORK :Global stocks advanced for a second session on Monday as growing expectations for a December rate cut from the U.S. Federal Reserve helped to alleviate recent concerns about stretched valua… [+3426 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Stocks jump, US yields fall as Fed rate cut bets increase",
+      "description": "NEW YORK :Global stocks advanced for a second straight session on Monday as rising expectations for a December rate cut from the U.S. Federal Reserve helped to soothe recent concerns about stretched valuations in the AI space while longer-dated U.S. Treasury …",
+      "url": "https://www.channelnewsasia.com/business/stocks-jump-us-yields-fall-fed-rate-cut-bets-increase-5486306",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--S17oLXnC--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T163950Z_1_LYNXMPELAN0U2_RTROPTP_3_USA-STOCKS.JPG?itok=wXpn1Z6Q",
+      "publishedAt": "2025-11-24T16:32:48Z",
+      "content": "NEW YORK :Global stocks advanced for a second straight session on Monday as rising expectations for a December rate cut from the U.S. Federal Reserve helped to soothe recent concerns about stretched … [+4539 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "Worldpay Debuts Model Context Protocol to Bolster Agentic Commerce",
+      "description": "Worldpay has debuted a tool aimed to promote AI-powered payment integration and agentic commerce. Worldpay MCP, announced Monday (Nov. 24), is available now via the company’s Developer Hub and Github, letting developers and merchants create artificial intelli…",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2025/worldpay-debuts-model-context-protocol-to-bolster-agentic-commerce/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/06/Worldpay.png",
+      "publishedAt": "2025-11-24T16:28:46Z",
+      "content": "Worldpay has debuted a tool aimed to promote AI-powered payment integration and agentic commerce.Worldpay MCP, announced Monday (Nov. 24), is available now via the companys Developer Hub and Github, … [+2615 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Gizmodo.com"
+      },
+      "author": "Ece Yildirim",
+      "title": "DOGE Is Officially Dead",
+      "description": "The project no longer exists, despite eight months left on its mandate.",
+      "url": "https://gizmodo.com/doge-is-officially-dead-2000690664",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/11/shutterstock_2596219333-1200x675.jpg",
+      "publishedAt": "2025-11-24T16:15:04Z",
+      "content": "After months of controversy, Elon Musk and Donald Trump’s failed passion project to cut costs across the federal government is officially dead, ahead of schedule.\r\nEarlier this month, Office of Perso… [+3679 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Amazon to invest up to $50 billion in AI, supercomputing for US government clients",
+      "description": "Amazon.com said on Monday it would invest up to $50 billion to expand artificial-intelligence and supercomputing capacity for U.S. government customers, in one of the largest cloud infrastructure commitments targeted at the public sector.The project, expected…",
+      "url": "https://www.channelnewsasia.com/business/amazon-invest-up-50-billion-in-ai-supercomputing-us-government-clients-5487601",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--T3mZaKlP--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T161202Z_2_LYNXMPELAN0T8_RTROPTP_3_TECH-AI.JPG?itok=VFmvrmB7",
+      "publishedAt": "2025-11-24T16:12:02Z",
+      "content": "Amazon.com said on Monday it would invest up to $50 billion to expand artificial-intelligence and supercomputing capacity for U.S. government customers, in one of the largest cloud infrastructure com… [+407 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Amazon pledges up to $50 billion to expand AI, supercomputing for US government",
+      "description": "Amazon.com said on Monday it would invest up to $50 billion to expand artificial intelligence and supercomputing capacity for U.S. government customers, in one of the largest cloud infrastructure commitments targeted at the public sector.The project, expected…",
+      "url": "https://www.channelnewsasia.com/business/amazon-pledges-up-50-billion-expand-ai-supercomputing-us-government-5487601",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--T3mZaKlP--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T161202Z_2_LYNXMPELAN0T8_RTROPTP_3_TECH-AI.JPG?itok=VFmvrmB7",
+      "publishedAt": "2025-11-24T16:12:02Z",
+      "content": "Amazon.com said on Monday it would invest up to $50 billion to expand artificial intelligence and supercomputing capacity for U.S. government customers, in one of the largest cloud infrastructure com… [+1139 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "What CFOs Should Ask About Payments Data as ISO 20022 Goes Live",
+      "description": "For decades, the mechanics of business payments barely changed. Wires, ACH batches and card networks moved money from point A to point B with only modest variations in speed and supporting information. The real differentiator across this historical ecosystem …",
+      "url": "https://www.pymnts.com/news/b2b-payments/2025/what-cfos-should-ask-about-payments-data-as-iso-20022-goes-live/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/CFOs-payments-data.png",
+      "publishedAt": "2025-11-24T16:09:00Z",
+      "content": "For decades, the mechanics of business payments barely changed. Wires, ACH batches and card networks moved money from point A to point B with only modest variations in speed and supporting informatio… [+4910 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Gizmodo.com"
+      },
+      "author": "Kyle Barr",
+      "title": "We’re So Screwed",
+      "description": "The demand for AI is making every gadget cost more, whether it's a PC or gaming console.",
+      "url": "https://gizmodo.com/ram-prices-going-up-ddr5-shortage-2000690697",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/10/Maingear-Apex-Rush-desktop-PC-review-13-1200x675.jpg",
+      "publishedAt": "2025-11-24T16:00:32Z",
+      "content": "Just when we thought we were settled into the new normal of tariff-borne PC and gaming console price hikes, next years devices are set to be even more expensive. You can blame the current favorite bu… [+5003 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Alphabet races toward $4 trillion valuation as AI-fueled gains accelerate",
+      "description": "Alphabet closed in on a $4 trillion valuation on Monday, set to become only the fourth company to enter the exclusive club, as the Google parent rides an artificial intelligence-driven rally.Shares of the company rose more than 5 per cent to hit a record high…",
+      "url": "https://www.channelnewsasia.com/business/alphabet-races-toward-4-trillion-valuation-ai-fueled-gains-accelerate-5487556",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--5iiLCcsR--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T154219Z_1_LYNXMPELAN0RO_RTROPTP_3_BRITAIN-REGULATOR-ALPHABET.JPG?itok=j0broX3V",
+      "publishedAt": "2025-11-24T15:43:11Z",
+      "content": "Alphabet closed in on a $4 trillion valuation on Monday, set to become only the fourth company to enter the exclusive club, as the Google parent rides an artificial intelligence-driven rally.\r\nShares… [+1487 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Rohit  Vaid",
+      "title": "Air India plans major fleet, services upgrade in 2026, says CEO",
+      "description": "Air India expects to receive two refurbished Boeing 787-8 aircraft undergoing full cabin transformation in Victorville, the US, by February 2026",
+      "url": "https://www.thehindubusinessline.com/economy/logistics/air-india-plans-major-fleet-services-upgrade-in-2026-says-ceo/article70317300.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/ppm7d0/article70318079.ece/alternates/LANDSCAPE_1200/2025-10-29T091147Z_1005633620_RC2JLHAWI57L_RTRMADP_3_INDIA-AVIATION-AIR-INDIA.JPG",
+      "publishedAt": "2025-11-24T15:07:20Z",
+      "content": "Tata Group-promoted Air India plans a major fleet as well as service upgrade in 2026, to achieve the most visible and meaningful transformation, the airlines Chief Executive Campbell Wilson said on M… [+3404 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "Model ML Raises $75 Million for Workflow Automation Platform",
+      "description": "Model ML has raised $75 million for its financial-services-focused artificial intelligence (AI) workflow automation platform. The company says this new funding, announced in a Monday (Nov. 24) news release, is among the largest FinTech Series A rounds on reco…",
+      "url": "https://www.pymnts.com/news/investment-tracker/2025/model-ml-raises-75-million-for-workflow-automation-platform/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2023/08/funding.jpg",
+      "publishedAt": "2025-11-24T14:59:24Z",
+      "content": "Model ML has raised $75 million for its financial-services-focused artificial intelligence (AI) workflow automation platform.The company says this new funding, announced in a Monday (Nov. 24) news re… [+2620 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "BL Bengaluru Bureau",
+      "title": "Prosus H1FY26: PayU trims losses, revenue grows to $397 million",
+      "description": "Prosus, in its half-year update, stated that it has posted an e-commerce revenue growth of 22% (14%) to $3.6 billion, along with asset sales of $1.2 billion to date in FY26",
+      "url": "https://www.thehindubusinessline.com/companies/prosus-h1fy26-payu-trims-losses-revenue-grows-to-397-million/article70318072.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/iozcij/article70318332.ece/alternates/LANDSCAPE_1200/2025-11-24T063355Z_19704658_RC2A7R92934B_RTRMADP_3_PROSUS-RESULTS.JPG",
+      "publishedAt": "2025-11-24T14:33:20Z",
+      "content": "Global technology company Prosus has recorded growth in its India-segment revenue of PayU to $397 million for H1FY26, higher than the same period last year. \r\nProsus in its half-year update, said tha… [+1068 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "BL Hyderabad Bureau",
+      "title": "National Quantum Policy to launch in Hyderabad",
+      "description": "The Union government will launch the National Quantum Policy and Telangana's initiatives for startups in Hyderabad on December 4.",
+      "url": "https://www.thehindubusinessline.com/economy/policy/national-quantum-policy-to-launch-in-hyderabad/article70318182.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/4krjvx/article70318304.ece/alternates/LANDSCAPE_1200/IMG_SDQ28_Fquantum_compu_2_1_83E1EKKE.jpg",
+      "publishedAt": "2025-11-24T14:25:55Z",
+      "content": "The Union government is going to launch the national Quantum Computing Policy in Hyderabad next week, according to Sanjay Kumar, Special Chief Secretary (IT and Industries, government of Telangana). … [+2129 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Our Bureau",
+      "title": "Fractal Analytics secures SEBI nod for ₹4,900-crore IPO",
+      "description": "IPOs of SaaS firm Amagi Media Labs and cardiac stent maker Sahajanand Medical Technologies have also received regulator’s approval.",
+      "url": "https://www.thehindubusinessline.com/markets/stock-markets/fractal-analytics-secures-sebi-nod-for-4900-crore-ipo/article70317896.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/news/8sr37j/article70318200.ece/alternates/LANDSCAPE_1200/IPO_new.jpg",
+      "publishedAt": "2025-11-24T14:11:59Z",
+      "content": "Fractal Analytics has received approval from the Securities and Exchange Board of India (SEBI) for its proposed Initial Public Offering (IPO), paving the way for one of the largest public issues in I… [+2828 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "PTI",
+      "title": "93% of Indian biz surveyed see positive returns on AI investment in 3 years: SAP report",
+      "description": "93% of Indian businesses anticipate positive AI investment returns within three years, highlighting increased confidence in AI's potential.",
+      "url": "https://www.thehindubusinessline.com/info-tech/93-of-indian-biz-surveyed-see-positive-returns-on-ai-investment-in-3-years-sap-report/article70317898.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/nhnykh/article70317931.ece/alternates/LANDSCAPE_1200/BL19_Think_Data_analysing.jpg",
+      "publishedAt": "2025-11-24T13:28:30Z",
+      "content": "Nearly 93 per cent of Indian organisations surveyed expect positive returns on their AI investments in less than three years, underlining the rising confidence of businesses in value and potential of… [+2384 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Sanjana B",
+      "title": "IndieSemiC plans AI chip launch next year, targets 5–10 million units in two years",
+      "description": "IndieSemiC plans to launch an affordable AI chip next year, targeting 5–10 million units for various applications within two years.",
+      "url": "https://www.thehindubusinessline.com/info-tech/indiesemic-plans-ai-chip-launch-next-year-targets-510-million-units-in-two-years/article70314824.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/r1yugo/article70314847.ece/alternates/LANDSCAPE_1200/IMG_3428_page-0001.jpg",
+      "publishedAt": "2025-11-24T13:03:42Z",
+      "content": "Gujarat-based fabless startup IndieSemiC plans to launch its dual-AI System-on-Chip (SoC) next year, a product fully designed and developed in India. The company aims to roll out 510 million units ov… [+3999 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Gizmodo.com"
+      },
+      "author": "James Whitbrook and Gordon Jackson",
+      "title": "Hugh Jackman Isn’t Saying No to More Wolverine Returns",
+      "description": "Plus, Brendan Fraser says he's waited 20 years to make 'The Mummy 4'.",
+      "url": "https://gizmodo.com/hugh-jackman-wolverine-return-marvel-2000690467",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/11/MS-1124-deadpool-wolverine-1200x675.jpg",
+      "publishedAt": "2025-11-24T13:00:46Z",
+      "content": "Chloe Zhao still wants to make an Eternals sequel. Joe Hill is turning even more of his work into new live-action projects. Plus, the Duffer brothers tease the Stranger Things spinoff. Spoilers, asse… [+5111 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Gizmodo.com"
+      },
+      "author": "Lucas Handley",
+      "title": "Un revés judicial para OpenAI en Alemania preanuncia lo que vendrá para la IA y el arte",
+      "description": "Ganaron los creadores, aunque no todos.",
+      "url": "https://es.gizmodo.com/un-reves-judicial-para-openai-en-alemania-preanuncia-lo-que-vendra-para-la-ia-y-el-arte-2000206243",
+      "urlToImage": "https://es.gizmodo.com/app/uploads/2025/11/Diseno-sin-titulo-59-1200x675.jpg",
+      "publishedAt": "2025-11-24T12:52:13Z",
+      "content": "Hacia finales de la semana pasada una organización de músicos de Alemania se anotó una victoria en los tribunales, y OpenAI perdió. Es que el tribunal dice que el entrenamiento de los modelos GPT 4 y… [+6272 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Sindhu Hariharan , Rowan Barnett , Siddharth Mathew Cherian & K K A  Vadhuladesikan",
+      "title": "What India’s new Digital Personal Data Protection (DPDP) Act means for citizens and businesses | MeitY Secretary S Krishnan weighs in",
+      "description": "MeitY Secretary S Krishnan explains India’s new DPDP Rules—data rights, fiduciary duties, storage limits, AI implications, and awareness plans.",
+      "url": "https://www.thehindubusinessline.com/multimedia/video/digital-playbooks-dpdp-rules-explained-meity-secretary-s-krishnan/article70317601.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/f9u2k1/article70317600.ece/alternates/LANDSCAPE_1200/Digital%20Playbooks%20-%20Episode%202.png",
+      "publishedAt": "2025-11-24T12:48:48Z",
+      "content": "In this episode of Digital Playbooks, Sindhu Hariharan speaks to MeitY Secretary S Krishnan to discuss the recently-released Digital Personal Data Protection (DPDP) Rules. How the law empowers indivi… [+457 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Vinay Kamath",
+      "title": "IBS Case Research Centre looks to cater to new-age manager",
+      "description": "IBS Case Research Centre celebrates 25 years of global success in case writing, enriching business education with relevant studies.",
+      "url": "https://www.thehindubusinessline.com/news/ibs-case-research-centre-looks-to-cater-to-new-age-manager/article70317306.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/6yfuz/article70317303.ece/alternates/LANDSCAPE_1200/icfai.jpg",
+      "publishedAt": "2025-11-24T12:31:58Z",
+      "content": "(Form left) Tamma Koti Reddy, Vice Chancellor (i/c), ICFAI Foundation for Higher Education; Venu Gopal Rao, Director, IBS, Hyderabad; Vicky Lester, CEO, The Case Centre, UK; Virginia Bodolica, Profes… [+4280 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": null,
+      "title": "Financial Software and Systems (FSS) Unveils India’s Next Leap in AI-Powered Digital Payments at Simply Payments 2025",
+      "description": "Financial Software and Systems (FSS) Unveils India’s Next Leap in AI-Powered Digital Payments at Simply Payments 2025",
+      "url": "https://www.thehindubusinessline.com/brandhub/financial-software-and-systems-fss-unveils-indias-next-leap-in-ai-powered-digital-payments-at-simply-payments-2025/article70317248.ece",
+      "urlToImage": "https://th-i.thgim.com/public/brandhub/kh9ut8/article70317241.ece/alternates/LANDSCAPE_1200/Financial_Software_and_Systems_Logo.jpg",
+      "publishedAt": "2025-11-24T12:14:08Z",
+      "content": "Aims to modernize banking for millions of consumers; highlights faster payments, stronger security, and improved digital experiences\r\nMUMBAI, India, Nov. 24, 2025 /PRNewswire/ -- Financial Software a… [+4164 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": null,
+      "title": "Developers in Southeast Asia and India are teaching themselves AI, according to new Agoda report",
+      "description": "Developers in Southeast Asia and India are teaching themselves AI, according to new Agoda report",
+      "url": "https://www.thehindubusinessline.com/brandhub/developers-in-southeast-asia-and-india-are-teaching-themselves-ai-according-to-new-agoda-report/article70317135.ece",
+      "urlToImage": "https://th-i.thgim.com/public/brandhub/p1mhs2/article70317132.ece/alternates/LANDSCAPE_1200/AI_developer_report.jpg",
+      "publishedAt": "2025-11-24T12:11:37Z",
+      "content": "Self-directed upskilling is accelerating innovation but exposing gaps across markets\r\nSINGAPORE, Nov. 24, 2025 /PRNewswire/ -- New findings from Agodas AI Developer Report 2025 reveal that developers… [+3592 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": null,
+      "title": "Zenika Singapore Announces Two Key Leadership Appointments to Accelerate Regional Growth and AI Engineering Mastery",
+      "description": "Zenika Singapore Announces Two Key Leadership Appointments to Accelerate Regional Growth and AI Engineering Mastery",
+      "url": "https://www.thehindubusinessline.com/brandhub/zenika-singapore-announces-two-key-leadership-appointments-to-accelerate-regional-growth-and-ai-engineering-mastery/article70316998.ece",
+      "urlToImage": "https://th-i.thgim.com/public/brandhub/wj9995/article70316989.ece/alternates/LANDSCAPE_1200/MI_and_STK_Press_Announcement.jpg",
+      "publishedAt": "2025-11-24T12:10:27Z",
+      "content": "SINGAPORE, Nov. 24, 2025 /PRNewswire/ -- Zenika Singapore today announced the appointment of Seet Teck Kiang as Head of Business and the return of Michael Isvy as Head of Engineering. These two strat… [+3431 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": null,
+      "title": "IGF Middle East 2025 to Unveil New India–UAE Innovation Era as Global Tech & Capital Leaders Converge in Dubai",
+      "description": "IGF Middle East 2025 to Unveil New India–UAE Innovation Era as Global Tech & Capital Leaders Converge in Dubai",
+      "url": "https://www.thehindubusinessline.com/brandhub/igf-middle-east-2025-to-unveil-new-indiauae-innovation-era-as-global-tech-capital-leaders-converge-in-dubai/article70316685.ece",
+      "urlToImage": "https://th-i.thgim.com/public/incoming/a9jg3n/article70316656.ece/alternates/LANDSCAPE_1200/HE_Omar_Sultan_Al_Olama_UAE_Minister_IGF.jpg",
+      "publishedAt": "2025-11-24T12:09:43Z",
+      "content": "DUBAI, UAE and NEW DELHI, Nov. 24, 2025 /PRNewswire/ -- India Global Forums flagship UAE event is set to return to Dubai tomorrow for its landmark fifth edition.\r\nThe two-day gathering opens with a s… [+4545 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": null,
+      "title": "Paperpal crosses 3 million users, strengthening global footprint as a trusted AI academic writing and research assistant",
+      "description": "Paperpal crosses 3 million users, strengthening global footprint as a trusted AI academic writing and research assistant",
+      "url": "https://www.thehindubusinessline.com/brandhub/paperpal-crosses-3-million-users-strengthening-global-footprint-as-a-trusted-ai-academic-writing-and-research-assistant/article70316639.ece",
+      "urlToImage": "https://th-i.thgim.com/public/brandhub/6h8ivf/article70316636.ece/alternates/LANDSCAPE_1200/Paperpal_Logo.jpg",
+      "publishedAt": "2025-11-24T12:08:34Z",
+      "content": "DOVER, Del., Nov. 24, 2025 /PRNewswire/ -- Paperpal, the AI writing and research assistant by Cactus Communications (CACTUS), surpasses three million users worldwide, marking a major milestone in its… [+2696 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "Revolut’s Valuation Hits $75 Billion Following Share Sale",
+      "description": "U.K. FinTech Revolut has seen its valuation jump by $30 billion in the last year. The company announced Monday (Nov. 24) that it had completed a share sale that gave it a valuation of $75 billion, up from $45 billion last year. “This milestone reflects the re…",
+      "url": "https://www.pymnts.com/news/digital-banking/2025/revoluts-valuation-hits-75-billion-following-share-sale/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/09/revolut-high-yield-savings-account-digital-banking.jpg",
+      "publishedAt": "2025-11-24T11:54:54Z",
+      "content": "U.K. FinTech Revolut has seen its valuation jump by $30 billion in the last year.The company announced Monday (Nov. 24) that it had completed a share sale that gave it a valuation of $75 billion, up … [+2485 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "BL Pune Bureau",
+      "title": "Gadkari asks farmer producer companies to transform orange economy",
+      "description": "Gadkari urges orange farmers in Vidarbha to form producer companies for value-added products, boosting incomes and the citrus economy.",
+      "url": "https://www.thehindubusinessline.com/economy/agri-business/gadkari-asks-farmer-producer-companies-to-transform-orange-economy/article70317368.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/fwfu62/article70317436.ece/alternates/LANDSCAPE_1200/PTI11_15_2025_000198A.jpg",
+      "publishedAt": "2025-11-24T11:53:00Z",
+      "content": "Union Minister and Nagpur MP Nitin Gadkari on Monday called upon orange farmers across Vidarbha to unite and form large-scale Farmer Producer Companies (FPCs) to process, brand and market orange-base… [+2041 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Bharat Kumar K 10795",
+      "title": "SBI Ventures plans to launch ₹2,000 cr climate-focussed fund in Jan-Mar",
+      "description": "The fund would invest in early and growth-stage climate startups -- particularly, in frontier climate technologies and AI-enabled climate innovations",
+      "url": "https://www.thehindubusinessline.com/money-and-banking/sbi-ventures-plans-to-launch-2000-cr-climate-focussed-fund-in-jan-mar/article70317181.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/799ijo/article70317191.ece/alternates/LANDSCAPE_1200/IMG_bl22_Startups_2_1_USE1AE41.jpg",
+      "publishedAt": "2025-11-24T10:45:05Z",
+      "content": "SBI Ventures, an alternative asset manager promoted by State Bank of India (SBI), intends to raise Rs 2,000 crore for its third climate-focused fund to invest in startups.\r\nIt will help unlock green … [+1555 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Gizmodo.com"
+      },
+      "author": "Ece Yildirim",
+      "title": "An Alarming Number of Teens Say They Turn To AI For Company, Study Finds",
+      "description": "Two-in-five teens turn to AI for help, with 20% of those that do saying that talking to AI is easier than talking to a real person.",
+      "url": "https://gizmodo.com/teens-ai-company-survey-2000690378",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/11/shutterstock_2632683583-1200x675.jpg",
+      "publishedAt": "2025-11-24T10:30:55Z",
+      "content": "We have a whole new generation growing up in the dawn of artificial intelligence. The early signs of its impact are alarming.\r\nA British youth charity called OnSide surveyed 5,035 young people betwee… [+3520 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Rohan Das",
+      "title": "Pontaq Ventures invests ₹5.5 crore in Dweepi, Edgehax",
+      "description": "Dweepi is a deep-tech startup developing robotic track-inspection systems that enhance railway safety and enable predictive, AI-driven maintenance",
+      "url": "https://www.thehindubusinessline.com/info-tech/pontaq-ventures-invests-55-crore-in-dweepi-edgehax/article70317034.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/1784ak/article70317159.ece/alternates/LANDSCAPE_1200/PO27_BS_Strategy.jpg",
+      "publishedAt": "2025-11-24T10:13:33Z",
+      "content": "Pontaq Ventures, a UK-India cross border venture capital firm headquartered in Chennai, recently announced a 5.5 crore investment in two Indian DeepTech startups, Dweepi and Edgehax. \r\nThe investment… [+1237 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Gizmodo.com"
+      },
+      "author": "Mike Pearl",
+      "title": "OpenAI’s Smackdown by a German Court Hints at What’s Next for AI and Art",
+      "description": "It’s a major win for creators—sort of. An AI copyright marketplace is probably coming, and if you're a big time stakeholder, you'll probably benefit.",
+      "url": "https://gizmodo.com/openais-smackdown-by-a-german-court-hints-at-whats-next-for-ai-and-art-2000690375",
+      "urlToImage": "https://gizmodo.com/app/uploads/2025/01/OpenAI-Sam-Altman-at-an-Apple-event--1200x675.jpg",
+      "publishedAt": "2025-11-24T10:00:07Z",
+      "content": "Late last week, a German musicians organization scored a pretty crushing legal victory against OpenAI. The court says the training of the GPT 4 and 4o models included copyright infringement, and that… [+5399 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Indonesian state-owned fund eyes overseas AI infrastructure opportunities, director says",
+      "description": "JAKARTA :State-owned BPJS Ketenagakerjaan, one of Indonesia's largest institutional investors, is keen to invest in firms that provide infrastructure for the artificial intelligence industry if it gets government approval to invest overseas, a director told R…",
+      "url": "https://www.channelnewsasia.com/business/indonesian-state-owned-fund-eyes-overseas-ai-infrastructure-opportunities-director-says-5486906",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--ZdHPGX9S--/c_fill,g_auto,h_676,w_1200/f_auto,q_auto/v1/mediacorp/one-cms/images/2021-06/business_1.png?itok=npguKy4y",
+      "publishedAt": "2025-11-24T09:22:12Z",
+      "content": "JAKARTA :State-owned BPJS Ketenagakerjaan, one of Indonesia's largest institutional investors, is keen to invest in firms that provide infrastructure for the artificial intelligence industry if it ge… [+1309 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Indonesian state-owned fund eyes overseas AI infrastructure opportunities, official says",
+      "description": "JAKARTA :Indonesia's social security fund is keen to invest in firms that provide infrastructure for artificial intelligence, if it wins government approval for overseas investments, a director told Reuters.One of Indonesia's biggest institutional investors, …",
+      "url": "https://www.channelnewsasia.com/business/indonesian-state-owned-fund-eyes-overseas-ai-infrastructure-opportunities-official-says-5486906",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--ZdHPGX9S--/c_fill,g_auto,h_676,w_1200/f_auto,q_auto/v1/mediacorp/one-cms/images/2021-06/business_1.png?itok=npguKy4y",
+      "publishedAt": "2025-11-24T09:22:12Z",
+      "content": "JAKARTA :Indonesia's social security fund is keen to invest in firms that provide infrastructure for artificial intelligence, if it wins government approval for overseas investments, a director told … [+2628 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Shishir Sinha",
+      "title": "‘With weaker nominal growth, improvement in fiscal isn’t that strong,’ says Vishrut Rana, S&P Global",
+      "description": "In an interview to businessline, Vishrut Rana acknowledged the benefit of GST reforms but said lower nominal growth has an impact on government fiscal",
+      "url": "https://www.thehindubusinessline.com/economy/with-weaker-nominal-growth-improvement-in-fiscal-isnt-that-strong-says-vishrut-rana-sp-global/article70316815.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/news/dkl2sk/article70316915.ece/alternates/LANDSCAPE_1200/VishrutRana_SP%20Global%20Ratings%201.jpg",
+      "publishedAt": "2025-11-24T09:08:12Z",
+      "content": "Domestic demand will continue to be key driver in the economy Vishrut Rana, Economist (Asia Pacific) of S&amp;P Global Ratings has said. In an interview to businessline, he acknowledged the benefit o… [+4523 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "How Whatnot Turned Live Shopping Into a $6B Business",
+      "description": "Watch more: Inside Whatnot: Why Live Shopping Works — And What It Means for eCommerce It all started with Funko Pops. Those pint-sized vinyl characters with giant eyes and even bigger fan bases. Whatnot was originally just a small corner of the internet built…",
+      "url": "https://www.pymnts.com/news/ecommerce/2025/how-whatnot-turned-live-shopping-into-a-6b-business/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/Whats-Next-Whatnot.png",
+      "publishedAt": "2025-11-24T09:03:27Z",
+      "content": "It all started with Funko Pops. Those pint-sized vinyl characters with giant eyes and even bigger fan bases. Whatnot was originally just a small corner of the internet built for the superfans who hun… [+5514 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "Microsoft Sparks Security Fight Over AI Agents",
+      "description": "The Prompt Economy was visited by some controversy this past week. Microsoft introduced new agentic AI features to Windows 11, which is usually a cause for sustained applause from the developer community. Not this time. The developer community has raised a se…",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2025/microsoft-sparks-security-fight-over-ai-agents/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/Windows-11-AI-1.jpg",
+      "publishedAt": "2025-11-24T09:00:52Z",
+      "content": "The Prompt Economy was visited by some controversy this past week. Microsoft introduced new agentic AI features to Windows 11, which is usually a cause for sustained applause from the developer commu… [+4702 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "Synchrony CFO: Why Experience — Not Credit — Is the New Competitive Moat in Consumer Finance",
+      "description": "For Synchrony Chief Financial Officer Brian Wenzel, the story of today’s consumer isn’t about inflation, credit tightening, or macro stress signals. It’s about expectation. Throughout his Monday Conversation with PYMNTS CEO Karen Webster, a theme surfaced aga…",
+      "url": "https://www.pymnts.com/consumer-finance/2025/synchrony-cfo-why-experience-not-credit-is-the-new-competitive-moat-in-consumer-finance/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/synchrony-consumer-finance-bnpl-ai-artificial-intelligence-buy-now-pay-later-commerce-consumer-spending-insights.jpeg?w=457",
+      "publishedAt": "2025-11-24T09:00:02Z",
+      "content": "For Synchrony Chief Financial Officer Brian Wenzel, the story of todays consumer isnt about inflation, credit tightening, or macro stress signals. Its about expectation.Throughout his Monday Conversa… [+6081 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Amiti Sen",
+      "title": "India-Canada trade thaw: FTA talks set to restart after two-year rift",
+      "description": "India and Canada are ready to restart negotiations for a bilateral free trade agreement (FTA) which were suspended around September 2023 by Ottawa after tensions over pro-Khalistani activities escalated between the two.",
+      "url": "https://www.thehindubusinessline.com/economy/india-canada-trade-thaw-fta-talks-set-to-restart-after-two-year-rift/article70316847.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/eopcwk/article70316869.ece/alternates/LANDSCAPE_1200/Nirmala%20Sitharaman%20GST%20PC%2021.JPG",
+      "publishedAt": "2025-11-24T08:31:27Z",
+      "content": "India and Canada are ready to restart negotiations for a bilateral free trade agreement (FTA) which were suspended around September 2023 by Ottawa after tensions over pro-Khalistani activities escala… [+1980 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "ANI",
+      "title": "Indian chemical companies facing double whammy of Chinese dumping, US tariffs: Report",
+      "description": "The report stated that the current environment presents two key risks for the domestic industry, the first is the project execution delays, and continuing pressure from Chinese dumping and US tariff policies",
+      "url": "https://www.thehindubusinessline.com/news/indian-chemical-companies-facing-double-whammy-of-chinese-dumping-us-tariffs-report/article70316810.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/x1ltcu/article70316834.ece/alternates/LANDSCAPE_1200/CCI_UDHindu_KSL_U0A38DLN5_R1516117402_0_5e403ed7-0525-401a-a824-b7092693482b.jpg",
+      "publishedAt": "2025-11-24T08:12:49Z",
+      "content": "The domestic chemical companies continue to face major risks due to the ongoing pressure from Chinese dumping and uncertainty around US tariffs, highlighted a recent report by Systematix Research.\r\nT… [+2453 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "BL Mangaluru Bureau",
+      "title": "Fyllo launches hyperlocal weather model giving 6-hour rainfall alerts",
+      "description": "DeepMet 1 has been specifically developed for the Indian subcontinent and can bridge the gap between traditional numerical weather prediction and the real needs of India’s diverse climatic zones",
+      "url": "https://www.thehindubusinessline.com/economy/agri-business/fyllo-launches-hyperlocal-weather-model-giving-6-hour-rainfall-alerts/article70316727.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/cm1s6t/article69413727.ece/alternates/LANDSCAPE_1200/IMG_2786_8_1_2024_17_25__2_1_G9CJR0OA.jpg",
+      "publishedAt": "2025-11-24T07:40:53Z",
+      "content": "Agritech startup Fyllo has launched DeepMet 1, an AI-powered weather prediction model designed to provide short-term rainfall forecasts of up to six hours with enhanced accuracy for farmers, cities, … [+1561 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Prosus doubles half-year core profit amid e-commerce pivot",
+      "description": "Dutch technology investor Prosus reported a 99 per cent surge in its adjusted half-year core profit on Monday, driven by strong performances across its digital services and e-commerce portfolio.Its adjusted earnings before interest, taxes, depreciation and am…",
+      "url": "https://www.channelnewsasia.com/business/prosus-doubles-half-year-core-profit-amid-e-commerce-pivot-5486711",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--awHCsKUr--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T065221Z_2_LYNXMPELAN06X_RTROPTP_3_MOBILEDE-M-A-PROSUS.JPG?itok=TZSZ7Snv",
+      "publishedAt": "2025-11-24T06:52:21Z",
+      "content": "Dutch technology investor Prosus reported a 99 per cent surge in its adjusted half-year core profit on Monday, driven by strong performances across its digital services and e-commerce portfolio.\r\nIts… [+2033 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "From two weeks to two hours: how AI might reboot Britain's economy",
+      "description": "LONDON :When accountants at mid-tier firm Moore Kingston Smith began using artificial intelligence to speed up their work, profit margins jumped.Colleagues in another team running checks against corporate fraud created a report for customers in two hours, som…",
+      "url": "https://www.channelnewsasia.com/business/two-weeks-two-hours-how-ai-might-reboot-britains-economy-5486686",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--qf2kDEl0--/c_fill,g_auto,h_676,w_1200/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2025-11-24T063405Z_1_LYNXMPELAN070_RTROPTP_3_BRITAIN-ECONOMY-AI.JPG?itok=vdCH6Qtc",
+      "publishedAt": "2025-11-24T06:33:15Z",
+      "content": "LONDON :When accountants at mid-tier firm Moore Kingston Smith began using artificial intelligence to speed up their work, profit margins jumped.\r\nColleagues in another team running checks against co… [+7718 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "PTI",
+      "title": "Parliamentary panel to examine trend, existing legislations",
+      "description": "The Ministry of Education had earlier this year set up a nine-member panel to examine issues relating to coaching and the emergence of \"dummy schools\" besides the effectiveness and fairness of entrance examinations",
+      "url": "https://www.thehindubusinessline.com/news/parliamentary-panel-to-examine-trend-existing-legislations/article70316431.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/todays-paper/tp-news/m7vhkb/article67855374.ece/alternates/LANDSCAPE_1200/CCPA-releases-dGDLCDSB26.4.jpg.jpg",
+      "publishedAt": "2025-11-24T05:47:40Z",
+      "content": "Amid rising student suicides due to stress, a parliamentary committee has decided to review the \"proliferation\" of coaching centres to support students in competitive examinations and the social issu… [+2464 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "KS Badri Narayanan",
+      "title": "Markets likely to open on a flat note",
+      "description": "Markets expected to open flat amid increased volatility ahead of F&O settlement, with global sentiment influencing movements.",
+      "url": "https://www.thehindubusinessline.com/markets/markets-likely-to-open-on-a-flat-note/article70316157.ece",
+      "urlToImage": "https://www.thehindubusinessline.com/theme/images/og-image.png",
+      "publishedAt": "2025-11-24T02:44:38Z",
+      "content": "Domestic markets are likely to open flat but on a positive note on Monday ahead of the settlement of monthly derivative contracts on the NSE. Continuous selling by foreign portfolio investors and wea… [+2564 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "KS Badri Narayanan",
+      "title": "TCS, IndiGo, Tata Motors PV, Infosys, Apollo Micro, M&M, NTPC Green, Lupin, Adani Enterprises, HUDCO, Shilpa Medicare, HG Infra, RVNL, Mobavenue, NBCC, Natco Pharma will be in focus",
+      "description": "Key Indian companies like TCS, IndiGo, and Infosys are in focus due to significant index changes and legal developments.",
+      "url": "https://www.thehindubusinessline.com/markets/tcs-indigo-tata-motors-pv-infosys-apollo-micro-mm-ntpc-green-lupin-adani-enterprises-hudco-shilpa-medicare-hg-infra-rvnl-mobavenue-nbcc-natco-pharma-will-be-in-focus/article70314161.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/h4gf1n/article70298005.ece/alternates/LANDSCAPE_1200/PO05_World_stockchart.jpg",
+      "publishedAt": "2025-11-24T02:31:45Z",
+      "content": "InterGlobe Aviation (IndiGo,) shares are set to be listed as a constituent of the benchmark BSE Sensex index, effective from December 22, according to an official announcement on Friday. Tata Motors … [+7102 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Rowan Barnett & Prethicshaa Gurumoorthy",
+      "title": "Top Business & Market Headlines Today — BL Morning Report, Nov 24, 2025",
+      "description": "BL Morning Report November 24, 2025: Get today’s top business news, market headlines about the Stock Market, Sensex & Nifty trends, key market insights, economic highlights, and the latest updates from India and global markets.",
+      "url": "https://www.thehindubusinessline.com/multimedia/audio/bl-morning-report-november-17-2025/article70313982.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/j4hc4o/article70081359.ece/alternates/LANDSCAPE_1200/PrethicshaaBL%20Morning%20report%20-%20horizontal.jpg",
+      "publishedAt": "2025-11-24T02:25:00Z",
+      "content": "India Inc is being called out for holding back on investments. Despite tax cuts, stimulus and strong economic support since 2019, companies have enjoyed higher profits and market caps but havent step… [+2206 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Sanjana B",
+      "title": "Amping up specialist tech services",
+      "description": "Discover how Recognize, a NY-based private equity firm, unlocks potential in founder-run tech companies with strategic investments.",
+      "url": "https://www.thehindubusinessline.com/specials/emerging-entrepreneurs/amping-up-specialist-tech-services/article70314990.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/goxko4/article70314991.ece/alternates/LANDSCAPE_1200/BL2411_Spark_QA.jpg",
+      "publishedAt": "2025-11-24T01:22:00Z",
+      "content": "Recognize is a New York-based private equity firm focused on the technology services industry. The firm is led by industry veterans Frank DSouza, Raj Mehta, Charles Phillips, and David Wasserman, alo… [+2643 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNA"
+      },
+      "author": null,
+      "title": "Keeping Singapore safe in a changing security landscape",
+      "description": "For over 50 years, Motorola Solutions has helped the nation’s public safety and enterprise sectors stay secure, connected and ready to respond as threats evolve.",
+      "url": "https://www.channelnewsasia.com/advertorial/keeping-singapore-safe-in-changing-security-landscape-5446236",
+      "urlToImage": "https://dam.mediacorp.sg/image/upload/s--aJ-yIbKN--/c_fill,g_auto,h_676,w_1200/f_auto,q_auto/v1/mediacorp/cna/image/2025/11/05/bstudio_motorola_solutions_lead_shutterstock_2661638243.jpg?itok=SwnFHD6G",
+      "publishedAt": "2025-11-24T01:18:02Z",
+      "content": "The focus on collaboration extends to technological innovation. Motorola Solutions voice, video and software technologies help agencies and enterprises maintain operational readiness in a fast-changi… [+1935 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Jyoti Banthia",
+      "title": "Legal eagles soar with digital wings",
+      "description": "Discover how Indian startups are revolutionizing legal services with AI-driven tools, enhancing efficiency and accessibility for small businesses.",
+      "url": "https://www.thehindubusinessline.com/specials/emerging-entrepreneurs/legal-eagles-soar-with-digital-wings/article70314965.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/qq25ap/article70314963.ece/alternates/LANDSCAPE_1200/BL2411_Spark_Lead_Akshat%20Singhal.jpg",
+      "publishedAt": "2025-11-24T01:18:00Z",
+      "content": "Indias legal-tech ecosystem is being driven to an inflection point by surging contract volumes, regulatory complexity, and the arrival of the first real wave of AI-led automation in legal workflows. … [+6993 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Sindhu Hariharan",
+      "title": "Green shoots of India-UK FTA already visible, says UK Minister",
+      "description": "in Bengaluru, the Minister launched Tesco’s new capability centre, and in Chennai, she was part of the launch of a GCC of research firm Lloyd’s List Intelligence",
+      "url": "https://www.thehindubusinessline.com/economy/green-shoots-of-india-uk-fta-already-visible-says-uk-minister/article70314277.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/edgo8j/article70314278.ece/alternates/LANDSCAPE_1200/seemamalhotra2_21.jpg",
+      "publishedAt": "2025-11-24T01:00:00Z",
+      "content": "The newly-sealed India-UK Free Trade Agreement (FTA), signed in July, has generated rising business interest with UK officials reporting increased enquiries from companies seeking new opportunities, … [+2223 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "Team BL",
+      "title": "Rise in fair pay perception",
+      "description": "Employee perception of fair pay improves, with India leading in pay fairness despite global disparities, particularly among women.",
+      "url": "https://www.thehindubusinessline.com/specials/corporate-file/rise-in-fair-pay-perception/article70314863.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/4tfy6k/article70314872.ece/alternates/LANDSCAPE_1200/BL2411_Corp_Buzz1.jpg",
+      "publishedAt": "2025-11-24T00:55:00Z",
+      "content": "The percentage of employees who believe they are unfairly paid has decreased from 31 per cent to 27 per cent year-on-year, according to ADPs People at Work 2025: A Global Workforce View survey. But, … [+1827 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BusinessLine"
+      },
+      "author": "BL Bengaluru Bureau",
+      "title": "Wealth-tech platform Wealthy.in secures ₹130 cr to expand AI-powered platform for wealth advisors",
+      "description": "Founded by IIT–IIM alumni Aditya Agarwal and Prashant Gupta, Wealthy. in works with a network of more than 6,000 mutual fund distributors (MFDs) who serve over 100,000 clients across 1,000 towns. The fresh capital will be used to equip growing MFDs with advan…",
+      "url": "https://www.thehindubusinessline.com/info-tech/wealth-tech-platform-wealthyin-secures-130-cr-to-expand-ai-powered-platform-for-wealth-advisors/article70313902.ece",
+      "urlToImage": "https://bl-i.thgim.com/public/incoming/mabj55/article70313903.ece/alternates/LANDSCAPE_1200/Wealthy.in%20co-founders%20Aditya%20Agarwal%20and%20Prashant%20Gupta%201.png",
+      "publishedAt": "2025-11-24T00:30:00Z",
+      "content": "Wealth-tech platform Wealthy. in has raised 130 crore in a Series B round led by Bertelsmann India Investments. The Bengaluru-based company manages assets worth 5,000 crore and processes over 300 cro… [+1217 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "pymnts.com"
+      },
+      "author": "PYMNTS",
+      "title": "President Trump Halts Push to Block State-Level AI Regulations",
+      "description": "The White House has reportedly paused an executive order designed to stop state-level regulation of artificial intelligence (AI). The draft executive order would have targeted those AI rules with lawsuits and by withholding federal funds. But as Reuters repor…",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2025/president-trump-halts-push-to-block-state-level-ai-regulations/",
+      "urlToImage": "https://www.pymnts.com/wp-content/uploads/2025/11/White-House-AI-regulation1.jpg",
+      "publishedAt": "2025-11-24T00:17:47Z",
+      "content": "The White House has reportedly paused an executive order designed to stop state-level regulation of artificial intelligence (AI).The draft executive order would have targeted those AI rules with laws… [+2547 chars]"
     }
   ]
 }
