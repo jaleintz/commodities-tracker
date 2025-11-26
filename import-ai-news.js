@@ -14,7 +14,7 @@ const fromDate = twoDaysAgo.toISOString().split('T')[0];
 
 const apiKey = 'b4aaef63526c4a70bcf07e9d2f46ab0f';
 // Fetch from specific domains
-const domains = 'theinformation.com,biztoc.com,pymnts.com,oilprice.com,gizmodo.com,thehindubusinessline.com,channelnewsasia.com,timesofindia.indiatimes.com';
+const domains = 'theinformation.com,pymnts.com,oilprice.com,gizmodo.com,thehindubusinessline.com,channelnewsasia.com,timesofindia.indiatimes.com';
 const url = `https://newsapi.org/v2/everything?q=AI&domains=${domains}&from=${fromDate}&sortBy=publishedAt&apiKey=${apiKey}`;
 
 console.log('Fetching AI news from NewsAPI...');

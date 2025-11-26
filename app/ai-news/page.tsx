@@ -52,7 +52,6 @@ export default function AINewsPage() {
         return (
           url.includes('businessline') || sourceName.includes('businessline') ||
           url.includes('theinformation.com') ||
-          url.includes('biztoc.com') ||
           url.includes('pymnts.com') ||
           url.includes('channelnewsasia.com') || sourceName.includes('cna') ||
           url.includes('timesofindia') || sourceName.includes('times of india') ||
