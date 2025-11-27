@@ -34,18 +34,23 @@ export default function DisplayPage() {
   const [unemploymentData, setUnemploymentData] = useState<UnemploymentDataPoint[]>([])
   const [latestUnemployment, setLatestUnemployment] = useState<number | null>(null)
   const [previousUnemployment, setPreviousUnemployment] = useState<number | null>(null)
+  const [claimsData, setClaimsData] = useState<UnemploymentDataPoint[]>([])
+  const [latestClaims, setLatestClaims] = useState<number | null>(null)
+  const [previousClaims, setPreviousClaims] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
   const [isChartExpanded, setIsChartExpanded] = useState(false)
   const [isMonthChartExpanded, setIsMonthChartExpanded] = useState(false)
   const [isUnemploymentChartExpanded, setIsUnemploymentChartExpanded] = useState(false)
+  const [isClaimsChartExpanded, setIsClaimsChartExpanded] = useState(false)
 
   useEffect(() => {
     fetchLatestPrices()
     fetchChartData()
     fetchMonthChartData()
     fetchUnemploymentData()
+    fetchClaimsData()
   }, [])
 
   const fetchChartData = async () => {
@@ -305,6 +310,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchClaimsData = async () => {
+    try {
+      // Fetch claims data from database
+      const { data: claimsRecords, error: claimsError } = await supabase
+        .from('fred_claims_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'ICSA')
+        .order('observation_date', { ascending: false })
+        .limit(24) // Get last 24 weeks (about 6 months)
+
+      if (claimsError) throw claimsError
+
+      if (claimsRecords && claimsRecords.length > 0) {
+        // Set latest claims number
+        setLatestClaims(claimsRecords[0].value)
+
+        // Set previous claims number (if available)
+        if (claimsRecords.length > 1) {
+          setPreviousClaims(claimsRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = claimsRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getDate()}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setClaimsData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching claims data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -326,6 +368,7 @@ export default function DisplayPage() {
     setIsChartExpanded(newState)
     setIsMonthChartExpanded(newState)
     setIsUnemploymentChartExpanded(newState)
+    setIsClaimsChartExpanded(newState)
   }
 
   return (
@@ -515,17 +558,17 @@ export default function DisplayPage() {
 
                       return (
                         <span className="text-white text-xs font-semibold">
-                          Total Change <i className={`fas fa-circle ${dailyChangeValue < 0 ? 'text-green-400' : dailyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(D) {dailyChangeValue > 0 ? '+' : ''}{dailyPercentage}% <i className={`fas ${dailyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : dailyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
+                          <i className={`fas fa-circle ${dailyChangeValue < 0 ? 'text-green-400' : dailyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(D) {dailyChangeValue > 0 ? '+' : ''}{dailyPercentage}% <i className={`fas ${dailyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : dailyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-right text-cyan-400'} ml-0.5`}></i>
                           {showMetrics && <span className="mx-1"></span>}
                           {showMetrics && (
                             <>
-                              <i className={`fas fa-circle ${weeklyChangeValue < 0 ? 'text-green-400' : weeklyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(W) {weeklyChangeValue > 0 ? '+' : ''}{weeklyPercentage}% <i className={`fas ${weeklyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : weeklyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
+                              <i className={`fas fa-circle ${weeklyChangeValue < 0 ? 'text-green-400' : weeklyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(W) {weeklyChangeValue > 0 ? '+' : ''}{weeklyPercentage}% <i className={`fas ${weeklyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : weeklyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-right text-cyan-400'} ml-0.5`}></i>
                             </>
                           )}
                           {showMetrics && <span className="mx-1"></span>}
                           {showMetrics && (
                             <>
-                              <i className={`fas fa-circle ${monthlyChangeValue < 0 ? 'text-green-400' : monthlyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(M) {monthlyChangeValue > 0 ? '+' : ''}{monthlyPercentage}% <i className={`fas ${monthlyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : monthlyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-trend-up text-cyan-400'} ml-0.5`}></i>
+                              <i className={`fas fa-circle ${monthlyChangeValue < 0 ? 'text-green-400' : monthlyChangeValue > 0 ? 'text-red-400' : 'text-cyan-400'} mr-0.5`}></i>(M) {monthlyChangeValue > 0 ? '+' : ''}{monthlyPercentage}% <i className={`fas ${monthlyChangeValue < 0 ? 'fa-arrow-trend-down text-green-400' : monthlyChangeValue > 0 ? 'fa-arrow-trend-up text-red-400' : 'fa-arrow-right text-cyan-400'} ml-0.5`}></i>
                             </>
                           )}
                         </span>
@@ -688,6 +731,112 @@ export default function DisplayPage() {
                                     {/* Data points */}
                                     {unemploymentData.map((point, index) => {
                                       const x = (index / (unemploymentData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return (
+                                        <g key={index}>
+                                          <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
+                                        </g>
+                                      )
+                                    })}
+                                  </svg>
+                                )
+                              })()}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+            )}
+
+            {/* Unemployment Claims Section */}
+            {!isLoading && !error && latestClaims !== null && (
+              <div className="mt-6">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
+                      <div className="mb-2">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Claims:</p>
+                          <div className="flex items-end gap-2">
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Weekly)</p>
+                            <p className="text-lg font-bold text-white">{latestClaims.toLocaleString()}</p>
+                            {previousClaims !== null && latestClaims !== null && (
+                              <>
+                                {latestClaims > previousClaims && (
+                                  <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                                )}
+                                {latestClaims < previousClaims && (
+                                  <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                                )}
+                                {latestClaims === previousClaims && (
+                                  <i className="fas fa-arrow-right text-cyan-400 text-lg"></i>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/ICSA/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      </div>
+
+                      {/* Claims Chart */}
+                      {claimsData.length > 0 && (
+                        <div className="mt-4 pt-4 border-t border-slate-600">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-slate-400 font-semibold">24-Week Trend</span>
+                            <button
+                              onClick={() => setIsClaimsChartExpanded(!isClaimsChartExpanded)}
+                              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                              aria-label={isClaimsChartExpanded ? "Collapse chart" : "Expand chart"}
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                {isClaimsChartExpanded ? (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                ) : (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                )}
+                              </svg>
+                            </button>
+                          </div>
+                          {isClaimsChartExpanded && (
+                            <div className="relative h-32">
+                              {(() => {
+                                const maxValue = Math.max(...claimsData.map(d => d.value))
+                                const minValue = Math.min(...claimsData.map(d => d.value))
+                                const range = maxValue - minValue || 1
+
+                                return (
+                                  <svg viewBox="0 0 400 100" className="w-full h-full">
+                                    {/* Grid lines */}
+                                    <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                    <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                    <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                    {/* Line chart */}
+                                    <polyline
+                                      points={claimsData.map((point, index) => {
+                                        const x = (index / (claimsData.length - 1)) * 380 + 10
+                                        const y = 90 - ((point.value - minValue) / range) * 80
+                                        return `${x},${y}`
+                                      }).join(' ')}
+                                      fill="none"
+                                      stroke="#22d3ee"
+                                      strokeWidth="2"
+                                    />
+
+                                    {/* Data points */}
+                                    {claimsData.map((point, index) => {
+                                      const x = (index / (claimsData.length - 1)) * 380 + 10
                                       const y = 90 - ((point.value - minValue) / range) * 80
                                       return (
                                         <g key={index}>

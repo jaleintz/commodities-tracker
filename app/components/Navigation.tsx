@@ -88,7 +88,7 @@ export default function Navigation() {
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            Betting Markets
+            Prediction Markets
           </Link>
           <Link
             href="/indicators"
@@ -178,7 +178,7 @@ export default function Navigation() {
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Betting Markets
+                  Prediction Markets
                 </Link>
                 <Link
                   href="/indicators"
