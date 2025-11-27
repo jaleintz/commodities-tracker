@@ -15,7 +15,9 @@
       "Bash(node fetch-unemployment.js:*)",
       "Bash(node import-unemployment.js:*)",
       "Bash(node import-claims.js:*)",
-      "Bash(node import-mortgage.js:*)"
+      "Bash(node import-mortgage.js:*)",
+      "Bash(npm run build:*)",
+      "Bash(node import-stickycore.js:*)"
     ],
     "deny": [],
     "ask": []

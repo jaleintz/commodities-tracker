@@ -1,0 +1,88 @@
+{
+  "realtime_start": "2025-11-27",
+  "realtime_end": "2025-11-27",
+  "observation_start": "1600-01-01",
+  "observation_end": "9999-12-31",
+  "units": "lin",
+  "output_type": 1,
+  "file_type": "json",
+  "order_by": "observation_date",
+  "sort_order": "desc",
+  "count": 694,
+  "offset": 0,
+  "limit": 12,
+  "observations": [
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-09-01",
+      "value": "3.326080084"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-08-01",
+      "value": "3.4"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-07-01",
+      "value": "3.419810534"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-06-01",
+      "value": "3.288774014"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-05-01",
+      "value": "3.15913105"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-04-01",
+      "value": "3.176689863"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-03-01",
+      "value": "3.257815123"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-02-01",
+      "value": "3.516515255"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2025-01-01",
+      "value": "3.625276327"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2024-12-01",
+      "value": "3.746553"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2024-11-01",
+      "value": "3.876177"
+    },
+    {
+      "realtime_start": "2025-11-27",
+      "realtime_end": "2025-11-27",
+      "date": "2024-10-01",
+      "value": "3.963395"
+    }
+  ]
+}

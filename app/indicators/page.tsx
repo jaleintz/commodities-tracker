@@ -40,6 +40,9 @@ export default function DisplayPage() {
   const [mortgageData, setMortgageData] = useState<UnemploymentDataPoint[]>([])
   const [latestMortgage, setLatestMortgage] = useState<number | null>(null)
   const [previousMortgage, setPreviousMortgage] = useState<number | null>(null)
+  const [stickyCoreData, setStickyCoreData] = useState<UnemploymentDataPoint[]>([])
+  const [latestStickyCore, setLatestStickyCore] = useState<number | null>(null)
+  const [previousStickyCore, setPreviousStickyCore] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -48,6 +51,8 @@ export default function DisplayPage() {
   const [isUnemploymentChartExpanded, setIsUnemploymentChartExpanded] = useState(false)
   const [isClaimsChartExpanded, setIsClaimsChartExpanded] = useState(false)
   const [isMortgageChartExpanded, setIsMortgageChartExpanded] = useState(false)
+  const [isStickyCoreChartExpanded, setIsStickyCoreChartExpanded] = useState(false)
+  const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
 
   useEffect(() => {
     fetchLatestPrices()
@@ -56,6 +61,7 @@ export default function DisplayPage() {
     fetchUnemploymentData()
     fetchClaimsData()
     fetchMortgageData()
+    fetchStickyCoreData()
   }, [])
 
   const fetchChartData = async () => {
@@ -389,6 +395,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchStickyCoreData = async () => {
+    try {
+      // Fetch sticky core CPI data from database
+      const { data: stickyCoreRecords, error: stickyCoreError } = await supabase
+        .from('fred_stickycore_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'CORESTICKM159SFRBATL')
+        .order('observation_date', { ascending: false })
+        .limit(12) // Get last 12 months
+
+      if (stickyCoreError) throw stickyCoreError
+
+      if (stickyCoreRecords && stickyCoreRecords.length > 0) {
+        // Set latest sticky core CPI
+        setLatestStickyCore(stickyCoreRecords[0].value)
+
+        // Set previous sticky core CPI (if available)
+        if (stickyCoreRecords.length > 1) {
+          setPreviousStickyCore(stickyCoreRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = stickyCoreRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getFullYear().toString().slice(2)}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setStickyCoreData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching sticky core CPI data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -414,31 +457,78 @@ export default function DisplayPage() {
     setIsMortgageChartExpanded(newState)
   }
 
+  const handleViewUp = () => {
+    if (viewMode === 'medium') {
+      setViewMode('mini')
+    } else if (viewMode === 'max') {
+      setViewMode('medium')
+      // Collapse all charts when going back to medium
+      setIsChartExpanded(false)
+      setIsMonthChartExpanded(false)
+      setIsUnemploymentChartExpanded(false)
+      setIsClaimsChartExpanded(false)
+      setIsMortgageChartExpanded(false)
+      setIsStickyCoreChartExpanded(false)
+    }
+  }
+
+  const handleViewDown = () => {
+    if (viewMode === 'mini') {
+      setViewMode('medium')
+    } else if (viewMode === 'medium') {
+      setViewMode('max')
+      // Expand all charts when going to max
+      setIsChartExpanded(true)
+      setIsMonthChartExpanded(true)
+      setIsUnemploymentChartExpanded(true)
+      setIsClaimsChartExpanded(true)
+      setIsMortgageChartExpanded(true)
+      setIsStickyCoreChartExpanded(true)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-900">
       <Navigation />
-      <div className="flex items-center justify-center gap-4 pt-8">
+      <div className="flex flex-col items-center justify-center pt-6">
         <h1 className="text-2xl font-light text-white tracking-widest">I N D I C A T O R S</h1>
-        <button
-          onClick={toggleAllCharts}
-          className="text-cyan-400 hover:text-cyan-300 transition-colors"
-          aria-label={isMonthChartExpanded ? "Collapse all charts" : "Expand all charts"}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {isMonthChartExpanded ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            )}
-          </svg>
-        </button>
+        <div className="flex items-center gap-1 mt-2">
+          <span className="text-slate-400 font-semibold capitalize" style={{ fontSize: '0.625rem' }}>{viewMode} view</span>
+          <div className="flex flex-col">
+            <button
+              onClick={handleViewUp}
+              disabled={viewMode === 'mini'}
+              className={`transition-colors ${viewMode === 'mini' ? 'text-gray-600 cursor-not-allowed' : 'text-cyan-400 hover:text-cyan-300'}`}
+              aria-label="View less"
+            >
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <button
+              onClick={handleViewDown}
+              disabled={viewMode === 'max'}
+              className={`transition-colors ${viewMode === 'max' ? 'text-gray-600 cursor-not-allowed' : 'text-cyan-400 hover:text-cyan-300'}`}
+              aria-label="View more"
+            >
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="py-8 px-4 sm:px-6 lg:px-8">
+      <div className="pt-2 pb-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {isLoading && (
             <div className="text-center text-slate-400">
@@ -544,37 +634,40 @@ export default function DisplayPage() {
                       })()}
                     </div>
                   </div>
-                  <div className="text-left mb-2">
-                    <p className="text-xs">
-                      {productsWithPrices.map((p, index) => {
-                        const change = (p.price || 0) - (p.previous_price || 0)
-                        const hasChange = p.previous_price !== null && change !== 0
+                  {viewMode !== 'mini' && (
+                    <div className="text-left mb-2">
+                      <p className="text-xs">
+                        {productsWithPrices.map((p, index) => {
+                          const change = (p.price || 0) - (p.previous_price || 0)
+                          const hasChange = p.previous_price !== null && change !== 0
 
-                        let textColor = 'text-white'
-                        let arrow = ''
-                        if (hasChange) {
-                          if (change < 0) {
-                            textColor = 'text-green-400'
-                            arrow = '↓'
-                          } else {
-                            textColor = 'text-red-400'
-                            arrow = '↑'
+                          let textColor = 'text-white'
+                          let arrow = ''
+                          if (hasChange) {
+                            if (change < 0) {
+                              textColor = 'text-green-400'
+                              arrow = '↓'
+                            } else {
+                              textColor = 'text-red-400'
+                              arrow = '↑'
+                            }
                           }
-                        }
 
-                        return (
-                          <span key={p.id}>
-                            <span className={textColor}>
-                              {p.product_name}
-                              {arrow && <span className="ml-0.5">{arrow}</span>}
+                          return (
+                            <span key={p.id}>
+                              <span className={textColor}>
+                                {p.product_name}
+                                {arrow && <span className="ml-0.5">{arrow}</span>}
+                              </span>
+                              {index < productsWithPrices.length - 1 ? <span className="text-slate-400"> • </span> : ''}
                             </span>
-                            {index < productsWithPrices.length - 1 ? <span className="text-slate-400"> • </span> : ''}
-                          </span>
-                        )
-                      })}
-                    </p>
-                  </div>
-                  <div className="flex justify-start items-center">
+                          )
+                        })}
+                      </p>
+                    </div>
+                  )}
+                  {viewMode !== 'mini' && (
+                    <div className="flex justify-start items-center">
                     {(() => {
                       const currentTotal = productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
                       const previousTotal = productsWithPrices.reduce((sum, product) => sum + (product.previous_price || 0), 0)
@@ -617,10 +710,11 @@ export default function DisplayPage() {
                         </span>
                       )
                     })()}
-                  </div>
+                    </div>
+                  )}
 
                   {/* 30-Day Chart */}
-                  {monthChartData.length > 0 && (
+                  {viewMode !== 'mini' && monthChartData.length > 0 && (
                     <div className="mt-4 pt-4 border-t border-slate-600">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-xs text-slate-400 font-semibold">30-Day Price Trend</span>
@@ -716,13 +810,15 @@ export default function DisplayPage() {
                             )}
                           </div>
                         </div>
-                        <p className="text-xs text-slate-500">
-                          Source: <a href="https://fred.stlouisfed.org/series/UNRATE/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
-                        </p>
+                        {viewMode !== 'mini' && (
+                          <p className="text-xs text-slate-500">
+                            Source: <a href="https://fred.stlouisfed.org/series/UNRATE/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                          </p>
+                        )}
                       </div>
 
                       {/* Unemployment Chart */}
-                      {unemploymentData.length > 0 && (
+                      {viewMode !== 'mini' && unemploymentData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">12-Month Trend</span>
@@ -822,13 +918,15 @@ export default function DisplayPage() {
                             )}
                           </div>
                         </div>
-                        <p className="text-xs text-slate-500">
-                          Source: <a href="https://fred.stlouisfed.org/series/ICSA/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
-                        </p>
+                        {viewMode !== 'mini' && (
+                          <p className="text-xs text-slate-500">
+                            Source: <a href="https://fred.stlouisfed.org/series/ICSA/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                          </p>
+                        )}
                       </div>
 
                       {/* Claims Chart */}
-                      {claimsData.length > 0 && (
+                      {viewMode !== 'mini' && claimsData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">24-Week Trend</span>
@@ -931,13 +1029,15 @@ export default function DisplayPage() {
                             )}
                           </div>
                         </div>
-                        <p className="text-xs text-slate-500">
-                          Source: <a href="https://fred.stlouisfed.org/series/MORTGAGE30US/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
-                        </p>
+                        {viewMode !== 'mini' && (
+                          <p className="text-xs text-slate-500">
+                            Source: <a href="https://fred.stlouisfed.org/series/MORTGAGE30US/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                          </p>
+                        )}
                       </div>
 
                       {/* Mortgage Rate Chart */}
-                      {mortgageData.length > 0 && (
+                      {viewMode !== 'mini' && mortgageData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">24-Week Trend</span>
@@ -999,6 +1099,114 @@ export default function DisplayPage() {
                                               {point.date}
                                             </text>
                                           )}
+                                        </g>
+                                      )
+                                    })}
+                                  </svg>
+                                )
+                              })()}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+            )}
+
+            {/* Sticky Core CPI Section */}
+            {!isLoading && !error && latestStickyCore !== null && (
+              <div className="mt-6">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
+                      <div className="mb-2">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>Sticky Core CPI:</p>
+                          <div className="flex items-end gap-2">
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Monthly)</p>
+                            <p className="text-lg font-bold text-white">{latestStickyCore.toFixed(2)}%</p>
+                            {previousStickyCore !== null && latestStickyCore !== null && (
+                              <>
+                                {latestStickyCore > previousStickyCore && (
+                                  <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                                )}
+                                {latestStickyCore < previousStickyCore && (
+                                  <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                                )}
+                                {latestStickyCore === previousStickyCore && (
+                                  <i className="fas fa-arrow-right text-cyan-400 text-lg"></i>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        {viewMode !== 'mini' && (
+                          <p className="text-xs text-slate-500">
+                            Source: <a href="https://fred.stlouisfed.org/series/CORESTICKM159SFRBATL/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Sticky Core CPI Chart */}
+                      {viewMode !== 'mini' && stickyCoreData.length > 0 && (
+                        <div className="mt-4 pt-4 border-t border-slate-600">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-slate-400 font-semibold">12-Month Trend</span>
+                            <button
+                              onClick={() => setIsStickyCoreChartExpanded(!isStickyCoreChartExpanded)}
+                              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                              aria-label={isStickyCoreChartExpanded ? "Collapse chart" : "Expand chart"}
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                {isStickyCoreChartExpanded ? (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                ) : (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                )}
+                              </svg>
+                            </button>
+                          </div>
+                          {isStickyCoreChartExpanded && (
+                            <div className="relative h-32">
+                              {(() => {
+                                const maxValue = Math.max(...stickyCoreData.map(d => d.value))
+                                const minValue = Math.min(...stickyCoreData.map(d => d.value))
+                                const range = maxValue - minValue || 1
+
+                                return (
+                                  <svg viewBox="0 0 400 100" className="w-full h-full">
+                                    {/* Grid lines */}
+                                    <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                    <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                    <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                    {/* Line chart */}
+                                    <polyline
+                                      points={stickyCoreData.map((point, index) => {
+                                        const x = (index / (stickyCoreData.length - 1)) * 380 + 10
+                                        const y = 90 - ((point.value - minValue) / range) * 80
+                                        return `${x},${y}`
+                                      }).join(' ')}
+                                      fill="none"
+                                      stroke="#22d3ee"
+                                      strokeWidth="2"
+                                    />
+
+                                    {/* Data points */}
+                                    {stickyCoreData.map((point, index) => {
+                                      const x = (index / (stickyCoreData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return (
+                                        <g key={index}>
+                                          <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
                                         </g>
                                       )
                                     })}
