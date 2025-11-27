@@ -22,20 +22,30 @@ interface ChartDataPoint {
   total: number
 }
 
+interface UnemploymentDataPoint {
+  date: string
+  value: number
+}
+
 export default function DisplayPage() {
   const [productsWithPrices, setProductsWithPrices] = useState<ProductWithPrice[]>([])
   const [chartData, setChartData] = useState<ChartDataPoint[]>([])
   const [monthChartData, setMonthChartData] = useState<ChartDataPoint[]>([])
+  const [unemploymentData, setUnemploymentData] = useState<UnemploymentDataPoint[]>([])
+  const [latestUnemployment, setLatestUnemployment] = useState<number | null>(null)
+  const [previousUnemployment, setPreviousUnemployment] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
   const [isChartExpanded, setIsChartExpanded] = useState(false)
   const [isMonthChartExpanded, setIsMonthChartExpanded] = useState(false)
+  const [isUnemploymentChartExpanded, setIsUnemploymentChartExpanded] = useState(false)
 
   useEffect(() => {
     fetchLatestPrices()
     fetchChartData()
     fetchMonthChartData()
+    fetchUnemploymentData()
   }, [])
 
   const fetchChartData = async () => {
@@ -258,6 +268,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchUnemploymentData = async () => {
+    try {
+      // Fetch unemployment data from database
+      const { data: unemploymentRecords, error: unemploymentError } = await supabase
+        .from('fred_indicators_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'UNRATE')
+        .order('observation_date', { ascending: false })
+        .limit(12) // Get last 12 months
+
+      if (unemploymentError) throw unemploymentError
+
+      if (unemploymentRecords && unemploymentRecords.length > 0) {
+        // Set latest unemployment rate
+        setLatestUnemployment(unemploymentRecords[0].value)
+
+        // Set previous unemployment rate (if available)
+        if (unemploymentRecords.length > 1) {
+          setPreviousUnemployment(unemploymentRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = unemploymentRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getFullYear().toString().slice(2)}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setUnemploymentData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching unemployment data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -277,48 +324,24 @@ export default function DisplayPage() {
   return (
     <div className="min-h-screen bg-gray-900">
       <Navigation />
+      <div className="text-center pt-8">
+        <h1 className="text-2xl font-light text-white tracking-widest">I N D I C A T O R S</h1>
+      </div>
       <div className="py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-3 md:p-4">
-            <div className="text-center mb-4">
-              <div className="flex items-center justify-center gap-3">
-                <h1 className="text-xl md:text-2xl font-bold text-white mb-1">
-                  Staple Food Prices
-                </h1>
-                <button
-                  onClick={toggleBothCharts}
-                  className="text-cyan-400 hover:text-cyan-300 transition-colors mb-1"
-                  aria-label={isChartExpanded ? "Collapse charts" : "Expand charts"}
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    {isChartExpanded ? (
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                    ) : (
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    )}
-                  </svg>
-                </button>
-              </div>
+          {isLoading && (
+            <div className="text-center text-slate-400">
+              Loading...
             </div>
+          )}
 
-            {isLoading && (
-              <div className="text-center text-slate-400">
-                Loading...
-              </div>
-            )}
+          {error && (
+            <div className="text-center text-red-400">
+              Error: {error}
+            </div>
+          )}
 
-            {error && (
-              <div className="text-center text-red-400">
-                Error: {error}
-              </div>
-            )}
-
-            {!isLoading && !error && productsWithPrices.length > 0 && (
+          {!isLoading && !error && productsWithPrices.length > 0 && (
               <div className="flex flex-col items-center space-y-4">
                 {isExpanded && productsWithPrices.map((product) => {
                   const change = (product.price || 0) - (product.previous_price || 0)
@@ -382,31 +405,36 @@ export default function DisplayPage() {
                   )
                 })}
 
-                <div className={`w-full max-w-md rounded-lg p-4 border-2 mb-4 bg-black ${
-                  (() => {
-                    const currentTotal = productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
-                    const previousTotal = productsWithPrices.reduce((sum, product) => sum + (product.previous_price || 0), 0)
-                    const weekAgoTotal = productsWithPrices.reduce((sum, product) => sum + (product.week_ago_price || product.price || 0), 0)
-                    const monthAgoTotal = productsWithPrices.reduce((sum, product) => sum + (product.month_ago_price || product.price || 0), 0)
-                    const firstTotal = productsWithPrices.reduce((sum, product) => sum + (product.first_price || 0), 0)
-                    const dailyChange = currentTotal - previousTotal
-                    const weeklyChange = currentTotal - weekAgoTotal
-                    const monthlyChange = currentTotal - monthAgoTotal
+                <div className="w-full max-w-md rounded-lg p-4 border-2 mb-4 bg-black border-green-400">
+                  <div className="mb-3">
+                    <div className="flex items-center justify-between">
+                      <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>Staple Food Prices at Walmart:</p>
+                      {(() => {
+                        const currentTotal = productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
+                        const previousTotal = productsWithPrices.reduce((sum, product) => sum + (product.previous_price || 0), 0)
+                        const dailyChange = currentTotal - previousTotal
+                        const dailyPercentage = previousTotal > 0 ? ((dailyChange / previousTotal) * 100).toFixed(2) : '0.00'
 
-                    if (previousTotal === 0 && weekAgoTotal === 0 && monthAgoTotal === 0 && firstTotal === 0) {
-                      return 'border-cyan-400'
-                    } else if (dailyChange === 0 && weeklyChange === 0 && monthlyChange === 0) {
-                      return 'border-cyan-400'
-                    } else if (dailyChange < 0 || weeklyChange < 0 || monthlyChange < 0) {
-                      return 'border-green-400'
-                    } else {
-                      return 'border-red-400'
-                    }
-                  })()
-                }`}>
+                        return (
+                          <div className="flex items-end gap-2">
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Daily)</p>
+                            <p className="text-lg font-bold text-white">{dailyChange > 0 ? '+' : ''}{dailyPercentage}%</p>
+                            {dailyChange < 0 && (
+                              <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                            )}
+                            {dailyChange > 0 && (
+                              <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                            )}
+                            {dailyChange === 0 && (
+                              <i className="fas fa-arrow-right text-cyan-400 text-lg"></i>
+                            )}
+                          </div>
+                        )
+                      })()}
+                    </div>
+                  </div>
                   <div className="text-left mb-2">
                     <p className="text-xs">
-                      <span className="text-white font-semibold mr-1">(D) -</span>
                       {productsWithPrices.map((p, index) => {
                         const change = (p.price || 0) - (p.previous_price || 0)
                         const hasChange = p.previous_price !== null && change !== 0
@@ -433,7 +461,6 @@ export default function DisplayPage() {
                           </span>
                         )
                       })}
-                      <span className="text-white"> - (Walmart)</span>
                     </p>
                   </div>
                   <div className="flex justify-start items-center">
@@ -480,77 +507,6 @@ export default function DisplayPage() {
                       )
                     })()}
                   </div>
-
-                  {/* 7-Day Chart */}
-                  {chartData.length > 0 && (
-                    <div className="mt-4 pt-4 border-t border-slate-600">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs text-slate-400 font-semibold">7-Day Price Trend</span>
-                        <button
-                          onClick={() => setIsChartExpanded(!isChartExpanded)}
-                          className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                          aria-label={isChartExpanded ? "Collapse chart" : "Expand chart"}
-                        >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            {isChartExpanded ? (
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                            ) : (
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            )}
-                          </svg>
-                        </button>
-                      </div>
-                      {isChartExpanded && (
-                        <div className="relative h-32">
-                          {(() => {
-                            const maxTotal = Math.max(...chartData.map(d => d.total))
-                            const minTotal = Math.min(...chartData.map(d => d.total))
-                            const range = maxTotal - minTotal || 1
-
-                            return (
-                              <svg viewBox="0 0 400 100" className="w-full h-full">
-                                {/* Grid lines */}
-                                <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
-                                <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
-                                <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
-
-                                {/* Line chart */}
-                                <polyline
-                                  points={chartData.map((point, index) => {
-                                    const x = (index / (chartData.length - 1)) * 380 + 10
-                                    const y = 90 - ((point.total - minTotal) / range) * 80
-                                    return `${x},${y}`
-                                  }).join(' ')}
-                                  fill="none"
-                                  stroke="#22d3ee"
-                                  strokeWidth="2"
-                                />
-
-                                {/* Data points */}
-                                {chartData.map((point, index) => {
-                                  const x = (index / (chartData.length - 1)) * 380 + 10
-                                  const y = 90 - ((point.total - minTotal) / range) * 80
-                                  return (
-                                    <g key={index}>
-                                      <circle cx={x} cy={y} r="3" fill="#22d3ee" />
-                                      <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
-                                        {point.date}
-                                      </text>
-                                    </g>
-                                  )
-                                })}
-                              </svg>
-                            )
-                          })()}
-                        </div>
-                      )}
-                    </div>
-                  )}
 
                   {/* 30-Day Chart */}
                   {monthChartData.length > 0 && (
@@ -626,12 +582,114 @@ export default function DisplayPage() {
               </div>
             )}
 
+            {/* Unemployment Rate Section */}
+            {!isLoading && !error && latestUnemployment !== null && (
+              <div className="mt-6">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
+                      <div className="mb-2">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Rate:</p>
+                          <div className="flex items-end gap-2">
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Monthly)</p>
+                            <p className="text-lg font-bold text-white">{latestUnemployment.toFixed(1)}%</p>
+                            {previousUnemployment !== null && latestUnemployment !== null && (
+                              <>
+                                {latestUnemployment > previousUnemployment && (
+                                  <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                                )}
+                                {latestUnemployment < previousUnemployment && (
+                                  <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/UNRATE/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      </div>
+
+                      {/* Unemployment Chart */}
+                      {unemploymentData.length > 0 && (
+                        <div className="mt-4 pt-4 border-t border-slate-600">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-slate-400 font-semibold">12-Month Trend</span>
+                            <button
+                              onClick={() => setIsUnemploymentChartExpanded(!isUnemploymentChartExpanded)}
+                              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                              aria-label={isUnemploymentChartExpanded ? "Collapse chart" : "Expand chart"}
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                {isUnemploymentChartExpanded ? (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                ) : (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                )}
+                              </svg>
+                            </button>
+                          </div>
+                          {isUnemploymentChartExpanded && (
+                            <div className="relative h-32">
+                              {(() => {
+                                const maxValue = Math.max(...unemploymentData.map(d => d.value))
+                                const minValue = Math.min(...unemploymentData.map(d => d.value))
+                                const range = maxValue - minValue || 1
+
+                                return (
+                                  <svg viewBox="0 0 400 100" className="w-full h-full">
+                                    {/* Grid lines */}
+                                    <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                    <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                    <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                    {/* Line chart */}
+                                    <polyline
+                                      points={unemploymentData.map((point, index) => {
+                                        const x = (index / (unemploymentData.length - 1)) * 380 + 10
+                                        const y = 90 - ((point.value - minValue) / range) * 80
+                                        return `${x},${y}`
+                                      }).join(' ')}
+                                      fill="none"
+                                      stroke="#22d3ee"
+                                      strokeWidth="2"
+                                    />
+
+                                    {/* Data points */}
+                                    {unemploymentData.map((point, index) => {
+                                      const x = (index / (unemploymentData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return (
+                                        <g key={index}>
+                                          <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
+                                        </g>
+                                      )
+                                    })}
+                                  </svg>
+                                )
+                              })()}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+            )}
+
             {!isLoading && !error && productsWithPrices.length === 0 && (
               <div className="text-center text-slate-400">
                 No products found. Please add products to the database first.
               </div>
             )}
-          </div>
         </div>
       </div>
     </div>
