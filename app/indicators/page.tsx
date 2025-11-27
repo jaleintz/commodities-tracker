@@ -606,10 +606,10 @@ export default function DisplayPage() {
                   )
                 })}
 
-                <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
-                  <div className="mb-3">
+                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                  <div className={viewMode === 'mini' ? 'mb-1' : 'mb-3'}>
                     <div className="flex items-center justify-between">
-                      <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>Staple Food Prices at Walmart:</p>
+                      <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Staple Food Prices at Walmart:</p>
                       {(() => {
                         const currentTotal = productsWithPrices.reduce((sum, product) => sum + (product.price || 0), 0)
                         const previousTotal = productsWithPrices.reduce((sum, product) => sum + (product.previous_price || 0), 0)
@@ -619,15 +619,15 @@ export default function DisplayPage() {
                         return (
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Daily)</p>
-                            <p className="text-lg font-bold text-white">{dailyChange > 0 ? '+' : ''}{dailyPercentage}%</p>
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{dailyChange > 0 ? '+' : ''}{dailyPercentage}%</p>
                             {dailyChange < 0 && (
-                              <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                              <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                             )}
                             {dailyChange > 0 && (
-                              <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                              <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                             )}
                             {dailyChange === 0 && (
-                              <i className="fas fa-arrow-right text-cyan-400 text-lg"></i>
+                              <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                             )}
                           </div>
                         )
@@ -789,22 +789,22 @@ export default function DisplayPage() {
 
             {/* Unemployment Rate Section */}
             {!isLoading && !error && latestUnemployment !== null && (
-              <div className="mt-6">
+              <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
-                      <div className="mb-2">
-                        <div className="flex items-center justify-between mb-2">
-                          <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Rate:</p>
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Rate:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Monthly)</p>
-                            <p className="text-lg font-bold text-white">{latestUnemployment.toFixed(1)}%</p>
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestUnemployment.toFixed(1)}%</p>
                             {previousUnemployment !== null && latestUnemployment !== null && (
                               <>
                                 {latestUnemployment > previousUnemployment && (
-                                  <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestUnemployment < previousUnemployment && (
-                                  <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
@@ -894,25 +894,25 @@ export default function DisplayPage() {
 
             {/* Unemployment Claims Section */}
             {!isLoading && !error && latestClaims !== null && (
-              <div className="mt-6">
+              <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
-                      <div className="mb-2">
-                        <div className="flex items-center justify-between mb-2">
-                          <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Claims:</p>
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Claims:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Weekly)</p>
-                            <p className="text-lg font-bold text-white">{latestClaims.toLocaleString()}</p>
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestClaims.toLocaleString()}</p>
                             {previousClaims !== null && latestClaims !== null && (
                               <>
                                 {latestClaims > previousClaims && (
-                                  <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestClaims < previousClaims && (
-                                  <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestClaims === previousClaims && (
-                                  <i className="fas fa-arrow-right text-cyan-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
@@ -1005,25 +1005,25 @@ export default function DisplayPage() {
 
             {/* 30-Year Mortgage Rate Section */}
             {!isLoading && !error && latestMortgage !== null && (
-              <div className="mt-6">
+              <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
-                      <div className="mb-2">
-                        <div className="flex items-center justify-between mb-2">
-                          <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>30-Year Mortgage Rate:</p>
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>30-Year Mortgage Rate:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Weekly)</p>
-                            <p className="text-lg font-bold text-white">{latestMortgage.toFixed(2)}%</p>
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestMortgage.toFixed(2)}%</p>
                             {previousMortgage !== null && latestMortgage !== null && (
                               <>
                                 {latestMortgage > previousMortgage && (
-                                  <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestMortgage < previousMortgage && (
-                                  <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestMortgage === previousMortgage && (
-                                  <i className="fas fa-arrow-right text-cyan-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
@@ -1116,25 +1116,25 @@ export default function DisplayPage() {
 
             {/* Sticky Core CPI Section */}
             {!isLoading && !error && latestStickyCore !== null && (
-              <div className="mt-6">
+              <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
-                      <div className="mb-2">
-                        <div className="flex items-center justify-between mb-2">
-                          <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>Sticky Core CPI:</p>
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Sticky Core CPI:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Monthly)</p>
-                            <p className="text-lg font-bold text-white">{latestStickyCore.toFixed(2)}%</p>
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestStickyCore.toFixed(2)}%</p>
                             {previousStickyCore !== null && latestStickyCore !== null && (
                               <>
                                 {latestStickyCore > previousStickyCore && (
-                                  <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestStickyCore < previousStickyCore && (
-                                  <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestStickyCore === previousStickyCore && (
-                                  <i className="fas fa-arrow-right text-cyan-400 text-lg"></i>
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
