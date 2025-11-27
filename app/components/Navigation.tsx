@@ -2,15 +2,31 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useRouter } from 'next/navigation'
 
-export default function Navigation() {
+interface NavigationProps {
+  pulseHamburger?: boolean
+}
+
+export default function Navigation({ pulseHamburger = false }: NavigationProps = {}) {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { isAuthenticated, isAdmin, signOut } = useAuth()
   const router = useRouter()
+  const [shouldPulse, setShouldPulse] = useState(false)
+
+  useEffect(() => {
+    if (pulseHamburger && window.innerWidth < 1024) {
+      setShouldPulse(true)
+      // Stop pulsing after 10 seconds (8 cycles of 1.25 seconds each)
+      const timer = setTimeout(() => {
+        setShouldPulse(false)
+      }, 10000)
+      return () => clearTimeout(timer)
+    }
+  }, [pulseHamburger])
 
   const handleSignOut = () => {
     signOut()
@@ -26,11 +42,24 @@ export default function Navigation() {
 
   return (
     <nav className="bg-slate-800 border-b border-slate-700">
+      <style jsx>{`
+        @keyframes pulseGreen {
+          0%, 100% {
+            color: white;
+          }
+          50% {
+            color: rgb(74, 222, 128);
+          }
+        }
+        .pulse-green-animation {
+          animation: pulseGreen 1.25s ease-in-out 8;
+        }
+      `}</style>
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-white p-2"
+            className={`lg:hidden text-white p-2 ${shouldPulse ? 'pulse-green-animation' : ''}`}
             aria-label="Toggle menu"
           >
             <svg

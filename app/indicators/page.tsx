@@ -489,7 +489,7 @@ export default function DisplayPage() {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <Navigation />
+      <Navigation pulseHamburger={true} />
       <div className="flex flex-col items-center justify-center pt-6">
         <h1 className="text-2xl font-light text-white tracking-widest">I N D I C A T O R S</h1>
         <div className="flex items-center gap-1 mt-2">
@@ -542,7 +542,117 @@ export default function DisplayPage() {
             </div>
           )}
 
+          {/* 30-Year Mortgage Rate Section */}
+          {!isLoading && !error && latestMortgage !== null && (
+            <div className="flex flex-col items-center space-y-4">
+              <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                  <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                    <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                      <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>30-Year Mortgage Rate:</p>
+                      <div className="flex items-end gap-2">
+                        <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Weekly)</p>
+                        <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestMortgage.toFixed(2)}%</p>
+                        {previousMortgage !== null && latestMortgage !== null && (
+                          <>
+                            {latestMortgage > previousMortgage && (
+                              <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                            )}
+                            {latestMortgage < previousMortgage && (
+                              <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                            )}
+                            {latestMortgage === previousMortgage && (
+                              <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    {viewMode !== 'mini' && (
+                      <p className="text-xs text-slate-500">
+                        Source: <a href="https://fred.stlouisfed.org/series/MORTGAGE30US/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Mortgage Rate Chart */}
+                  {viewMode !== 'mini' && mortgageData.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-slate-600">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs text-slate-400 font-semibold">24-Week Trend</span>
+                        <button
+                          onClick={() => setIsMortgageChartExpanded(!isMortgageChartExpanded)}
+                          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                          aria-label={isMortgageChartExpanded ? "Collapse chart" : "Expand chart"}
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            {isMortgageChartExpanded ? (
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                            ) : (
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            )}
+                          </svg>
+                        </button>
+                      </div>
+                      {isMortgageChartExpanded && (
+                        <div className="relative h-32">
+                          {(() => {
+                            const maxValue = Math.max(...mortgageData.map(d => d.value))
+                            const minValue = Math.min(...mortgageData.map(d => d.value))
+                            const range = maxValue - minValue || 1
+
+                            return (
+                              <svg viewBox="0 0 400 100" className="w-full h-full">
+                                {/* Grid lines */}
+                                <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                {/* Line chart */}
+                                <polyline
+                                  points={mortgageData.map((point, index) => {
+                                    const x = (index / (mortgageData.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.value - minValue) / range) * 80
+                                    return `${x},${y}`
+                                  }).join(' ')}
+                                  fill="none"
+                                  stroke="#22d3ee"
+                                  strokeWidth="2"
+                                />
+
+                                {/* Data points */}
+                                {mortgageData.map((point, index) => {
+                                  const x = (index / (mortgageData.length - 1)) * 380 + 10
+                                  const y = 90 - ((point.value - minValue) / range) * 80
+                                  const showLabel = index % 4 === 0 || index === mortgageData.length - 1
+                                  return (
+                                    <g key={index}>
+                                      <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                      {showLabel && (
+                                        <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                          {point.date}
+                                        </text>
+                                      )}
+                                    </g>
+                                  )
+                                })}
+                              </svg>
+                            )
+                          })()}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+          )}
+
           {!isLoading && !error && productsWithPrices.length > 0 && (
+            <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
                 {isExpanded && productsWithPrices.map((product) => {
                   const change = (product.price || 0) - (product.previous_price || 0)
@@ -606,7 +716,7 @@ export default function DisplayPage() {
                   )
                 })}
 
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
                   <div className={viewMode === 'mini' ? 'mb-1' : 'mb-3'}>
                     <div className="flex items-center justify-between">
                       <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Staple Food Prices at Walmart:</p>
@@ -767,12 +877,15 @@ export default function DisplayPage() {
                                 {monthChartData.map((point, index) => {
                                   const x = (index / (monthChartData.length - 1)) * 380 + 10
                                   const y = 90 - ((point.total - minTotal) / range) * 80
+                                  const showLabel = index % 3 === 0 || index === monthChartData.length - 1
                                   return (
                                     <g key={index}>
                                       <circle cx={x} cy={y} r="3" fill="#22d3ee" />
-                                      <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
-                                        {point.date}
-                                      </text>
+                                      {showLabel && (
+                                        <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                          {point.date}
+                                        </text>
+                                      )}
                                     </g>
                                   )
                                 })}
@@ -785,26 +898,30 @@ export default function DisplayPage() {
                   )}
                 </div>
               </div>
+            </div>
             )}
 
-            {/* Unemployment Rate Section */}
-            {!isLoading && !error && latestUnemployment !== null && (
+            {/* Sticky Core CPI Section */}
+            {!isLoading && !error && latestStickyCore !== null && (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
                       <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
                         <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Rate:</p>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Sticky Core CPI:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Monthly)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestUnemployment.toFixed(1)}%</p>
-                            {previousUnemployment !== null && latestUnemployment !== null && (
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestStickyCore.toFixed(2)}%</p>
+                            {previousStickyCore !== null && latestStickyCore !== null && (
                               <>
-                                {latestUnemployment > previousUnemployment && (
+                                {latestStickyCore > previousStickyCore && (
                                   <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
-                                {latestUnemployment < previousUnemployment && (
+                                {latestStickyCore < previousStickyCore && (
                                   <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                )}
+                                {latestStickyCore === previousStickyCore && (
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
@@ -812,20 +929,20 @@ export default function DisplayPage() {
                         </div>
                         {viewMode !== 'mini' && (
                           <p className="text-xs text-slate-500">
-                            Source: <a href="https://fred.stlouisfed.org/series/UNRATE/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                            Source: <a href="https://fred.stlouisfed.org/series/CORESTICKM159SFRBATL/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                           </p>
                         )}
                       </div>
 
-                      {/* Unemployment Chart */}
-                      {viewMode !== 'mini' && unemploymentData.length > 0 && (
+                      {/* Sticky Core CPI Chart */}
+                      {viewMode !== 'mini' && stickyCoreData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">12-Month Trend</span>
                             <button
-                              onClick={() => setIsUnemploymentChartExpanded(!isUnemploymentChartExpanded)}
+                              onClick={() => setIsStickyCoreChartExpanded(!isStickyCoreChartExpanded)}
                               className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                              aria-label={isUnemploymentChartExpanded ? "Collapse chart" : "Expand chart"}
+                              aria-label={isStickyCoreChartExpanded ? "Collapse chart" : "Expand chart"}
                             >
                               <svg
                                 className="w-4 h-4"
@@ -833,7 +950,7 @@ export default function DisplayPage() {
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                               >
-                                {isUnemploymentChartExpanded ? (
+                                {isStickyCoreChartExpanded ? (
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                                 ) : (
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -841,11 +958,11 @@ export default function DisplayPage() {
                               </svg>
                             </button>
                           </div>
-                          {isUnemploymentChartExpanded && (
+                          {isStickyCoreChartExpanded && (
                             <div className="relative h-32">
                               {(() => {
-                                const maxValue = Math.max(...unemploymentData.map(d => d.value))
-                                const minValue = Math.min(...unemploymentData.map(d => d.value))
+                                const maxValue = Math.max(...stickyCoreData.map(d => d.value))
+                                const minValue = Math.min(...stickyCoreData.map(d => d.value))
                                 const range = maxValue - minValue || 1
 
                                 return (
@@ -857,8 +974,8 @@ export default function DisplayPage() {
 
                                     {/* Line chart */}
                                     <polyline
-                                      points={unemploymentData.map((point, index) => {
-                                        const x = (index / (unemploymentData.length - 1)) * 380 + 10
+                                      points={stickyCoreData.map((point, index) => {
+                                        const x = (index / (stickyCoreData.length - 1)) * 380 + 10
                                         const y = 90 - ((point.value - minValue) / range) * 80
                                         return `${x},${y}`
                                       }).join(' ')}
@@ -868,8 +985,8 @@ export default function DisplayPage() {
                                     />
 
                                     {/* Data points */}
-                                    {unemploymentData.map((point, index) => {
-                                      const x = (index / (unemploymentData.length - 1)) * 380 + 10
+                                    {stickyCoreData.map((point, index) => {
+                                      const x = (index / (stickyCoreData.length - 1)) * 380 + 10
                                       const y = 90 - ((point.value - minValue) / range) * 80
                                       return (
                                         <g key={index}>
@@ -892,11 +1009,11 @@ export default function DisplayPage() {
                 </div>
             )}
 
-            {/* Unemployment Claims Section */}
+            {/* U.S. Unemployment Claims Section */}
             {!isLoading && !error && latestClaims !== null && (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
                       <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
                         <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
                           <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Claims:</p>
@@ -1003,138 +1120,24 @@ export default function DisplayPage() {
                 </div>
             )}
 
-            {/* 30-Year Mortgage Rate Section */}
-            {!isLoading && !error && latestMortgage !== null && (
+            {/* U.S. Unemployment Rate Section */}
+            {!isLoading && !error && latestUnemployment !== null && (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
                       <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
                         <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>30-Year Mortgage Rate:</p>
-                          <div className="flex items-end gap-2">
-                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Weekly)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestMortgage.toFixed(2)}%</p>
-                            {previousMortgage !== null && latestMortgage !== null && (
-                              <>
-                                {latestMortgage > previousMortgage && (
-                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
-                                )}
-                                {latestMortgage < previousMortgage && (
-                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
-                                )}
-                                {latestMortgage === previousMortgage && (
-                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
-                                )}
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        {viewMode !== 'mini' && (
-                          <p className="text-xs text-slate-500">
-                            Source: <a href="https://fred.stlouisfed.org/series/MORTGAGE30US/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Mortgage Rate Chart */}
-                      {viewMode !== 'mini' && mortgageData.length > 0 && (
-                        <div className="mt-4 pt-4 border-t border-slate-600">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs text-slate-400 font-semibold">24-Week Trend</span>
-                            <button
-                              onClick={() => setIsMortgageChartExpanded(!isMortgageChartExpanded)}
-                              className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                              aria-label={isMortgageChartExpanded ? "Collapse chart" : "Expand chart"}
-                            >
-                              <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                {isMortgageChartExpanded ? (
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                                ) : (
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                )}
-                              </svg>
-                            </button>
-                          </div>
-                          {isMortgageChartExpanded && (
-                            <div className="relative h-32">
-                              {(() => {
-                                const maxValue = Math.max(...mortgageData.map(d => d.value))
-                                const minValue = Math.min(...mortgageData.map(d => d.value))
-                                const range = maxValue - minValue || 1
-
-                                return (
-                                  <svg viewBox="0 0 400 100" className="w-full h-full">
-                                    {/* Grid lines */}
-                                    <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
-                                    <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
-                                    <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
-
-                                    {/* Line chart */}
-                                    <polyline
-                                      points={mortgageData.map((point, index) => {
-                                        const x = (index / (mortgageData.length - 1)) * 380 + 10
-                                        const y = 90 - ((point.value - minValue) / range) * 80
-                                        return `${x},${y}`
-                                      }).join(' ')}
-                                      fill="none"
-                                      stroke="#22d3ee"
-                                      strokeWidth="2"
-                                    />
-
-                                    {/* Data points */}
-                                    {mortgageData.map((point, index) => {
-                                      const x = (index / (mortgageData.length - 1)) * 380 + 10
-                                      const y = 90 - ((point.value - minValue) / range) * 80
-                                      const showLabel = index % 4 === 0 || index === mortgageData.length - 1
-                                      return (
-                                        <g key={index}>
-                                          <circle cx={x} cy={y} r="3" fill="#22d3ee" />
-                                          {showLabel && (
-                                            <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
-                                              {point.date}
-                                            </text>
-                                          )}
-                                        </g>
-                                      )
-                                    })}
-                                  </svg>
-                                )
-                              })()}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-            )}
-
-            {/* Sticky Core CPI Section */}
-            {!isLoading && !error && latestStickyCore !== null && (
-              <div className="mt-2.5">
-                <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-4 px-8'} border-2 bg-black border-green-400`}>
-                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Sticky Core CPI:</p>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Rate:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Monthly)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestStickyCore.toFixed(2)}%</p>
-                            {previousStickyCore !== null && latestStickyCore !== null && (
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestUnemployment.toFixed(1)}%</p>
+                            {previousUnemployment !== null && latestUnemployment !== null && (
                               <>
-                                {latestStickyCore > previousStickyCore && (
+                                {latestUnemployment > previousUnemployment && (
                                   <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
-                                {latestStickyCore < previousStickyCore && (
+                                {latestUnemployment < previousUnemployment && (
                                   <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
-                                )}
-                                {latestStickyCore === previousStickyCore && (
-                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
@@ -1142,20 +1145,20 @@ export default function DisplayPage() {
                         </div>
                         {viewMode !== 'mini' && (
                           <p className="text-xs text-slate-500">
-                            Source: <a href="https://fred.stlouisfed.org/series/CORESTICKM159SFRBATL/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                            Source: <a href="https://fred.stlouisfed.org/series/UNRATE/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                           </p>
                         )}
                       </div>
 
-                      {/* Sticky Core CPI Chart */}
-                      {viewMode !== 'mini' && stickyCoreData.length > 0 && (
+                      {/* Unemployment Rate Chart */}
+                      {viewMode !== 'mini' && unemploymentData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">12-Month Trend</span>
                             <button
-                              onClick={() => setIsStickyCoreChartExpanded(!isStickyCoreChartExpanded)}
+                              onClick={() => setIsUnemploymentChartExpanded(!isUnemploymentChartExpanded)}
                               className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                              aria-label={isStickyCoreChartExpanded ? "Collapse chart" : "Expand chart"}
+                              aria-label={isUnemploymentChartExpanded ? "Collapse chart" : "Expand chart"}
                             >
                               <svg
                                 className="w-4 h-4"
@@ -1163,7 +1166,7 @@ export default function DisplayPage() {
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                               >
-                                {isStickyCoreChartExpanded ? (
+                                {isUnemploymentChartExpanded ? (
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                                 ) : (
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1171,11 +1174,11 @@ export default function DisplayPage() {
                               </svg>
                             </button>
                           </div>
-                          {isStickyCoreChartExpanded && (
+                          {isUnemploymentChartExpanded && (
                             <div className="relative h-32">
                               {(() => {
-                                const maxValue = Math.max(...stickyCoreData.map(d => d.value))
-                                const minValue = Math.min(...stickyCoreData.map(d => d.value))
+                                const maxValue = Math.max(...unemploymentData.map(d => d.value))
+                                const minValue = Math.min(...unemploymentData.map(d => d.value))
                                 const range = maxValue - minValue || 1
 
                                 return (
@@ -1187,8 +1190,8 @@ export default function DisplayPage() {
 
                                     {/* Line chart */}
                                     <polyline
-                                      points={stickyCoreData.map((point, index) => {
-                                        const x = (index / (stickyCoreData.length - 1)) * 380 + 10
+                                      points={unemploymentData.map((point, index) => {
+                                        const x = (index / (unemploymentData.length - 1)) * 380 + 10
                                         const y = 90 - ((point.value - minValue) / range) * 80
                                         return `${x},${y}`
                                       }).join(' ')}
@@ -1198,8 +1201,8 @@ export default function DisplayPage() {
                                     />
 
                                     {/* Data points */}
-                                    {stickyCoreData.map((point, index) => {
-                                      const x = (index / (stickyCoreData.length - 1)) * 380 + 10
+                                    {unemploymentData.map((point, index) => {
+                                      const x = (index / (unemploymentData.length - 1)) * 380 + 10
                                       const y = 90 - ((point.value - minValue) / range) * 80
                                       return (
                                         <g key={index}>
