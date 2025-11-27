@@ -2,8 +2,8 @@ const fs = require('fs');
 const { createClient } = require('@supabase/supabase-js');
 
 // Initialize Supabase client
-const supabaseUrl = 'https://qojknttexykrmlqnkudv.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvamtudHRleHlrcm1scW5rdWR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMzMzQ4MjAsImV4cCI6MjA0ODkxMDgyMH0.PrYN-9iGFrXTGGHbZCnkLN2XRNXSK7tUnBUxjQb1YY8';
+const supabaseUrl = 'https://uzgnghfqkcktfjcreipr.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6Z25naGZxa2NrdGZqY3JlaXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI4NTg5ODIsImV4cCI6MjA3ODQzNDk4Mn0.XsB6gyeL6iwXOishQikPKVBGT40MOTxQokeMmtBX-7E';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const fredApiKey = '33b92820d805c914e12d2f2b9b2fec73';

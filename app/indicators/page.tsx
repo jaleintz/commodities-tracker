@@ -473,7 +473,7 @@ export default function DisplayPage() {
                   )
                 })}
 
-                <div className="w-full max-w-md rounded-lg p-4 border-2 mb-4 bg-black border-green-400">
+                <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
                   <div className="mb-3">
                     <div className="flex items-center justify-between">
                       <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>Staple Food Prices at Walmart:</p>
@@ -838,12 +838,15 @@ export default function DisplayPage() {
                                     {claimsData.map((point, index) => {
                                       const x = (index / (claimsData.length - 1)) * 380 + 10
                                       const y = 90 - ((point.value - minValue) / range) * 80
+                                      const showLabel = index % 4 === 0 || index === claimsData.length - 1
                                       return (
                                         <g key={index}>
                                           <circle cx={x} cy={y} r="3" fill="#22d3ee" />
-                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
-                                            {point.date}
-                                          </text>
+                                          {showLabel && (
+                                            <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                              {point.date}
+                                            </text>
+                                          )}
                                         </g>
                                       )
                                     })}
