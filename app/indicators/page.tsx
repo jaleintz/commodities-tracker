@@ -321,11 +321,36 @@ export default function DisplayPage() {
     setIsMonthChartExpanded(newState)
   }
 
+  const toggleAllCharts = () => {
+    const newState = !isMonthChartExpanded
+    setIsChartExpanded(newState)
+    setIsMonthChartExpanded(newState)
+    setIsUnemploymentChartExpanded(newState)
+  }
+
   return (
     <div className="min-h-screen bg-gray-900">
       <Navigation />
-      <div className="text-center pt-8">
+      <div className="flex items-center justify-center gap-4 pt-8">
         <h1 className="text-2xl font-light text-white tracking-widest">I N D I C A T O R S</h1>
+        <button
+          onClick={toggleAllCharts}
+          className="text-cyan-400 hover:text-cyan-300 transition-colors"
+          aria-label={isMonthChartExpanded ? "Collapse all charts" : "Expand all charts"}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isMonthChartExpanded ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            )}
+          </svg>
+        </button>
       </div>
       <div className="py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
