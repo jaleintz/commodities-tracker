@@ -37,6 +37,9 @@ export default function DisplayPage() {
   const [claimsData, setClaimsData] = useState<UnemploymentDataPoint[]>([])
   const [latestClaims, setLatestClaims] = useState<number | null>(null)
   const [previousClaims, setPreviousClaims] = useState<number | null>(null)
+  const [mortgageData, setMortgageData] = useState<UnemploymentDataPoint[]>([])
+  const [latestMortgage, setLatestMortgage] = useState<number | null>(null)
+  const [previousMortgage, setPreviousMortgage] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -44,6 +47,7 @@ export default function DisplayPage() {
   const [isMonthChartExpanded, setIsMonthChartExpanded] = useState(false)
   const [isUnemploymentChartExpanded, setIsUnemploymentChartExpanded] = useState(false)
   const [isClaimsChartExpanded, setIsClaimsChartExpanded] = useState(false)
+  const [isMortgageChartExpanded, setIsMortgageChartExpanded] = useState(false)
 
   useEffect(() => {
     fetchLatestPrices()
@@ -51,6 +55,7 @@ export default function DisplayPage() {
     fetchMonthChartData()
     fetchUnemploymentData()
     fetchClaimsData()
+    fetchMortgageData()
   }, [])
 
   const fetchChartData = async () => {
@@ -347,6 +352,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchMortgageData = async () => {
+    try {
+      // Fetch mortgage rate data from database
+      const { data: mortgageRecords, error: mortgageError } = await supabase
+        .from('fred_mortgage_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'MORTGAGE30US')
+        .order('observation_date', { ascending: false })
+        .limit(24) // Get last 24 weeks (about 6 months)
+
+      if (mortgageError) throw mortgageError
+
+      if (mortgageRecords && mortgageRecords.length > 0) {
+        // Set latest mortgage rate
+        setLatestMortgage(mortgageRecords[0].value)
+
+        // Set previous mortgage rate (if available)
+        if (mortgageRecords.length > 1) {
+          setPreviousMortgage(mortgageRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = mortgageRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getDate()}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setMortgageData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching mortgage data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -369,6 +411,7 @@ export default function DisplayPage() {
     setIsMonthChartExpanded(newState)
     setIsUnemploymentChartExpanded(newState)
     setIsClaimsChartExpanded(newState)
+    setIsMortgageChartExpanded(newState)
   }
 
   return (
@@ -839,6 +882,115 @@ export default function DisplayPage() {
                                       const x = (index / (claimsData.length - 1)) * 380 + 10
                                       const y = 90 - ((point.value - minValue) / range) * 80
                                       const showLabel = index % 4 === 0 || index === claimsData.length - 1
+                                      return (
+                                        <g key={index}>
+                                          <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                          {showLabel && (
+                                            <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                              {point.date}
+                                            </text>
+                                          )}
+                                        </g>
+                                      )
+                                    })}
+                                  </svg>
+                                )
+                              })()}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+            )}
+
+            {/* 30-Year Mortgage Rate Section */}
+            {!isLoading && !error && latestMortgage !== null && (
+              <div className="mt-6">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="w-full max-w-md rounded-lg p-4 border-2 bg-black border-green-400">
+                      <div className="mb-2">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-lg font-semibold" style={{ color: 'rgb(0, 197, 255)' }}>30-Year Mortgage Rate:</p>
+                          <div className="flex items-end gap-2">
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Weekly)</p>
+                            <p className="text-lg font-bold text-white">{latestMortgage.toFixed(2)}%</p>
+                            {previousMortgage !== null && latestMortgage !== null && (
+                              <>
+                                {latestMortgage > previousMortgage && (
+                                  <i className="fas fa-arrow-trend-up text-red-400 text-lg"></i>
+                                )}
+                                {latestMortgage < previousMortgage && (
+                                  <i className="fas fa-arrow-trend-down text-green-400 text-lg"></i>
+                                )}
+                                {latestMortgage === previousMortgage && (
+                                  <i className="fas fa-arrow-right text-cyan-400 text-lg"></i>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/MORTGAGE30US/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      </div>
+
+                      {/* Mortgage Rate Chart */}
+                      {mortgageData.length > 0 && (
+                        <div className="mt-4 pt-4 border-t border-slate-600">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-slate-400 font-semibold">24-Week Trend</span>
+                            <button
+                              onClick={() => setIsMortgageChartExpanded(!isMortgageChartExpanded)}
+                              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                              aria-label={isMortgageChartExpanded ? "Collapse chart" : "Expand chart"}
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                {isMortgageChartExpanded ? (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                ) : (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                )}
+                              </svg>
+                            </button>
+                          </div>
+                          {isMortgageChartExpanded && (
+                            <div className="relative h-32">
+                              {(() => {
+                                const maxValue = Math.max(...mortgageData.map(d => d.value))
+                                const minValue = Math.min(...mortgageData.map(d => d.value))
+                                const range = maxValue - minValue || 1
+
+                                return (
+                                  <svg viewBox="0 0 400 100" className="w-full h-full">
+                                    {/* Grid lines */}
+                                    <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                    <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                    <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                    {/* Line chart */}
+                                    <polyline
+                                      points={mortgageData.map((point, index) => {
+                                        const x = (index / (mortgageData.length - 1)) * 380 + 10
+                                        const y = 90 - ((point.value - minValue) / range) * 80
+                                        return `${x},${y}`
+                                      }).join(' ')}
+                                      fill="none"
+                                      stroke="#22d3ee"
+                                      strokeWidth="2"
+                                    />
+
+                                    {/* Data points */}
+                                    {mortgageData.map((point, index) => {
+                                      const x = (index / (mortgageData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      const showLabel = index % 4 === 0 || index === mortgageData.length - 1
                                       return (
                                         <g key={index}>
                                           <circle cx={x} cy={y} r="3" fill="#22d3ee" />

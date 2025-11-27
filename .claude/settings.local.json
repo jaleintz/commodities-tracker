@@ -14,7 +14,8 @@
       "Bash(git push:*)",
       "Bash(node fetch-unemployment.js:*)",
       "Bash(node import-unemployment.js:*)",
-      "Bash(node import-claims.js:*)"
+      "Bash(node import-claims.js:*)",
+      "Bash(node import-mortgage.js:*)"
     ],
     "deny": [],
     "ask": []
