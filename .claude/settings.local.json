@@ -22,7 +22,9 @@
       "Bash(node import-wti.js:*)",
       "Bash(node import-houseprice.js:*)",
       "Bash(node import-jobopenings.js:*)",
-      "Bash(node import-activelistings.js:*)"
+      "Bash(node import-activelistings.js:*)",
+      "Bash(node import-m2.js:*)",
+      "Bash(node import-consumersentiment.js:*)"
     ],
     "deny": [],
     "ask": []

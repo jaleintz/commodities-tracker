@@ -55,6 +55,12 @@ export default function DisplayPage() {
   const [activeListingsData, setActiveListingsData] = useState<UnemploymentDataPoint[]>([])
   const [latestActiveListings, setLatestActiveListings] = useState<number | null>(null)
   const [previousActiveListings, setPreviousActiveListings] = useState<number | null>(null)
+  const [m2Data, setM2Data] = useState<UnemploymentDataPoint[]>([])
+  const [latestM2, setLatestM2] = useState<number | null>(null)
+  const [previousM2, setPreviousM2] = useState<number | null>(null)
+  const [consumerSentimentData, setConsumerSentimentData] = useState<UnemploymentDataPoint[]>([])
+  const [latestConsumerSentiment, setLatestConsumerSentiment] = useState<number | null>(null)
+  const [previousConsumerSentiment, setPreviousConsumerSentiment] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -68,6 +74,8 @@ export default function DisplayPage() {
   const [isHousePriceChartExpanded, setIsHousePriceChartExpanded] = useState(false)
   const [isJobOpeningsChartExpanded, setIsJobOpeningsChartExpanded] = useState(false)
   const [isActiveListingsChartExpanded, setIsActiveListingsChartExpanded] = useState(false)
+  const [isM2ChartExpanded, setIsM2ChartExpanded] = useState(false)
+  const [isConsumerSentimentChartExpanded, setIsConsumerSentimentChartExpanded] = useState(false)
   const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
 
   useEffect(() => {
@@ -82,6 +90,8 @@ export default function DisplayPage() {
     fetchHousePriceData()
     fetchJobOpeningsData()
     fetchActiveListingsData()
+    fetchM2Data()
+    fetchConsumerSentimentData()
   }, [])
 
   const fetchChartData = async () => {
@@ -600,6 +610,80 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchM2Data = async () => {
+    try {
+      // Fetch M2 money stock data from database
+      const { data: m2Records, error: m2Error } = await supabase
+        .from('fred_m2_money_stock_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'M2SL')
+        .order('observation_date', { ascending: false })
+        .limit(60) // Get last 60 months (5 years)
+
+      if (m2Error) throw m2Error
+
+      if (m2Records && m2Records.length > 0) {
+        // Set latest M2
+        setLatestM2(m2Records[0].value)
+
+        // Set previous M2 (if available)
+        if (m2Records.length > 1) {
+          setPreviousM2(m2Records[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = m2Records.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setM2Data(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching M2 data:', error)
+    }
+  }
+
+  const fetchConsumerSentimentData = async () => {
+    try {
+      // Fetch consumer sentiment data from database
+      const { data: sentimentRecords, error: sentimentError } = await supabase
+        .from('fred_consumer_sentiment_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'UMCSENT')
+        .order('observation_date', { ascending: false })
+        .limit(60) // Get last 60 months (5 years)
+
+      if (sentimentError) throw sentimentError
+
+      if (sentimentRecords && sentimentRecords.length > 0) {
+        // Set latest consumer sentiment
+        setLatestConsumerSentiment(sentimentRecords[0].value)
+
+        // Set previous consumer sentiment (if available)
+        if (sentimentRecords.length > 1) {
+          setPreviousConsumerSentiment(sentimentRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = sentimentRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setConsumerSentimentData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching consumer sentiment data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -641,6 +725,8 @@ export default function DisplayPage() {
       setIsHousePriceChartExpanded(false)
       setIsJobOpeningsChartExpanded(false)
       setIsActiveListingsChartExpanded(false)
+      setIsM2ChartExpanded(false)
+      setIsConsumerSentimentChartExpanded(false)
     }
   }
 
@@ -660,6 +746,8 @@ export default function DisplayPage() {
       setIsHousePriceChartExpanded(true)
       setIsJobOpeningsChartExpanded(true)
       setIsActiveListingsChartExpanded(true)
+      setIsM2ChartExpanded(true)
+      setIsConsumerSentimentChartExpanded(true)
     }
   }
 
@@ -1049,6 +1137,117 @@ export default function DisplayPage() {
               </div>
           )}
 
+          {/* Consumer Sentiment Section */}
+          {!isLoading && !error && latestConsumerSentiment !== null && (
+            <div className="mt-2.5">
+              <div className="flex flex-col items-center space-y-4">
+                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Consumer Sentiment:</p>
+                        <div className="flex items-end gap-2">
+                          <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
+                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestConsumerSentiment.toFixed(1)}</p>
+                          {previousConsumerSentiment !== null && latestConsumerSentiment !== null && (
+                            <>
+                              {latestConsumerSentiment > previousConsumerSentiment && (
+                                <i className={`fas fa-arrow-trend-up text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestConsumerSentiment < previousConsumerSentiment && (
+                                <i className={`fas fa-arrow-trend-down text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestConsumerSentiment === previousConsumerSentiment && (
+                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {viewMode !== 'mini' && (
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/UMCSENT/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Consumer Sentiment Chart */}
+                    {viewMode !== 'mini' && consumerSentimentData.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-slate-600">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-slate-400 font-semibold">5-Year Trend</span>
+                          <button
+                            onClick={() => setIsConsumerSentimentChartExpanded(!isConsumerSentimentChartExpanded)}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                            aria-label={isConsumerSentimentChartExpanded ? "Collapse chart" : "Expand chart"}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              {isConsumerSentimentChartExpanded ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              )}
+                            </svg>
+                          </button>
+                        </div>
+                        {isConsumerSentimentChartExpanded && (
+                          <div className="relative h-32">
+                            {(() => {
+                              const maxValue = Math.max(...consumerSentimentData.map(d => d.value))
+                              const minValue = Math.min(...consumerSentimentData.map(d => d.value))
+                              const range = maxValue - minValue || 1
+
+                              return (
+                                <svg viewBox="0 0 400 100" className="w-full h-full">
+                                  {/* Grid lines */}
+                                  <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                  <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                  <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                  {/* Line chart */}
+                                  <polyline
+                                    points={consumerSentimentData.map((point, index) => {
+                                      const x = (index / (consumerSentimentData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return `${x},${y}`
+                                    }).join(' ')}
+                                    fill="none"
+                                    stroke="#22d3ee"
+                                    strokeWidth="2"
+                                  />
+
+                                  {/* Data points */}
+                                  {consumerSentimentData.map((point, index) => {
+                                    const x = (index / (consumerSentimentData.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.value - minValue) / range) * 80
+                                    const showLabel = index % 10 === 0 || index === consumerSentimentData.length - 1
+                                    return (
+                                      <g key={index}>
+                                        <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                        {showLabel && (
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
+                                        )}
+                                      </g>
+                                    )
+                                  })}
+                                </svg>
+                              )
+                            })()}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+          )}
+
           {/* Job Openings Section */}
           {!isLoading && !error && latestJobOpenings !== null && (
             <div className="mt-2.5">
@@ -1137,6 +1336,129 @@ export default function DisplayPage() {
                                     const x = (index / (jobOpeningsData.length - 1)) * 380 + 10
                                     const y = 90 - ((point.value - minValue) / range) * 80
                                     const showLabel = index % 10 === 0 || index === jobOpeningsData.length - 1
+                                    return (
+                                      <g key={index}>
+                                        <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                        {showLabel && (
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
+                                        )}
+                                      </g>
+                                    )
+                                  })}
+                                </svg>
+                              )
+                            })()}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+          )}
+
+          {/* M2 Money Stock Section */}
+          {!isLoading && !error && latestM2 !== null && (
+            <div className="mt-2.5">
+              <div className="flex flex-col items-center space-y-4">
+                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <div className="flex items-baseline gap-2">
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>M2 Money Stock:</p>
+                          {m2Data.length >= 13 && (
+                            <p className="text-xs text-slate-400">
+                              Growth = {(() => {
+                                const latest = m2Data[m2Data.length - 1].value
+                                const yearAgo = m2Data[m2Data.length - 13].value
+                                const growth = ((latest - yearAgo) / yearAgo * 100).toFixed(2)
+                                return `${growth}%`
+                              })()}
+                            </p>
+                          )}
+                        </div>
+                        <div className="flex items-end gap-2">
+                          <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
+                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${(latestM2 / 1000).toFixed(2)}T</p>
+                          {previousM2 !== null && latestM2 !== null && (
+                            <>
+                              {latestM2 > previousM2 && (
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestM2 < previousM2 && (
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestM2 === previousM2 && (
+                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {viewMode !== 'mini' && (
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/M2SL/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      )}
+                    </div>
+
+                    {/* M2 Money Stock Chart */}
+                    {viewMode !== 'mini' && m2Data.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-slate-600">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-slate-400 font-semibold">5-Year Trend</span>
+                          <button
+                            onClick={() => setIsM2ChartExpanded(!isM2ChartExpanded)}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                            aria-label={isM2ChartExpanded ? "Collapse chart" : "Expand chart"}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              {isM2ChartExpanded ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              )}
+                            </svg>
+                          </button>
+                        </div>
+                        {isM2ChartExpanded && (
+                          <div className="relative h-32">
+                            {(() => {
+                              const maxValue = Math.max(...m2Data.map(d => d.value))
+                              const minValue = Math.min(...m2Data.map(d => d.value))
+                              const range = maxValue - minValue || 1
+
+                              return (
+                                <svg viewBox="0 0 400 100" className="w-full h-full">
+                                  {/* Grid lines */}
+                                  <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                  <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                  <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                  {/* Line chart */}
+                                  <polyline
+                                    points={m2Data.map((point, index) => {
+                                      const x = (index / (m2Data.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return `${x},${y}`
+                                    }).join(' ')}
+                                    fill="none"
+                                    stroke="#22d3ee"
+                                    strokeWidth="2"
+                                  />
+
+                                  {/* Data points */}
+                                  {m2Data.map((point, index) => {
+                                    const x = (index / (m2Data.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.value - minValue) / range) * 80
+                                    const showLabel = index % 10 === 0 || index === m2Data.length - 1
                                     return (
                                       <g key={index}>
                                         <circle cx={x} cy={y} r="3" fill="#22d3ee" />
