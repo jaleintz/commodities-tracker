@@ -49,6 +49,9 @@ export default function DisplayPage() {
   const [housePriceData, setHousePriceData] = useState<UnemploymentDataPoint[]>([])
   const [latestHousePrice, setLatestHousePrice] = useState<number | null>(null)
   const [previousHousePrice, setPreviousHousePrice] = useState<number | null>(null)
+  const [jobOpeningsData, setJobOpeningsData] = useState<UnemploymentDataPoint[]>([])
+  const [latestJobOpenings, setLatestJobOpenings] = useState<number | null>(null)
+  const [previousJobOpenings, setPreviousJobOpenings] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -60,6 +63,7 @@ export default function DisplayPage() {
   const [isStickyCoreChartExpanded, setIsStickyCoreChartExpanded] = useState(false)
   const [isWtiChartExpanded, setIsWtiChartExpanded] = useState(false)
   const [isHousePriceChartExpanded, setIsHousePriceChartExpanded] = useState(false)
+  const [isJobOpeningsChartExpanded, setIsJobOpeningsChartExpanded] = useState(false)
   const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
 
   useEffect(() => {
@@ -72,6 +76,7 @@ export default function DisplayPage() {
     fetchStickyCoreData()
     fetchWtiData()
     fetchHousePriceData()
+    fetchJobOpeningsData()
   }, [])
 
   const fetchChartData = async () => {
@@ -516,6 +521,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchJobOpeningsData = async () => {
+    try {
+      // Fetch job openings data from database
+      const { data: jobOpeningsRecords, error: jobOpeningsError } = await supabase
+        .from('fred_job_openings_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'JTSJOL')
+        .order('observation_date', { ascending: false })
+        .limit(60) // Get last 60 months (5 years)
+
+      if (jobOpeningsError) throw jobOpeningsError
+
+      if (jobOpeningsRecords && jobOpeningsRecords.length > 0) {
+        // Set latest job openings
+        setLatestJobOpenings(jobOpeningsRecords[0].value)
+
+        // Set previous job openings (if available)
+        if (jobOpeningsRecords.length > 1) {
+          setPreviousJobOpenings(jobOpeningsRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = jobOpeningsRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setJobOpeningsData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching job openings data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -555,6 +597,7 @@ export default function DisplayPage() {
       setIsStickyCoreChartExpanded(false)
       setIsWtiChartExpanded(false)
       setIsHousePriceChartExpanded(false)
+      setIsJobOpeningsChartExpanded(false)
     }
   }
 
@@ -572,6 +615,7 @@ export default function DisplayPage() {
       setIsStickyCoreChartExpanded(true)
       setIsWtiChartExpanded(true)
       setIsHousePriceChartExpanded(true)
+      setIsJobOpeningsChartExpanded(true)
     }
   }
 
@@ -638,7 +682,7 @@ export default function DisplayPage() {
                     <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
                       <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>30-Year Mortgage Rate:</p>
                       <div className="flex items-end gap-2">
-                        <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Weekly)</p>
+                        <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Weekly)</p>
                         <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestMortgage.toFixed(2)}%</p>
                         {previousMortgage !== null && latestMortgage !== null && (
                           <>
@@ -748,15 +792,15 @@ export default function DisplayPage() {
                       <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
                         <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Average Price of Houses:</p>
                         <div className="flex items-end gap-2">
-                          <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Quarterly)</p>
+                          <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Quarterly)</p>
                           <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestHousePrice.toLocaleString()}</p>
                           {previousHousePrice !== null && latestHousePrice !== null && (
                             <>
                               {latestHousePrice > previousHousePrice && (
-                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestHousePrice < previousHousePrice && (
-                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestHousePrice === previousHousePrice && (
                                 <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
@@ -827,6 +871,117 @@ export default function DisplayPage() {
                                     const x = (index / (housePriceData.length - 1)) * 380 + 10
                                     const y = 90 - ((point.value - minValue) / range) * 80
                                     const showLabel = index % 6 === 0 || index === housePriceData.length - 1
+                                    return (
+                                      <g key={index}>
+                                        <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                        {showLabel && (
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
+                                        )}
+                                      </g>
+                                    )
+                                  })}
+                                </svg>
+                              )
+                            })()}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+          )}
+
+          {/* Job Openings Section */}
+          {!isLoading && !error && latestJobOpenings !== null && (
+            <div className="mt-2.5">
+              <div className="flex flex-col items-center space-y-4">
+                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Job Openings:</p>
+                        <div className="flex items-end gap-2">
+                          <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
+                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{(latestJobOpenings / 1000).toFixed(2)}M</p>
+                          {previousJobOpenings !== null && latestJobOpenings !== null && (
+                            <>
+                              {latestJobOpenings > previousJobOpenings && (
+                                <i className={`fas fa-arrow-trend-up text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestJobOpenings < previousJobOpenings && (
+                                <i className={`fas fa-arrow-trend-down text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestJobOpenings === previousJobOpenings && (
+                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {viewMode !== 'mini' && (
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/JTSJOL/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Job Openings Chart */}
+                    {viewMode !== 'mini' && jobOpeningsData.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-slate-600">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-slate-400 font-semibold">5-Year Trend</span>
+                          <button
+                            onClick={() => setIsJobOpeningsChartExpanded(!isJobOpeningsChartExpanded)}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                            aria-label={isJobOpeningsChartExpanded ? "Collapse chart" : "Expand chart"}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              {isJobOpeningsChartExpanded ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              )}
+                            </svg>
+                          </button>
+                        </div>
+                        {isJobOpeningsChartExpanded && (
+                          <div className="relative h-32">
+                            {(() => {
+                              const maxValue = Math.max(...jobOpeningsData.map(d => d.value))
+                              const minValue = Math.min(...jobOpeningsData.map(d => d.value))
+                              const range = maxValue - minValue || 1
+
+                              return (
+                                <svg viewBox="0 0 400 100" className="w-full h-full">
+                                  {/* Grid lines */}
+                                  <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                  <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                  <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                  {/* Line chart */}
+                                  <polyline
+                                    points={jobOpeningsData.map((point, index) => {
+                                      const x = (index / (jobOpeningsData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return `${x},${y}`
+                                    }).join(' ')}
+                                    fill="none"
+                                    stroke="#22d3ee"
+                                    strokeWidth="2"
+                                  />
+
+                                  {/* Data points */}
+                                  {jobOpeningsData.map((point, index) => {
+                                    const x = (index / (jobOpeningsData.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.value - minValue) / range) * 80
+                                    const showLabel = index % 10 === 0 || index === jobOpeningsData.length - 1
                                     return (
                                       <g key={index}>
                                         <circle cx={x} cy={y} r="3" fill="#22d3ee" />
@@ -927,7 +1082,7 @@ export default function DisplayPage() {
 
                         return (
                           <div className="flex items-end gap-2">
-                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Daily)</p>
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Daily)</p>
                             <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{dailyChange > 0 ? '+' : ''}{dailyPercentage}%</p>
                             {dailyChange < 0 && (
                               <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
@@ -1109,7 +1264,7 @@ export default function DisplayPage() {
                         <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
                           <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Sticky Core CPI:</p>
                           <div className="flex items-end gap-2">
-                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Monthly)</p>
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
                             <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestStickyCore.toFixed(2)}%</p>
                             {previousStickyCore !== null && latestStickyCore !== null && (
                               <>
@@ -1217,7 +1372,7 @@ export default function DisplayPage() {
                         <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
                           <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Claims:</p>
                           <div className="flex items-end gap-2">
-                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Weekly)</p>
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Weekly)</p>
                             <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestClaims.toLocaleString()}</p>
                             {previousClaims !== null && latestClaims !== null && (
                               <>
@@ -1328,7 +1483,7 @@ export default function DisplayPage() {
                         <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
                           <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Rate:</p>
                           <div className="flex items-end gap-2">
-                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Monthly)</p>
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
                             <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestUnemployment.toFixed(1)}%</p>
                             {previousUnemployment !== null && latestUnemployment !== null && (
                               <>
@@ -1433,7 +1588,7 @@ export default function DisplayPage() {
                         <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
                           <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>WTI Crude Oil:</p>
                           <div className="flex items-end gap-2">
-                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Daily)</p>
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Daily)</p>
                             <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestWti.toFixed(2)}</p>
                             {previousWti !== null && latestWti !== null && (
                               <>

@@ -1,0 +1,32 @@
+name: Update Job Openings Data
+
+on:
+  schedule:
+    # Run at 7:00 PM Central Time (1:00 AM UTC next day during CST, 12:00 AM UTC during CDT)
+    # Using 1:00 AM UTC to cover CST (UTC-6)
+    - cron: '0 1 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-jobopenings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js
+
+      - name: Fetch and Import Job Openings Data
+        run: node import-jobopenings.js
+        env:
+          NODE_ENV: production
+
+      - name: Log completion
+        run: echo "Job openings data update completed at $(date)"
