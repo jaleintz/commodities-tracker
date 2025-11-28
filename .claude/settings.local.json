@@ -24,7 +24,8 @@
       "Bash(node import-jobopenings.js:*)",
       "Bash(node import-activelistings.js:*)",
       "Bash(node import-m2.js:*)",
-      "Bash(node import-consumersentiment.js:*)"
+      "Bash(node import-consumersentiment.js:*)",
+      "Bash(node import-vix.js:*)"
     ],
     "deny": [],
     "ask": []

@@ -61,6 +61,9 @@ export default function DisplayPage() {
   const [consumerSentimentData, setConsumerSentimentData] = useState<UnemploymentDataPoint[]>([])
   const [latestConsumerSentiment, setLatestConsumerSentiment] = useState<number | null>(null)
   const [previousConsumerSentiment, setPreviousConsumerSentiment] = useState<number | null>(null)
+  const [vixData, setVixData] = useState<UnemploymentDataPoint[]>([])
+  const [latestVix, setLatestVix] = useState<number | null>(null)
+  const [previousVix, setPreviousVix] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -76,6 +79,7 @@ export default function DisplayPage() {
   const [isActiveListingsChartExpanded, setIsActiveListingsChartExpanded] = useState(false)
   const [isM2ChartExpanded, setIsM2ChartExpanded] = useState(false)
   const [isConsumerSentimentChartExpanded, setIsConsumerSentimentChartExpanded] = useState(false)
+  const [isVixChartExpanded, setIsVixChartExpanded] = useState(false)
   const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
 
   useEffect(() => {
@@ -92,6 +96,7 @@ export default function DisplayPage() {
     fetchActiveListingsData()
     fetchM2Data()
     fetchConsumerSentimentData()
+    fetchVixData()
   }, [])
 
   const fetchChartData = async () => {
@@ -684,6 +689,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchVixData = async () => {
+    try {
+      // Fetch VIX data from database
+      const { data: vixRecords, error: vixError } = await supabase
+        .from('fred_vix_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'VIXCLS')
+        .order('observation_date', { ascending: false })
+        .limit(365) // Get last year of daily data
+
+      if (vixError) throw vixError
+
+      if (vixRecords && vixRecords.length > 0) {
+        // Set latest VIX
+        setLatestVix(vixRecords[0].value)
+
+        // Set previous VIX (if available)
+        if (vixRecords.length > 1) {
+          setPreviousVix(vixRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = vixRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getDate()}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setVixData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching VIX data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -727,6 +769,7 @@ export default function DisplayPage() {
       setIsActiveListingsChartExpanded(false)
       setIsM2ChartExpanded(false)
       setIsConsumerSentimentChartExpanded(false)
+      setIsVixChartExpanded(false)
     }
   }
 
@@ -748,6 +791,7 @@ export default function DisplayPage() {
       setIsActiveListingsChartExpanded(true)
       setIsM2ChartExpanded(true)
       setIsConsumerSentimentChartExpanded(true)
+      setIsVixChartExpanded(true)
     }
   }
 
@@ -2041,6 +2085,117 @@ export default function DisplayPage() {
                                           <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
                                             {point.date}
                                           </text>
+                                        </g>
+                                      )
+                                    })}
+                                  </svg>
+                                )
+                              })()}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+            )}
+
+            {/* VIX Section */}
+            {!isLoading && !error && latestVix !== null && (
+              <div className="mt-2.5">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>VIX:</p>
+                          <div className="flex items-end gap-2">
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Daily)</p>
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestVix.toFixed(2)}</p>
+                            {previousVix !== null && latestVix !== null && (
+                              <>
+                                {latestVix > previousVix && (
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                )}
+                                {latestVix < previousVix && (
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                )}
+                                {latestVix === previousVix && (
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        {viewMode !== 'mini' && (
+                          <p className="text-xs text-slate-500">
+                            Source: <a href="https://fred.stlouisfed.org/series/VIXCLS/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                          </p>
+                        )}
+                      </div>
+
+                      {/* VIX Chart */}
+                      {viewMode !== 'mini' && vixData.length > 0 && (
+                        <div className="mt-4 pt-4 border-t border-slate-600">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-slate-400 font-semibold">1-Year Trend</span>
+                            <button
+                              onClick={() => setIsVixChartExpanded(!isVixChartExpanded)}
+                              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                              aria-label={isVixChartExpanded ? "Collapse chart" : "Expand chart"}
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                {isVixChartExpanded ? (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                ) : (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                )}
+                              </svg>
+                            </button>
+                          </div>
+                          {isVixChartExpanded && (
+                            <div className="relative h-32">
+                              {(() => {
+                                const maxValue = Math.max(...vixData.map(d => d.value))
+                                const minValue = Math.min(...vixData.map(d => d.value))
+                                const range = maxValue - minValue || 1
+
+                                return (
+                                  <svg viewBox="0 0 400 100" className="w-full h-full">
+                                    {/* Grid lines */}
+                                    <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                    <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                    <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                    {/* Line chart */}
+                                    <polyline
+                                      points={vixData.map((point, index) => {
+                                        const x = (index / (vixData.length - 1)) * 380 + 10
+                                        const y = 90 - ((point.value - minValue) / range) * 80
+                                        return `${x},${y}`
+                                      }).join(' ')}
+                                      fill="none"
+                                      stroke="#22d3ee"
+                                      strokeWidth="2"
+                                    />
+
+                                    {/* Data points */}
+                                    {vixData.map((point, index) => {
+                                      const x = (index / (vixData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      const showLabel = index % 60 === 0 || index === vixData.length - 1
+                                      return (
+                                        <g key={index}>
+                                          <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                          {showLabel && (
+                                            <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                              {point.date}
+                                            </text>
+                                          )}
                                         </g>
                                       )
                                     })}
