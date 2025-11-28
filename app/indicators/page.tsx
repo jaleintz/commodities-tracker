@@ -73,6 +73,9 @@ export default function DisplayPage() {
   const [realGDPData, setRealGDPData] = useState<UnemploymentDataPoint[]>([])
   const [latestRealGDP, setLatestRealGDP] = useState<number | null>(null)
   const [previousRealGDP, setPreviousRealGDP] = useState<number | null>(null)
+  const [treasury10YData, setTreasury10YData] = useState<UnemploymentDataPoint[]>([])
+  const [latestTreasury10Y, setLatestTreasury10Y] = useState<number | null>(null)
+  const [previousTreasury10Y, setPreviousTreasury10Y] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -92,6 +95,7 @@ export default function DisplayPage() {
   const [isInflationChartExpanded, setIsInflationChartExpanded] = useState(false)
   const [isFedFundsChartExpanded, setIsFedFundsChartExpanded] = useState(false)
   const [isRealGDPChartExpanded, setIsRealGDPChartExpanded] = useState(false)
+  const [isTreasury10YChartExpanded, setIsTreasury10YChartExpanded] = useState(false)
   const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
   const [showViewModeArrows, setShowViewModeArrows] = useState(true)
 
@@ -122,6 +126,7 @@ export default function DisplayPage() {
     fetchInflationData()
     fetchFedFundsData()
     fetchRealGDPData()
+    fetch10YearTreasuryData()
   }, [])
 
   const fetchChartData = async () => {
@@ -863,6 +868,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetch10YearTreasuryData = async () => {
+    try {
+      // Fetch 10-Year Treasury data from database
+      const { data: treasuryRecords, error: treasuryError } = await supabase
+        .from('fred_10_year_treasury_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'DGS10')
+        .order('observation_date', { ascending: false })
+        .limit(365) // Get last year of daily data
+
+      if (treasuryError) throw treasuryError
+
+      if (treasuryRecords && treasuryRecords.length > 0) {
+        // Set latest 10-Year Treasury Yield
+        setLatestTreasury10Y(treasuryRecords[0].value)
+
+        // Set previous 10-Year Treasury Yield (if available)
+        if (treasuryRecords.length > 1) {
+          setPreviousTreasury10Y(treasuryRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = treasuryRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getDate()}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setTreasury10YData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching 10-Year Treasury data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -910,6 +952,7 @@ export default function DisplayPage() {
       setIsInflationChartExpanded(false)
       setIsFedFundsChartExpanded(false)
       setIsRealGDPChartExpanded(false)
+      setIsTreasury10YChartExpanded(false)
     }
   }
 
@@ -935,6 +978,7 @@ export default function DisplayPage() {
       setIsInflationChartExpanded(true)
       setIsFedFundsChartExpanded(true)
       setIsRealGDPChartExpanded(true)
+      setIsTreasury10YChartExpanded(true)
     }
   }
 
@@ -1026,9 +1070,121 @@ export default function DisplayPage() {
             </div>
           )}
 
+          {/* 10-Year Treasury Section */}
+          {!isLoading && !error && latestTreasury10Y !== null && (
+            <div className="mt-2.5">
+              <div className="flex flex-col items-center space-y-4">
+                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>10-Year Treasury:</p>
+                        <div className="flex items-end gap-2">
+                          <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Daily)</p>
+                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestTreasury10Y.toFixed(2)}%</p>
+                          {previousTreasury10Y !== null && latestTreasury10Y !== null && (
+                            <>
+                              {latestTreasury10Y > previousTreasury10Y && (
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestTreasury10Y < previousTreasury10Y && (
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestTreasury10Y === previousTreasury10Y && (
+                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {viewMode !== 'mini' && (
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/DGS10/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      )}
+                    </div>
+
+                    {/* 10-Year Treasury Chart */}
+                    {viewMode !== 'mini' && treasury10YData.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-slate-600">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-slate-400 font-semibold">1-Year Trend</span>
+                          <button
+                            onClick={() => setIsTreasury10YChartExpanded(!isTreasury10YChartExpanded)}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                            aria-label={isTreasury10YChartExpanded ? "Collapse chart" : "Expand chart"}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              {isTreasury10YChartExpanded ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              )}
+                            </svg>
+                          </button>
+                        </div>
+                        {isTreasury10YChartExpanded && (
+                          <div className="relative h-32">
+                            {(() => {
+                              const maxValue = Math.max(...treasury10YData.map(d => d.value))
+                              const minValue = Math.min(...treasury10YData.map(d => d.value))
+                              const range = maxValue - minValue || 1
+
+                              return (
+                                <svg viewBox="0 0 400 100" className="w-full h-full">
+                                  {/* Grid lines */}
+                                  <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                  <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                  <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                  {/* Line chart */}
+                                  <polyline
+                                    points={treasury10YData.map((point, index) => {
+                                      const x = (index / (treasury10YData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return `${x},${y}`
+                                    }).join(' ')}
+                                    fill="none"
+                                    stroke="#22d3ee"
+                                    strokeWidth="2"
+                                  />
+
+                                  {/* Data points */}
+                                  {treasury10YData.map((point, index) => {
+                                    const x = (index / (treasury10YData.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.value - minValue) / range) * 80
+                                    const showLabel = index % 60 === 0 || index === treasury10YData.length - 1
+                                    return (
+                                      <g key={index}>
+                                        <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                        {showLabel && (
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
+                                        )}
+                                      </g>
+                                    )
+                                  })}
+                                </svg>
+                              )
+                            })()}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+          )}
+
           {/* 30-Year Mortgage Rate Section */}
           {!isLoading && !error && latestMortgage !== null && (
-            <div className="flex flex-col items-center space-y-4">
+            <div className="mt-2.5">
+              <div className="flex flex-col items-center space-y-4">
               <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
                   <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
                     <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
@@ -1133,6 +1289,7 @@ export default function DisplayPage() {
                   )}
                 </div>
               </div>
+            </div>
           )}
 
           {/* Active Listing Count Section */}
@@ -2400,18 +2557,18 @@ export default function DisplayPage() {
                   <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
                       <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
                         <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <div>
-                            <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Real GDP:</p>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>
+                            Real GDP:
                             {previousRealGDP !== null && latestRealGDP !== null && (
-                              <p className="text-xs text-slate-400">
-                                Annualized = {(() => {
+                              <span className="text-xs text-slate-400 font-normal ml-2">
+                                Growth = {(() => {
                                   const quarterlyChange = (latestRealGDP - previousRealGDP) / previousRealGDP
                                   const annualized = (Math.pow(1 + quarterlyChange, 4) - 1) * 100
                                   return `${annualized.toFixed(2)}%`
                                 })()}
-                              </p>
+                              </span>
                             )}
-                          </div>
+                          </p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Quarterly)</p>
                             <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestRealGDP.toFixed(2)}B</p>

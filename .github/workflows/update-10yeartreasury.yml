@@ -1,0 +1,32 @@
+name: Update 10-Year Treasury Data
+
+on:
+  schedule:
+    # Run at 4:00 PM Central Time (10:00 PM UTC during CST, 9:00 PM UTC during CDT)
+    # Using 10:00 PM UTC to cover CST (UTC-6)
+    - cron: '0 22 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-10yeartreasury:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js
+
+      - name: Fetch and Import 10-Year Treasury Data
+        run: node import-10yeartreasury.js
+        env:
+          NODE_ENV: production
+
+      - name: Log completion
+        run: echo "10-Year Treasury data update completed at $(date)"
