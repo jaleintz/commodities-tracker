@@ -1,0 +1,32 @@
+name: Update House Price Data
+
+on:
+  schedule:
+    # Run at 7:30 PM Central Time (1:30 AM UTC next day during CST, 12:30 AM UTC during CDT)
+    # Using 1:30 AM UTC to cover CST (UTC-6)
+    - cron: '30 1 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-houseprice:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js
+
+      - name: Fetch and Import House Price Data
+        run: node import-houseprice.js
+        env:
+          NODE_ENV: production
+
+      - name: Log completion
+        run: echo "House price data update completed at $(date)"

@@ -19,7 +19,8 @@
       "Bash(npm run build:*)",
       "Bash(node import-stickycore.js:*)",
       "Bash(node fetch-wti.js:*)",
-      "Bash(node import-wti.js:*)"
+      "Bash(node import-wti.js:*)",
+      "Bash(node import-houseprice.js:*)"
     ],
     "deny": [],
     "ask": []
