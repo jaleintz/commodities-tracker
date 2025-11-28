@@ -1,0 +1,32 @@
+name: Update Federal Funds Rate Data
+
+on:
+  schedule:
+    # Run at 5:00 PM Central Time (11:00 PM UTC during CST, 10:00 PM UTC during CDT)
+    # Using 11:00 PM UTC to cover CST (UTC-6)
+    - cron: '0 23 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-fedfunds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js
+
+      - name: Fetch and Import Federal Funds Rate Data
+        run: node import-fedfunds.js
+        env:
+          NODE_ENV: production
+
+      - name: Log completion
+        run: echo "Federal Funds Rate data update completed at $(date)"

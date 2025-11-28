@@ -26,7 +26,8 @@
       "Bash(node import-m2.js:*)",
       "Bash(node import-consumersentiment.js:*)",
       "Bash(node import-vix.js:*)",
-      "Bash(node import-inflation.js:*)"
+      "Bash(node import-inflation.js:*)",
+      "Bash(node import-fedfunds.js:*)"
     ],
     "deny": [],
     "ask": []
