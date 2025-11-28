@@ -20,7 +20,7 @@ export default function Navigation({ pulseHamburger = false }: NavigationProps =
   useEffect(() => {
     if (pulseHamburger && window.innerWidth < 1024) {
       setShouldPulse(true)
-      // Stop pulsing after 10 seconds (8 cycles of 1.25 seconds each)
+      // Stop pulsing after 10 seconds (5 cycles of 2 seconds each)
       const timer = setTimeout(() => {
         setShouldPulse(false)
       }, 10000)
@@ -52,7 +52,7 @@ export default function Navigation({ pulseHamburger = false }: NavigationProps =
           }
         }
         .pulse-green-animation {
-          animation: pulseGreen 1.25s ease-in-out 8;
+          animation: pulseGreen 2s ease-in-out 5;
         }
       `}</style>
       <div className="max-w-6xl mx-auto px-4">

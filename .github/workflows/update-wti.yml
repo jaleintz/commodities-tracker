@@ -1,0 +1,32 @@
+name: Update WTI Crude Oil Data
+
+on:
+  schedule:
+    # Run at 7:00 PM Central Time (1:00 AM UTC next day during CST, 12:00 AM UTC during CDT)
+    # Using 1:00 AM UTC to cover CST (UTC-6)
+    - cron: '0 1 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-wti:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js
+
+      - name: Fetch and Import WTI Data
+        run: node import-wti.js
+        env:
+          NODE_ENV: production
+
+      - name: Log completion
+        run: echo "WTI data update completed at $(date)"

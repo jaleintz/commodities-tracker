@@ -43,6 +43,9 @@ export default function DisplayPage() {
   const [stickyCoreData, setStickyCoreData] = useState<UnemploymentDataPoint[]>([])
   const [latestStickyCore, setLatestStickyCore] = useState<number | null>(null)
   const [previousStickyCore, setPreviousStickyCore] = useState<number | null>(null)
+  const [wtiData, setWtiData] = useState<UnemploymentDataPoint[]>([])
+  const [latestWti, setLatestWti] = useState<number | null>(null)
+  const [previousWti, setPreviousWti] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -52,6 +55,7 @@ export default function DisplayPage() {
   const [isClaimsChartExpanded, setIsClaimsChartExpanded] = useState(false)
   const [isMortgageChartExpanded, setIsMortgageChartExpanded] = useState(false)
   const [isStickyCoreChartExpanded, setIsStickyCoreChartExpanded] = useState(false)
+  const [isWtiChartExpanded, setIsWtiChartExpanded] = useState(false)
   const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
 
   useEffect(() => {
@@ -62,6 +66,7 @@ export default function DisplayPage() {
     fetchClaimsData()
     fetchMortgageData()
     fetchStickyCoreData()
+    fetchWtiData()
   }, [])
 
   const fetchChartData = async () => {
@@ -432,6 +437,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchWtiData = async () => {
+    try {
+      // Fetch WTI data from database
+      const { data: wtiRecords, error: wtiError } = await supabase
+        .from('fred_wti_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'DCOILWTICO')
+        .order('observation_date', { ascending: false })
+        .limit(60) // Get last 60 days
+
+      if (wtiError) throw wtiError
+
+      if (wtiRecords && wtiRecords.length > 0) {
+        // Set latest WTI price
+        setLatestWti(wtiRecords[0].value)
+
+        // Set previous WTI price (if available)
+        if (wtiRecords.length > 1) {
+          setPreviousWti(wtiRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = wtiRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getDate()}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setWtiData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching WTI data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -469,6 +511,7 @@ export default function DisplayPage() {
       setIsClaimsChartExpanded(false)
       setIsMortgageChartExpanded(false)
       setIsStickyCoreChartExpanded(false)
+      setIsWtiChartExpanded(false)
     }
   }
 
@@ -484,6 +527,7 @@ export default function DisplayPage() {
       setIsClaimsChartExpanded(true)
       setIsMortgageChartExpanded(true)
       setIsStickyCoreChartExpanded(true)
+      setIsWtiChartExpanded(true)
     }
   }
 
@@ -1210,6 +1254,117 @@ export default function DisplayPage() {
                                           <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
                                             {point.date}
                                           </text>
+                                        </g>
+                                      )
+                                    })}
+                                  </svg>
+                                )
+                              })()}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+            )}
+
+            {/* WTI Crude Oil Section */}
+            {!isLoading && !error && latestWti !== null && (
+              <div className="mt-2.5">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>WTI Crude Oil:</p>
+                          <div className="flex items-end gap-2">
+                            <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Updated Daily)</p>
+                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestWti.toFixed(2)}</p>
+                            {previousWti !== null && latestWti !== null && (
+                              <>
+                                {latestWti > previousWti && (
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                )}
+                                {latestWti < previousWti && (
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                )}
+                                {latestWti === previousWti && (
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        {viewMode !== 'mini' && (
+                          <p className="text-xs text-slate-500">
+                            Source: <a href="https://fred.stlouisfed.org/series/DCOILWTICO/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                          </p>
+                        )}
+                      </div>
+
+                      {/* WTI Chart */}
+                      {viewMode !== 'mini' && wtiData.length > 0 && (
+                        <div className="mt-4 pt-4 border-t border-slate-600">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-slate-400 font-semibold">60-Day Trend</span>
+                            <button
+                              onClick={() => setIsWtiChartExpanded(!isWtiChartExpanded)}
+                              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                              aria-label={isWtiChartExpanded ? "Collapse chart" : "Expand chart"}
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                {isWtiChartExpanded ? (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                ) : (
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                )}
+                              </svg>
+                            </button>
+                          </div>
+                          {isWtiChartExpanded && (
+                            <div className="relative h-32">
+                              {(() => {
+                                const maxValue = Math.max(...wtiData.map(d => d.value))
+                                const minValue = Math.min(...wtiData.map(d => d.value))
+                                const range = maxValue - minValue || 1
+
+                                return (
+                                  <svg viewBox="0 0 400 100" className="w-full h-full">
+                                    {/* Grid lines */}
+                                    <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                    <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                    <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                    {/* Line chart */}
+                                    <polyline
+                                      points={wtiData.map((point, index) => {
+                                        const x = (index / (wtiData.length - 1)) * 380 + 10
+                                        const y = 90 - ((point.value - minValue) / range) * 80
+                                        return `${x},${y}`
+                                      }).join(' ')}
+                                      fill="none"
+                                      stroke="#22d3ee"
+                                      strokeWidth="2"
+                                    />
+
+                                    {/* Data points */}
+                                    {wtiData.map((point, index) => {
+                                      const x = (index / (wtiData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      const showLabel = index % 10 === 0 || index === wtiData.length - 1
+                                      return (
+                                        <g key={index}>
+                                          <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                          {showLabel && (
+                                            <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                              {point.date}
+                                            </text>
+                                          )}
                                         </g>
                                       )
                                     })}

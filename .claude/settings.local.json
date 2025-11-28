@@ -17,7 +17,9 @@
       "Bash(node import-claims.js:*)",
       "Bash(node import-mortgage.js:*)",
       "Bash(npm run build:*)",
-      "Bash(node import-stickycore.js:*)"
+      "Bash(node import-stickycore.js:*)",
+      "Bash(node fetch-wti.js:*)",
+      "Bash(node import-wti.js:*)"
     ],
     "deny": [],
     "ask": []
