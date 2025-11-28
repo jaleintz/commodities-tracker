@@ -52,6 +52,9 @@ export default function DisplayPage() {
   const [jobOpeningsData, setJobOpeningsData] = useState<UnemploymentDataPoint[]>([])
   const [latestJobOpenings, setLatestJobOpenings] = useState<number | null>(null)
   const [previousJobOpenings, setPreviousJobOpenings] = useState<number | null>(null)
+  const [activeListingsData, setActiveListingsData] = useState<UnemploymentDataPoint[]>([])
+  const [latestActiveListings, setLatestActiveListings] = useState<number | null>(null)
+  const [previousActiveListings, setPreviousActiveListings] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -64,6 +67,7 @@ export default function DisplayPage() {
   const [isWtiChartExpanded, setIsWtiChartExpanded] = useState(false)
   const [isHousePriceChartExpanded, setIsHousePriceChartExpanded] = useState(false)
   const [isJobOpeningsChartExpanded, setIsJobOpeningsChartExpanded] = useState(false)
+  const [isActiveListingsChartExpanded, setIsActiveListingsChartExpanded] = useState(false)
   const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
 
   useEffect(() => {
@@ -77,6 +81,7 @@ export default function DisplayPage() {
     fetchWtiData()
     fetchHousePriceData()
     fetchJobOpeningsData()
+    fetchActiveListingsData()
   }, [])
 
   const fetchChartData = async () => {
@@ -558,6 +563,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchActiveListingsData = async () => {
+    try {
+      // Fetch active listings data from database
+      const { data: activeListingsRecords, error: activeListingsError } = await supabase
+        .from('fred_active_listings_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'ACTLISCOUUS')
+        .order('observation_date', { ascending: false })
+        .limit(60) // Get last 60 months (5 years)
+
+      if (activeListingsError) throw activeListingsError
+
+      if (activeListingsRecords && activeListingsRecords.length > 0) {
+        // Set latest active listings
+        setLatestActiveListings(activeListingsRecords[0].value)
+
+        // Set previous active listings (if available)
+        if (activeListingsRecords.length > 1) {
+          setPreviousActiveListings(activeListingsRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = activeListingsRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setActiveListingsData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching active listings data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -598,6 +640,7 @@ export default function DisplayPage() {
       setIsWtiChartExpanded(false)
       setIsHousePriceChartExpanded(false)
       setIsJobOpeningsChartExpanded(false)
+      setIsActiveListingsChartExpanded(false)
     }
   }
 
@@ -616,6 +659,7 @@ export default function DisplayPage() {
       setIsWtiChartExpanded(true)
       setIsHousePriceChartExpanded(true)
       setIsJobOpeningsChartExpanded(true)
+      setIsActiveListingsChartExpanded(true)
     }
   }
 
@@ -779,6 +823,117 @@ export default function DisplayPage() {
                       )}
                     </div>
                   )}
+                </div>
+              </div>
+          )}
+
+          {/* Active Listing Count Section */}
+          {!isLoading && !error && latestActiveListings !== null && (
+            <div className="mt-2.5">
+              <div className="flex flex-col items-center space-y-4">
+                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Active Listing Count:</p>
+                        <div className="flex items-end gap-2">
+                          <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
+                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{(latestActiveListings / 1000).toFixed(2)}M</p>
+                          {previousActiveListings !== null && latestActiveListings !== null && (
+                            <>
+                              {latestActiveListings > previousActiveListings && (
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestActiveListings < previousActiveListings && (
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestActiveListings === previousActiveListings && (
+                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {viewMode !== 'mini' && (
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/ACTLISCOUUS/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Active Listings Chart */}
+                    {viewMode !== 'mini' && activeListingsData.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-slate-600">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-slate-400 font-semibold">5-Year Trend</span>
+                          <button
+                            onClick={() => setIsActiveListingsChartExpanded(!isActiveListingsChartExpanded)}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                            aria-label={isActiveListingsChartExpanded ? "Collapse chart" : "Expand chart"}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              {isActiveListingsChartExpanded ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              )}
+                            </svg>
+                          </button>
+                        </div>
+                        {isActiveListingsChartExpanded && (
+                          <div className="relative h-32">
+                            {(() => {
+                              const maxValue = Math.max(...activeListingsData.map(d => d.value))
+                              const minValue = Math.min(...activeListingsData.map(d => d.value))
+                              const range = maxValue - minValue || 1
+
+                              return (
+                                <svg viewBox="0 0 400 100" className="w-full h-full">
+                                  {/* Grid lines */}
+                                  <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                  <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                  <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                  {/* Line chart */}
+                                  <polyline
+                                    points={activeListingsData.map((point, index) => {
+                                      const x = (index / (activeListingsData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return `${x},${y}`
+                                    }).join(' ')}
+                                    fill="none"
+                                    stroke="#22d3ee"
+                                    strokeWidth="2"
+                                  />
+
+                                  {/* Data points */}
+                                  {activeListingsData.map((point, index) => {
+                                    const x = (index / (activeListingsData.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.value - minValue) / range) * 80
+                                    const showLabel = index % 10 === 0 || index === activeListingsData.length - 1
+                                    return (
+                                      <g key={index}>
+                                        <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                        {showLabel && (
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
+                                        )}
+                                      </g>
+                                    )
+                                  })}
+                                </svg>
+                              )
+                            })()}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
           )}

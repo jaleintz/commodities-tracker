@@ -1,0 +1,32 @@
+name: Update Active Listings Data
+
+on:
+  schedule:
+    # Run at 6:00 PM Central Time (12:00 AM UTC next day during CST, 11:00 PM UTC during CDT)
+    # Using 12:00 AM UTC to cover CST (UTC-6)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-activelistings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js
+
+      - name: Fetch and Import Active Listings Data
+        run: node import-activelistings.js
+        env:
+          NODE_ENV: production
+
+      - name: Log completion
+        run: echo "Active listings data update completed at $(date)"

@@ -21,7 +21,8 @@
       "Bash(node fetch-wti.js:*)",
       "Bash(node import-wti.js:*)",
       "Bash(node import-houseprice.js:*)",
-      "Bash(node import-jobopenings.js:*)"
+      "Bash(node import-jobopenings.js:*)",
+      "Bash(node import-activelistings.js:*)"
     ],
     "deny": [],
     "ask": []
