@@ -97,6 +97,7 @@ export default function DisplayPage() {
   const [isRealGDPChartExpanded, setIsRealGDPChartExpanded] = useState(false)
   const [isTreasury10YChartExpanded, setIsTreasury10YChartExpanded] = useState(false)
   const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
+  const [expandedBoxInMini, setExpandedBoxInMini] = useState<string | null>(null)
   const [showViewModeArrows, setShowViewModeArrows] = useState(true)
 
   useEffect(() => {
@@ -1071,32 +1072,44 @@ export default function DisplayPage() {
           )}
 
           {/* 10-Year Treasury Section */}
-          {!isLoading && !error && latestTreasury10Y !== null && (
+          {!isLoading && !error && latestTreasury10Y !== null && (() => {
+            const treasury10YViewMode = viewMode === 'mini' && expandedBoxInMini === 'treasury10y' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>10-Year Treasury:</p>
+                <div className={`w-full max-w-md rounded-lg ${treasury10YViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={treasury10YViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={treasury10YViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p
+                          className={`font-semibold ${treasury10YViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                          style={{ color: 'rgb(0, 197, 255)' }}
+                          onClick={() => {
+                            if (viewMode === 'mini') {
+                              setExpandedBoxInMini(expandedBoxInMini === 'treasury10y' ? null : 'treasury10y')
+                            }
+                          }}
+                        >
+                          10-Year Treasury:
+                        </p>
                         <div className="flex items-end gap-2">
                           <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Daily)</p>
-                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestTreasury10Y.toFixed(2)}%</p>
+                          <p className={`font-bold text-white ${treasury10YViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestTreasury10Y.toFixed(2)}%</p>
                           {previousTreasury10Y !== null && latestTreasury10Y !== null && (
                             <>
                               {latestTreasury10Y > previousTreasury10Y && (
-                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${treasury10YViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestTreasury10Y < previousTreasury10Y && (
-                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${treasury10YViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestTreasury10Y === previousTreasury10Y && (
-                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-right text-cyan-400 ${treasury10YViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                             </>
                           )}
                         </div>
                       </div>
-                      {viewMode !== 'mini' && (
+                      {treasury10YViewMode !== 'mini' && (
                         <p className="text-xs text-slate-500">
                           Source: <a href="https://fred.stlouisfed.org/series/DGS10/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                         </p>
@@ -1104,7 +1117,7 @@ export default function DisplayPage() {
                     </div>
 
                     {/* 10-Year Treasury Chart */}
-                    {viewMode !== 'mini' && treasury10YData.length > 0 && (
+                    {treasury10YViewMode !== 'mini' && treasury10YData.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-600">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-slate-400 font-semibold">1-Year Trend</span>
@@ -1179,35 +1192,46 @@ export default function DisplayPage() {
                   </div>
                 </div>
               </div>
-          )}
+            )
+          })()}
 
           {/* 30-Year Mortgage Rate Section */}
-          {!isLoading && !error && latestMortgage !== null && (
+          {!isLoading && !error && latestMortgage !== null && (() => {
+            const mortgageViewMode = viewMode === 'mini' && expandedBoxInMini === 'mortgage30y' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-              <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                  <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                    <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                      <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>30-Year Mortgage Rate:</p>
+              <div className={`w-full max-w-md rounded-lg ${mortgageViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                  <div className={mortgageViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                    <div className={mortgageViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                      <p
+                        className={`font-semibold ${mortgageViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                        style={{ color: 'rgb(0, 197, 255)' }}
+                        onClick={() => {
+                          if (viewMode === 'mini') {
+                            setExpandedBoxInMini(expandedBoxInMini === 'mortgage30y' ? null : 'mortgage30y')
+                          }
+                        }}
+                      >30-Year Mortgage Rate:</p>
                       <div className="flex items-end gap-2">
                         <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Weekly)</p>
-                        <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestMortgage.toFixed(2)}%</p>
+                        <p className={`font-bold text-white ${mortgageViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestMortgage.toFixed(2)}%</p>
                         {previousMortgage !== null && latestMortgage !== null && (
                           <>
                             {latestMortgage > previousMortgage && (
-                              <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              <i className={`fas fa-arrow-trend-up text-red-400 ${mortgageViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                             )}
                             {latestMortgage < previousMortgage && (
-                              <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              <i className={`fas fa-arrow-trend-down text-green-400 ${mortgageViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                             )}
                             {latestMortgage === previousMortgage && (
-                              <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              <i className={`fas fa-arrow-right text-cyan-400 ${mortgageViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                             )}
                           </>
                         )}
                       </div>
                     </div>
-                    {viewMode !== 'mini' && (
+                    {mortgageViewMode !== 'mini' && (
                       <p className="text-xs text-slate-500">
                         Source: <a href="https://fred.stlouisfed.org/series/MORTGAGE30US/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                       </p>
@@ -1215,7 +1239,7 @@ export default function DisplayPage() {
                   </div>
 
                   {/* Mortgage Rate Chart */}
-                  {viewMode !== 'mini' && mortgageData.length > 0 && (
+                  {mortgageViewMode !== 'mini' && mortgageData.length > 0 && (
                     <div className="mt-4 pt-4 border-t border-slate-600">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-xs text-slate-400 font-semibold">24-Week Trend</span>
@@ -1290,35 +1314,46 @@ export default function DisplayPage() {
                 </div>
               </div>
             </div>
-          )}
+            )
+          })()}
 
           {/* Active Listing Count Section */}
-          {!isLoading && !error && latestActiveListings !== null && (
+          {!isLoading && !error && latestActiveListings !== null && (() => {
+            const activeListingsViewMode = viewMode === 'mini' && expandedBoxInMini === 'activeListings' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Active Listing Count:</p>
+                <div className={`w-full max-w-md rounded-lg ${activeListingsViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={activeListingsViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={activeListingsViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p
+                          className={`font-semibold ${activeListingsViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                          style={{ color: 'rgb(0, 197, 255)' }}
+                          onClick={() => {
+                            if (viewMode === 'mini') {
+                              setExpandedBoxInMini(expandedBoxInMini === 'activeListings' ? null : 'activeListings')
+                            }
+                          }}
+                        >Active Listing Count:</p>
                         <div className="flex items-end gap-2">
                           <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
-                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{(latestActiveListings / 1000).toFixed(2)}M</p>
+                          <p className={`font-bold text-white ${activeListingsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{(latestActiveListings / 1000).toFixed(2)}M</p>
                           {previousActiveListings !== null && latestActiveListings !== null && (
                             <>
                               {latestActiveListings > previousActiveListings && (
-                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${activeListingsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestActiveListings < previousActiveListings && (
-                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${activeListingsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestActiveListings === previousActiveListings && (
-                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-right text-cyan-400 ${activeListingsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                             </>
                           )}
                         </div>
                       </div>
-                      {viewMode !== 'mini' && (
+                      {activeListingsViewMode !== 'mini' && (
                         <p className="text-xs text-slate-500">
                           Source: <a href="https://fred.stlouisfed.org/series/ACTLISCOUUS/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                         </p>
@@ -1326,7 +1361,7 @@ export default function DisplayPage() {
                     </div>
 
                     {/* Active Listings Chart */}
-                    {viewMode !== 'mini' && activeListingsData.length > 0 && (
+                    {activeListingsViewMode !== 'mini' && activeListingsData.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-600">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-slate-400 font-semibold">5-Year Trend</span>
@@ -1401,35 +1436,46 @@ export default function DisplayPage() {
                   </div>
                 </div>
               </div>
-          )}
+            )
+          })()}
 
           {/* Average Sales Price of Houses Section */}
-          {!isLoading && !error && latestHousePrice !== null && (
+          {!isLoading && !error && latestHousePrice !== null && (() => {
+            const housePriceViewMode = viewMode === 'mini' && expandedBoxInMini === 'housePrice' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Average Price of Houses:</p>
+                <div className={`w-full max-w-md rounded-lg ${housePriceViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={housePriceViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={housePriceViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p
+                          className={`font-semibold ${housePriceViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                          style={{ color: 'rgb(0, 197, 255)' }}
+                          onClick={() => {
+                            if (viewMode === 'mini') {
+                              setExpandedBoxInMini(expandedBoxInMini === 'housePrice' ? null : 'housePrice')
+                            }
+                          }}
+                        >Average Price of Houses:</p>
                         <div className="flex items-end gap-2">
                           <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Quarterly)</p>
-                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestHousePrice.toLocaleString()}</p>
+                          <p className={`font-bold text-white ${housePriceViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestHousePrice.toLocaleString()}</p>
                           {previousHousePrice !== null && latestHousePrice !== null && (
                             <>
                               {latestHousePrice > previousHousePrice && (
-                                <i className={`fas fa-arrow-trend-up text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-green-400 ${housePriceViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestHousePrice < previousHousePrice && (
-                                <i className={`fas fa-arrow-trend-down text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-red-400 ${housePriceViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestHousePrice === previousHousePrice && (
-                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-right text-cyan-400 ${housePriceViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                             </>
                           )}
                         </div>
                       </div>
-                      {viewMode !== 'mini' && (
+                      {housePriceViewMode !== 'mini' && (
                         <p className="text-xs text-slate-500">
                           Source: <a href="https://fred.stlouisfed.org/series/ASPUS/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                         </p>
@@ -1437,7 +1483,7 @@ export default function DisplayPage() {
                     </div>
 
                     {/* House Price Chart */}
-                    {viewMode !== 'mini' && housePriceData.length > 0 && (
+                    {housePriceViewMode !== 'mini' && housePriceData.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-600">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-slate-400 font-semibold">10-Year Trend</span>
@@ -1512,35 +1558,46 @@ export default function DisplayPage() {
                   </div>
                 </div>
               </div>
-          )}
+            )
+          })()}
 
           {/* Consumer Sentiment Section */}
-          {!isLoading && !error && latestConsumerSentiment !== null && (
+          {!isLoading && !error && latestConsumerSentiment !== null && (() => {
+            const consumerSentimentViewMode = viewMode === 'mini' && expandedBoxInMini === 'consumerSentiment' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Consumer Sentiment:</p>
+                <div className={`w-full max-w-md rounded-lg ${consumerSentimentViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={consumerSentimentViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={consumerSentimentViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p
+                          className={`font-semibold ${consumerSentimentViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                          style={{ color: 'rgb(0, 197, 255)' }}
+                          onClick={() => {
+                            if (viewMode === 'mini') {
+                              setExpandedBoxInMini(expandedBoxInMini === 'consumerSentiment' ? null : 'consumerSentiment')
+                            }
+                          }}
+                        >Consumer Sentiment:</p>
                         <div className="flex items-end gap-2">
                           <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
-                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestConsumerSentiment.toFixed(1)}</p>
+                          <p className={`font-bold text-white ${consumerSentimentViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestConsumerSentiment.toFixed(1)}</p>
                           {previousConsumerSentiment !== null && latestConsumerSentiment !== null && (
                             <>
                               {latestConsumerSentiment > previousConsumerSentiment && (
-                                <i className={`fas fa-arrow-trend-up text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-green-400 ${consumerSentimentViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestConsumerSentiment < previousConsumerSentiment && (
-                                <i className={`fas fa-arrow-trend-down text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-red-400 ${consumerSentimentViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestConsumerSentiment === previousConsumerSentiment && (
-                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-right text-cyan-400 ${consumerSentimentViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                             </>
                           )}
                         </div>
                       </div>
-                      {viewMode !== 'mini' && (
+                      {consumerSentimentViewMode !== 'mini' && (
                         <p className="text-xs text-slate-500">
                           Source: <a href="https://fred.stlouisfed.org/series/UMCSENT/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                         </p>
@@ -1548,7 +1605,7 @@ export default function DisplayPage() {
                     </div>
 
                     {/* Consumer Sentiment Chart */}
-                    {viewMode !== 'mini' && consumerSentimentData.length > 0 && (
+                    {consumerSentimentViewMode !== 'mini' && consumerSentimentData.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-600">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-slate-400 font-semibold">5-Year Trend</span>
@@ -1623,35 +1680,46 @@ export default function DisplayPage() {
                   </div>
                 </div>
               </div>
-          )}
+            )
+          })()}
 
           {/* Federal Funds Rate Section */}
-          {!isLoading && !error && latestFedFunds !== null && (
+          {!isLoading && !error && latestFedFunds !== null && (() => {
+            const fedFundsViewMode = viewMode === 'mini' && expandedBoxInMini === 'fedFunds' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Federal Funds Rate:</p>
+                <div className={`w-full max-w-md rounded-lg ${fedFundsViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={fedFundsViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={fedFundsViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p
+                          className={`font-semibold ${fedFundsViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                          style={{ color: 'rgb(0, 197, 255)' }}
+                          onClick={() => {
+                            if (viewMode === 'mini') {
+                              setExpandedBoxInMini(expandedBoxInMini === 'fedFunds' ? null : 'fedFunds')
+                            }
+                          }}
+                        >Federal Funds Rate:</p>
                         <div className="flex items-end gap-2">
                           <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Daily)</p>
-                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestFedFunds.toFixed(2)}%</p>
+                          <p className={`font-bold text-white ${fedFundsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestFedFunds.toFixed(2)}%</p>
                           {previousFedFunds !== null && latestFedFunds !== null && (
                             <>
                               {latestFedFunds > previousFedFunds && (
-                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${fedFundsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestFedFunds < previousFedFunds && (
-                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${fedFundsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestFedFunds === previousFedFunds && (
-                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-right text-cyan-400 ${fedFundsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                             </>
                           )}
                         </div>
                       </div>
-                      {viewMode !== 'mini' && (
+                      {fedFundsViewMode !== 'mini' && (
                         <p className="text-xs text-slate-500">
                           Source: <a href="https://fred.stlouisfed.org/series/FEDFUNDS/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                         </p>
@@ -1659,7 +1727,7 @@ export default function DisplayPage() {
                     </div>
 
                     {/* Federal Funds Rate Chart */}
-                    {viewMode !== 'mini' && fedFundsData.length > 0 && (
+                    {fedFundsViewMode !== 'mini' && fedFundsData.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-600">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-slate-400 font-semibold">1-Year Trend</span>
@@ -1734,35 +1802,46 @@ export default function DisplayPage() {
                   </div>
                 </div>
               </div>
-          )}
+            )
+          })()}
 
           {/* Inflation Section */}
-          {!isLoading && !error && latestInflation !== null && (
+          {!isLoading && !error && latestInflation !== null && (() => {
+            const inflationViewMode = viewMode === 'mini' && expandedBoxInMini === 'inflation' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Inflation Rate:</p>
+                <div className={`w-full max-w-md rounded-lg ${inflationViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={inflationViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={inflationViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p
+                          className={`font-semibold ${inflationViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                          style={{ color: 'rgb(0, 197, 255)' }}
+                          onClick={() => {
+                            if (viewMode === 'mini') {
+                              setExpandedBoxInMini(expandedBoxInMini === 'inflation' ? null : 'inflation')
+                            }
+                          }}
+                        >Inflation Rate:</p>
                         <div className="flex items-end gap-2">
                           <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Annual)</p>
-                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestInflation.toFixed(2)}%</p>
+                          <p className={`font-bold text-white ${inflationViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestInflation.toFixed(2)}%</p>
                           {previousInflation !== null && latestInflation !== null && (
                             <>
                               {latestInflation > previousInflation && (
-                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${inflationViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestInflation < previousInflation && (
-                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${inflationViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestInflation === previousInflation && (
-                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-right text-cyan-400 ${inflationViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                             </>
                           )}
                         </div>
                       </div>
-                      {viewMode !== 'mini' && (
+                      {inflationViewMode !== 'mini' && (
                         <p className="text-xs text-slate-500">
                           Source: <a href="https://fred.stlouisfed.org/series/FPCPITOTLZGUSA/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                         </p>
@@ -1770,7 +1849,7 @@ export default function DisplayPage() {
                     </div>
 
                     {/* Inflation Chart */}
-                    {viewMode !== 'mini' && inflationData.length > 0 && (
+                    {inflationViewMode !== 'mini' && inflationData.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-600">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-slate-400 font-semibold">30-Year Trend</span>
@@ -1845,35 +1924,46 @@ export default function DisplayPage() {
                   </div>
                 </div>
               </div>
-          )}
+            )
+          })()}
 
           {/* Job Openings Section */}
-          {!isLoading && !error && latestJobOpenings !== null && (
+          {!isLoading && !error && latestJobOpenings !== null && (() => {
+            const jobOpeningsViewMode = viewMode === 'mini' && expandedBoxInMini === 'jobOpenings' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Job Openings:</p>
+                <div className={`w-full max-w-md rounded-lg ${jobOpeningsViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={jobOpeningsViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={jobOpeningsViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p
+                          className={`font-semibold ${jobOpeningsViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                          style={{ color: 'rgb(0, 197, 255)' }}
+                          onClick={() => {
+                            if (viewMode === 'mini') {
+                              setExpandedBoxInMini(expandedBoxInMini === 'jobOpenings' ? null : 'jobOpenings')
+                            }
+                          }}
+                        >Job Openings:</p>
                         <div className="flex items-end gap-2">
                           <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
-                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{(latestJobOpenings / 1000).toFixed(2)}M</p>
+                          <p className={`font-bold text-white ${jobOpeningsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{(latestJobOpenings / 1000).toFixed(2)}M</p>
                           {previousJobOpenings !== null && latestJobOpenings !== null && (
                             <>
                               {latestJobOpenings > previousJobOpenings && (
-                                <i className={`fas fa-arrow-trend-up text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-green-400 ${jobOpeningsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestJobOpenings < previousJobOpenings && (
-                                <i className={`fas fa-arrow-trend-down text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-red-400 ${jobOpeningsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestJobOpenings === previousJobOpenings && (
-                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-right text-cyan-400 ${jobOpeningsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                             </>
                           )}
                         </div>
                       </div>
-                      {viewMode !== 'mini' && (
+                      {jobOpeningsViewMode !== 'mini' && (
                         <p className="text-xs text-slate-500">
                           Source: <a href="https://fred.stlouisfed.org/series/JTSJOL/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                         </p>
@@ -1881,7 +1971,7 @@ export default function DisplayPage() {
                     </div>
 
                     {/* Job Openings Chart */}
-                    {viewMode !== 'mini' && jobOpeningsData.length > 0 && (
+                    {jobOpeningsViewMode !== 'mini' && jobOpeningsData.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-600">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-slate-400 font-semibold">5-Year Trend</span>
@@ -1956,17 +2046,28 @@ export default function DisplayPage() {
                   </div>
                 </div>
               </div>
-          )}
+            )
+          })()}
 
           {/* M2 Money Stock Section */}
-          {!isLoading && !error && latestM2 !== null && (
+          {!isLoading && !error && latestM2 !== null && (() => {
+            const m2ViewMode = viewMode === 'mini' && expandedBoxInMini === 'm2' ? 'medium' : viewMode
+            return (
             <div className="mt-2.5">
               <div className="flex flex-col items-center space-y-4">
-                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                <div className={`w-full max-w-md rounded-lg ${m2ViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={m2ViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={m2ViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
                         <div className="flex items-baseline gap-2">
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>M2 Money Stock:</p>
+                          <p
+                            className={`font-semibold ${m2ViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                            style={{ color: 'rgb(0, 197, 255)' }}
+                            onClick={() => {
+                              if (viewMode === 'mini') {
+                                setExpandedBoxInMini(expandedBoxInMini === 'm2' ? null : 'm2')
+                              }
+                            }}
+                          >M2 Money Stock:</p>
                           {m2Data.length >= 13 && (
                             <p className="text-xs text-slate-400">
                               Growth = {(() => {
@@ -1980,23 +2081,23 @@ export default function DisplayPage() {
                         </div>
                         <div className="flex items-end gap-2">
                           <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
-                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${(latestM2 / 1000).toFixed(2)}T</p>
+                          <p className={`font-bold text-white ${m2ViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${(latestM2 / 1000).toFixed(2)}T</p>
                           {previousM2 !== null && latestM2 !== null && (
                             <>
                               {latestM2 > previousM2 && (
-                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${m2ViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestM2 < previousM2 && (
-                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${m2ViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                               {latestM2 === previousM2 && (
-                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                <i className={`fas fa-arrow-right text-cyan-400 ${m2ViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                               )}
                             </>
                           )}
                         </div>
                       </div>
-                      {viewMode !== 'mini' && (
+                      {m2ViewMode !== 'mini' && (
                         <p className="text-xs text-slate-500">
                           Source: <a href="https://fred.stlouisfed.org/series/M2SL/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                         </p>
@@ -2004,7 +2105,7 @@ export default function DisplayPage() {
                     </div>
 
                     {/* M2 Money Stock Chart */}
-                    {viewMode !== 'mini' && m2Data.length > 0 && (
+                    {m2ViewMode !== 'mini' && m2Data.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-600">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-slate-400 font-semibold">5-Year Trend</span>
@@ -2079,7 +2180,8 @@ export default function DisplayPage() {
                   </div>
                 </div>
               </div>
-          )}
+            )
+          })()}
 
           {!isLoading && !error && productsWithPrices.length > 0 && (
             <div className="mt-2.5">
@@ -2332,32 +2434,42 @@ export default function DisplayPage() {
             )}
 
             {/* Sticky Core CPI Section */}
-            {!isLoading && !error && latestStickyCore !== null && (
+            {!isLoading && !error && latestStickyCore !== null && (() => {
+              const stickyCoreViewMode = viewMode === 'mini' && expandedBoxInMini === 'stickyCore' ? 'medium' : viewMode
+              return (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Sticky Core CPI:</p>
+                  <div className={`w-full max-w-md rounded-lg ${stickyCoreViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                      <div className={stickyCoreViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={stickyCoreViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p
+                            className={`font-semibold ${stickyCoreViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                            style={{ color: 'rgb(0, 197, 255)' }}
+                            onClick={() => {
+                              if (viewMode === 'mini') {
+                                setExpandedBoxInMini(expandedBoxInMini === 'stickyCore' ? null : 'stickyCore')
+                              }
+                            }}
+                          >Sticky Core CPI:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestStickyCore.toFixed(2)}%</p>
+                            <p className={`font-bold text-white ${stickyCoreViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestStickyCore.toFixed(2)}%</p>
                             {previousStickyCore !== null && latestStickyCore !== null && (
                               <>
                                 {latestStickyCore > previousStickyCore && (
-                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${stickyCoreViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestStickyCore < previousStickyCore && (
-                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${stickyCoreViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestStickyCore === previousStickyCore && (
-                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${stickyCoreViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
                           </div>
                         </div>
-                        {viewMode !== 'mini' && (
+                        {stickyCoreViewMode !== 'mini' && (
                           <p className="text-xs text-slate-500">
                             Source: <a href="https://fred.stlouisfed.org/series/CORESTICKM159SFRBATL/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                           </p>
@@ -2365,7 +2477,7 @@ export default function DisplayPage() {
                       </div>
 
                       {/* Sticky Core CPI Chart */}
-                      {viewMode !== 'mini' && stickyCoreData.length > 0 && (
+                      {stickyCoreViewMode !== 'mini' && stickyCoreData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">12-Month Trend</span>
@@ -2437,35 +2549,46 @@ export default function DisplayPage() {
                     </div>
                   </div>
                 </div>
-            )}
+              )
+            })()}
 
             {/* U.S. Unemployment Claims Section */}
-            {!isLoading && !error && latestClaims !== null && (
+            {!isLoading && !error && latestClaims !== null && (() => {
+              const unemploymentClaimsViewMode = viewMode === 'mini' && expandedBoxInMini === 'unemploymentClaims' ? 'medium' : viewMode
+              return (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Claims:</p>
+                  <div className={`w-full max-w-md rounded-lg ${unemploymentClaimsViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                      <div className={unemploymentClaimsViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={unemploymentClaimsViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p
+                            className={`font-semibold ${unemploymentClaimsViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                            style={{ color: 'rgb(0, 197, 255)' }}
+                            onClick={() => {
+                              if (viewMode === 'mini') {
+                                setExpandedBoxInMini(expandedBoxInMini === 'unemploymentClaims' ? null : 'unemploymentClaims')
+                              }
+                            }}
+                          >U.S. Unemployment Claims:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Weekly)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestClaims.toLocaleString()}</p>
+                            <p className={`font-bold text-white ${unemploymentClaimsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestClaims.toLocaleString()}</p>
                             {previousClaims !== null && latestClaims !== null && (
                               <>
                                 {latestClaims > previousClaims && (
-                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${unemploymentClaimsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestClaims < previousClaims && (
-                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${unemploymentClaimsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestClaims === previousClaims && (
-                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${unemploymentClaimsViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
                           </div>
                         </div>
-                        {viewMode !== 'mini' && (
+                        {unemploymentClaimsViewMode !== 'mini' && (
                           <p className="text-xs text-slate-500">
                             Source: <a href="https://fred.stlouisfed.org/series/ICSA/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                           </p>
@@ -2473,7 +2596,7 @@ export default function DisplayPage() {
                       </div>
 
                       {/* Claims Chart */}
-                      {viewMode !== 'mini' && claimsData.length > 0 && (
+                      {unemploymentClaimsViewMode !== 'mini' && claimsData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">24-Week Trend</span>
@@ -2548,20 +2671,31 @@ export default function DisplayPage() {
                     </div>
                   </div>
                 </div>
-            )}
+              )
+            })()}
 
             {/* Real GDP Section */}
-            {!isLoading && !error && latestRealGDP !== null && (
+            {!isLoading && !error && latestRealGDP !== null && (() => {
+              const realGDPViewMode = viewMode === 'mini' && expandedBoxInMini === 'realGDP' ? 'medium' : viewMode
+              return (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>
+                  <div className={`w-full max-w-md rounded-lg ${realGDPViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                      <div className={realGDPViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={realGDPViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p
+                            className={`font-semibold ${realGDPViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                            style={{ color: 'rgb(0, 197, 255)' }}
+                            onClick={() => {
+                              if (viewMode === 'mini') {
+                                setExpandedBoxInMini(expandedBoxInMini === 'realGDP' ? null : 'realGDP')
+                              }
+                            }}
+                          >
                             Real GDP:
                             {previousRealGDP !== null && latestRealGDP !== null && (
                               <span className="text-xs text-slate-400 font-normal ml-2">
-                                Growth = {(() => {
+                                Annualized Growth = {(() => {
                                   const quarterlyChange = (latestRealGDP - previousRealGDP) / previousRealGDP
                                   const annualized = (Math.pow(1 + quarterlyChange, 4) - 1) * 100
                                   return `${annualized.toFixed(2)}%`
@@ -2571,23 +2705,23 @@ export default function DisplayPage() {
                           </p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Quarterly)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestRealGDP.toFixed(2)}B</p>
+                            <p className={`font-bold text-white ${realGDPViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestRealGDP.toFixed(2)}B</p>
                             {previousRealGDP !== null && latestRealGDP !== null && (
                               <>
                                 {latestRealGDP > previousRealGDP && (
-                                  <i className={`fas fa-arrow-trend-up text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-up text-green-400 ${realGDPViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestRealGDP < previousRealGDP && (
-                                  <i className={`fas fa-arrow-trend-down text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-down text-red-400 ${realGDPViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestRealGDP === previousRealGDP && (
-                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${realGDPViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
                           </div>
                         </div>
-                        {viewMode !== 'mini' && (
+                        {realGDPViewMode !== 'mini' && (
                           <p className="text-xs text-slate-500">
                             Source: <a href="https://fred.stlouisfed.org/series/GDPC1/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                           </p>
@@ -2595,7 +2729,7 @@ export default function DisplayPage() {
                       </div>
 
                       {/* Real GDP Chart */}
-                      {viewMode !== 'mini' && realGDPData.length > 0 && (
+                      {realGDPViewMode !== 'mini' && realGDPData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">15-Year Trend</span>
@@ -2670,32 +2804,43 @@ export default function DisplayPage() {
                     </div>
                   </div>
                 </div>
-            )}
+              )
+            })()}
 
             {/* U.S. Unemployment Rate Section */}
-            {!isLoading && !error && latestUnemployment !== null && (
+            {!isLoading && !error && latestUnemployment !== null && (() => {
+              const unemploymentViewMode = viewMode === 'mini' && expandedBoxInMini === 'unemployment' ? 'medium' : viewMode
+              return (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>U.S. Unemployment Rate:</p>
+                  <div className={`w-full max-w-md rounded-lg ${unemploymentViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                      <div className={unemploymentViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={unemploymentViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p
+                            className={`font-semibold ${unemploymentViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                            style={{ color: 'rgb(0, 197, 255)' }}
+                            onClick={() => {
+                              if (viewMode === 'mini') {
+                                setExpandedBoxInMini(expandedBoxInMini === 'unemployment' ? null : 'unemployment')
+                              }
+                            }}
+                          >U.S. Unemployment Rate:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Monthly)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestUnemployment.toFixed(1)}%</p>
+                            <p className={`font-bold text-white ${unemploymentViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestUnemployment.toFixed(1)}%</p>
                             {previousUnemployment !== null && latestUnemployment !== null && (
                               <>
                                 {latestUnemployment > previousUnemployment && (
-                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${unemploymentViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestUnemployment < previousUnemployment && (
-                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${unemploymentViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
                           </div>
                         </div>
-                        {viewMode !== 'mini' && (
+                        {unemploymentViewMode !== 'mini' && (
                           <p className="text-xs text-slate-500">
                             Source: <a href="https://fred.stlouisfed.org/series/UNRATE/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                           </p>
@@ -2703,7 +2848,7 @@ export default function DisplayPage() {
                       </div>
 
                       {/* Unemployment Rate Chart */}
-                      {viewMode !== 'mini' && unemploymentData.length > 0 && (
+                      {unemploymentViewMode !== 'mini' && unemploymentData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">12-Month Trend</span>
@@ -2775,35 +2920,46 @@ export default function DisplayPage() {
                     </div>
                   </div>
                 </div>
-            )}
+              )
+            })()}
 
             {/* VIX Section */}
-            {!isLoading && !error && latestVix !== null && (
+            {!isLoading && !error && latestVix !== null && (() => {
+              const vixViewMode = viewMode === 'mini' && expandedBoxInMini === 'vix' ? 'medium' : viewMode
+              return (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>VIX:</p>
+                  <div className={`w-full max-w-md rounded-lg ${vixViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                      <div className={vixViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={vixViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p
+                            className={`font-semibold ${vixViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                            style={{ color: 'rgb(0, 197, 255)' }}
+                            onClick={() => {
+                              if (viewMode === 'mini') {
+                                setExpandedBoxInMini(expandedBoxInMini === 'vix' ? null : 'vix')
+                              }
+                            }}
+                          >VIX:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Daily)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestVix.toFixed(2)}</p>
+                            <p className={`font-bold text-white ${vixViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestVix.toFixed(2)}</p>
                             {previousVix !== null && latestVix !== null && (
                               <>
                                 {latestVix > previousVix && (
-                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${vixViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestVix < previousVix && (
-                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${vixViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestVix === previousVix && (
-                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${vixViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
                           </div>
                         </div>
-                        {viewMode !== 'mini' && (
+                        {vixViewMode !== 'mini' && (
                           <p className="text-xs text-slate-500">
                             Source: <a href="https://fred.stlouisfed.org/series/VIXCLS/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                           </p>
@@ -2811,7 +2967,7 @@ export default function DisplayPage() {
                       </div>
 
                       {/* VIX Chart */}
-                      {viewMode !== 'mini' && vixData.length > 0 && (
+                      {vixViewMode !== 'mini' && vixData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">1-Year Trend</span>
@@ -2886,35 +3042,46 @@ export default function DisplayPage() {
                     </div>
                   </div>
                 </div>
-            )}
+              )
+            })()}
 
             {/* WTI Crude Oil Section */}
-            {!isLoading && !error && latestWti !== null && (
+            {!isLoading && !error && latestWti !== null && (() => {
+              const wtiViewMode = viewMode === 'mini' && expandedBoxInMini === 'wti' ? 'medium' : viewMode
+              return (
               <div className="mt-2.5">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
-                      <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
-                        <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
-                          <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>WTI Crude Oil:</p>
+                  <div className={`w-full max-w-md rounded-lg ${wtiViewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                      <div className={wtiViewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                        <div className={wtiViewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                          <p
+                            className={`font-semibold ${wtiViewMode === 'mini' ? 'text-sm cursor-pointer hover:text-cyan-300' : 'text-lg'}`}
+                            style={{ color: 'rgb(0, 197, 255)' }}
+                            onClick={() => {
+                              if (viewMode === 'mini') {
+                                setExpandedBoxInMini(expandedBoxInMini === 'wti' ? null : 'wti')
+                              }
+                            }}
+                          >WTI Crude Oil:</p>
                           <div className="flex items-end gap-2">
                             <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Daily)</p>
-                            <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestWti.toFixed(2)}</p>
+                            <p className={`font-bold text-white ${wtiViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>${latestWti.toFixed(2)}</p>
                             {previousWti !== null && latestWti !== null && (
                               <>
                                 {latestWti > previousWti && (
-                                  <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-up text-red-400 ${wtiViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestWti < previousWti && (
-                                  <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-trend-down text-green-400 ${wtiViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                                 {latestWti === previousWti && (
-                                  <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                                  <i className={`fas fa-arrow-right text-cyan-400 ${wtiViewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
                                 )}
                               </>
                             )}
                           </div>
                         </div>
-                        {viewMode !== 'mini' && (
+                        {wtiViewMode !== 'mini' && (
                           <p className="text-xs text-slate-500">
                             Source: <a href="https://fred.stlouisfed.org/series/DCOILWTICO/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
                           </p>
@@ -2922,7 +3089,7 @@ export default function DisplayPage() {
                       </div>
 
                       {/* WTI Chart */}
-                      {viewMode !== 'mini' && wtiData.length > 0 && (
+                      {wtiViewMode !== 'mini' && wtiData.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-slate-600">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs text-slate-400 font-semibold">60-Day Trend</span>
@@ -2997,7 +3164,8 @@ export default function DisplayPage() {
                     </div>
                   </div>
                 </div>
-            )}
+              )
+            })()}
 
             {!isLoading && !error && productsWithPrices.length === 0 && (
               <div className="text-center text-slate-400">
