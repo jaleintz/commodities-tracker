@@ -64,6 +64,9 @@ export default function DisplayPage() {
   const [vixData, setVixData] = useState<UnemploymentDataPoint[]>([])
   const [latestVix, setLatestVix] = useState<number | null>(null)
   const [previousVix, setPreviousVix] = useState<number | null>(null)
+  const [inflationData, setInflationData] = useState<UnemploymentDataPoint[]>([])
+  const [latestInflation, setLatestInflation] = useState<number | null>(null)
+  const [previousInflation, setPreviousInflation] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -80,7 +83,18 @@ export default function DisplayPage() {
   const [isM2ChartExpanded, setIsM2ChartExpanded] = useState(false)
   const [isConsumerSentimentChartExpanded, setIsConsumerSentimentChartExpanded] = useState(false)
   const [isVixChartExpanded, setIsVixChartExpanded] = useState(false)
+  const [isInflationChartExpanded, setIsInflationChartExpanded] = useState(false)
   const [viewMode, setViewMode] = useState<'mini' | 'medium' | 'max'>('medium')
+  const [showViewModeArrows, setShowViewModeArrows] = useState(true)
+
+  useEffect(() => {
+    // Hide arrows after 10 seconds
+    const timer = setTimeout(() => {
+      setShowViewModeArrows(false)
+    }, 10000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     fetchLatestPrices()
@@ -97,6 +111,7 @@ export default function DisplayPage() {
     fetchM2Data()
     fetchConsumerSentimentData()
     fetchVixData()
+    fetchInflationData()
   }, [])
 
   const fetchChartData = async () => {
@@ -726,6 +741,43 @@ export default function DisplayPage() {
     }
   }
 
+  const fetchInflationData = async () => {
+    try {
+      // Fetch inflation data from database
+      const { data: inflationRecords, error: inflationError } = await supabase
+        .from('fred_inflation_tb')
+        .select('observation_date, value')
+        .eq('series_id', 'FPCPITOTLZGUSA')
+        .order('observation_date', { ascending: false })
+        .limit(30) // Get last 30 years
+
+      if (inflationError) throw inflationError
+
+      if (inflationRecords && inflationRecords.length > 0) {
+        // Set latest inflation
+        setLatestInflation(inflationRecords[0].value)
+
+        // Set previous inflation (if available)
+        if (inflationRecords.length > 1) {
+          setPreviousInflation(inflationRecords[1].value)
+        }
+
+        // Format data for chart (reverse to show oldest to newest)
+        const chartData = inflationRecords.reverse().map(record => {
+          const date = new Date(record.observation_date)
+          const displayDate = `${date.getFullYear()}`
+          return {
+            date: displayDate,
+            value: record.value
+          }
+        })
+        setInflationData(chartData)
+      }
+    } catch (error: any) {
+      console.error('Error fetching inflation data:', error)
+    }
+  }
+
   const formatPrice = (price: number | null) => {
     if (price === null) return 'N/A'
     return `$${price.toFixed(2)}`
@@ -770,6 +822,7 @@ export default function DisplayPage() {
       setIsM2ChartExpanded(false)
       setIsConsumerSentimentChartExpanded(false)
       setIsVixChartExpanded(false)
+      setIsInflationChartExpanded(false)
     }
   }
 
@@ -792,6 +845,7 @@ export default function DisplayPage() {
       setIsM2ChartExpanded(true)
       setIsConsumerSentimentChartExpanded(true)
       setIsVixChartExpanded(true)
+      setIsInflationChartExpanded(true)
     }
   }
 
@@ -799,8 +853,31 @@ export default function DisplayPage() {
     <div className="min-h-screen bg-gray-900">
       <Navigation pulseHamburger={true} />
       <div className="flex flex-col items-center justify-center pt-6">
+        {showViewModeArrows && (
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              @keyframes pulseArrow {
+                0%, 100% { opacity: 0; }
+                50% { opacity: 1; }
+              }
+              .pulse-arrow {
+                animation: pulseArrow 2s ease-in-out infinite;
+              }
+            `
+          }} />
+        )}
         <h1 className="text-2xl font-light text-white tracking-widest">I N D I C A T O R S</h1>
-        <div className="flex items-center gap-1 mt-2">
+        <div className="flex items-center gap-3 mt-2">
+          {showViewModeArrows && (
+            <svg
+              className="w-6 h-6 text-green-400 pulse-arrow"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          )}
           <span className="text-slate-400 font-semibold capitalize" style={{ fontSize: '0.625rem' }}>{viewMode} view</span>
           <div className="flex flex-col">
             <button
@@ -834,6 +911,16 @@ export default function DisplayPage() {
               </svg>
             </button>
           </div>
+          {showViewModeArrows && (
+            <svg
+              className="w-6 h-6 text-green-400 pulse-arrow"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+          )}
         </div>
       </div>
       <div className="pt-2 pb-8 px-4 sm:px-6 lg:px-8">
@@ -1269,6 +1356,117 @@ export default function DisplayPage() {
                                     const x = (index / (consumerSentimentData.length - 1)) * 380 + 10
                                     const y = 90 - ((point.value - minValue) / range) * 80
                                     const showLabel = index % 10 === 0 || index === consumerSentimentData.length - 1
+                                    return (
+                                      <g key={index}>
+                                        <circle cx={x} cy={y} r="3" fill="#22d3ee" />
+                                        {showLabel && (
+                                          <text x={x} y="105" textAnchor="middle" fill="#94a3b8" fontSize="10">
+                                            {point.date}
+                                          </text>
+                                        )}
+                                      </g>
+                                    )
+                                  })}
+                                </svg>
+                              )
+                            })()}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+          )}
+
+          {/* Inflation Section */}
+          {!isLoading && !error && latestInflation !== null && (
+            <div className="mt-2.5">
+              <div className="flex flex-col items-center space-y-4">
+                <div className={`w-full max-w-md rounded-lg ${viewMode === 'mini' ? 'py-1 px-2' : 'py-2.5 px-4'} border-2 bg-black border-green-400`}>
+                    <div className={viewMode === 'mini' ? 'mb-1' : 'mb-2'}>
+                      <div className={viewMode === 'mini' ? 'flex items-center justify-between mb-1' : 'flex items-center justify-between mb-2'}>
+                        <p className={`font-semibold ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`} style={{ color: 'rgb(0, 197, 255)' }}>Inflation Rate:</p>
+                        <div className="flex items-end gap-2">
+                          <p className="font-semibold text-slate-400 mb-1" style={{ fontSize: '0.5em' }}>(Annual)</p>
+                          <p className={`font-bold text-white ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}>{latestInflation.toFixed(2)}%</p>
+                          {previousInflation !== null && latestInflation !== null && (
+                            <>
+                              {latestInflation > previousInflation && (
+                                <i className={`fas fa-arrow-trend-up text-red-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestInflation < previousInflation && (
+                                <i className={`fas fa-arrow-trend-down text-green-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                              {latestInflation === previousInflation && (
+                                <i className={`fas fa-arrow-right text-cyan-400 ${viewMode === 'mini' ? 'text-sm' : 'text-lg'}`}></i>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      {viewMode !== 'mini' && (
+                        <p className="text-xs text-slate-500">
+                          Source: <a href="https://fred.stlouisfed.org/series/FPCPITOTLZGUSA/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Federal Reserve Economic Data (FRED)</a>
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Inflation Chart */}
+                    {viewMode !== 'mini' && inflationData.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-slate-600">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-slate-400 font-semibold">30-Year Trend</span>
+                          <button
+                            onClick={() => setIsInflationChartExpanded(!isInflationChartExpanded)}
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                            aria-label={isInflationChartExpanded ? "Collapse chart" : "Expand chart"}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              {isInflationChartExpanded ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              )}
+                            </svg>
+                          </button>
+                        </div>
+                        {isInflationChartExpanded && (
+                          <div className="relative h-32">
+                            {(() => {
+                              const maxValue = Math.max(...inflationData.map(d => d.value))
+                              const minValue = Math.min(...inflationData.map(d => d.value))
+                              const range = maxValue - minValue || 1
+
+                              return (
+                                <svg viewBox="0 0 400 100" className="w-full h-full">
+                                  {/* Grid lines */}
+                                  <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" strokeWidth="0.5" />
+                                  <line x1="0" y1="50" x2="400" y2="50" stroke="#475569" strokeWidth="0.5" strokeDasharray="2,2" />
+                                  <line x1="0" y1="100" x2="400" y2="100" stroke="#475569" strokeWidth="0.5" />
+
+                                  {/* Line chart */}
+                                  <polyline
+                                    points={inflationData.map((point, index) => {
+                                      const x = (index / (inflationData.length - 1)) * 380 + 10
+                                      const y = 90 - ((point.value - minValue) / range) * 80
+                                      return `${x},${y}`
+                                    }).join(' ')}
+                                    fill="none"
+                                    stroke="#22d3ee"
+                                    strokeWidth="2"
+                                  />
+
+                                  {/* Data points */}
+                                  {inflationData.map((point, index) => {
+                                    const x = (index / (inflationData.length - 1)) * 380 + 10
+                                    const y = 90 - ((point.value - minValue) / range) * 80
+                                    const showLabel = index % 5 === 0 || index === inflationData.length - 1
                                     return (
                                       <g key={index}>
                                         <circle cx={x} cy={y} r="3" fill="#22d3ee" />
